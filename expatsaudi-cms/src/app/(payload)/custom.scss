@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+
+:root {
+  --theme-font-body: 'Montserrat', sans-serif;
+  --theme-font-heading: 'Montserrat', sans-serif;
+}
+
+
+body,
+.payload,
+.payload *,
+#app {
+  font-family: 'Montserrat', sans-serif !important;
+}

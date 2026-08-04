@@ -1,0 +1,3 @@
+export const DEFAULT_CACHE_SECONDS = 300;
+
+export const LONG_CACHE_SECONDS = 3600;
