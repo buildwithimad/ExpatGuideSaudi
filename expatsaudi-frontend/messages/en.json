@@ -1,0 +1,390 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "categories": "Categories",
+        "articles": "Articles",
+        "tools": "Tools",
+        "subscribe": "Subscribe",
+        "search": "Search",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "searchGuides": "Search",
+        "subscribeNewsletter": "Subscribe to Newsletter"
+    },
+    "hero": {
+        "badge": "Live & Updated 2026",
+        "title": "Everything Expats Need to Know About Saudi Arabia",
+        "description": "Your authoritative guide to life in the Kingdom. From Iqama renewals and visa services to labor law, banking, and housing \u2014 organized, verified, and easy to understand.",
+        "exploreGuides": "Explore Guides",
+        "browseCategories": "Browse Categories",
+        "stats": {
+            "guides": "Expert Guides",
+            "categories": "Topic Categories",
+            "free": "Always Free"
+        },
+        "illustration": {
+            "title": "Professional Illustration",
+            "subtitle": "Saudi Arabia Map / Landmark Visual"
+        }
+    },
+    "categories": {
+        "label": "Browse by Topic",
+        "title": "Popular Categories",
+        "description": "Find everything you need organized by topic. Each category contains expert-written guides verified against official Saudi sources.",
+        "viewAll": "View All Categories",
+        "explore": "Explore",
+        "guides": "guides",
+        "items": {
+            "iqama": {
+                "title": "Iqama",
+                "description": "Residence permits, renewals, transfers, and status checks."
+            },
+            "visa": {
+                "title": "Visa Services",
+                "description": "Work visas, family visas, visit visas, and exit re-entry."
+            },
+            "labor": {
+                "title": "Labor Law",
+                "description": "Employment contracts, rights, end of service, and disputes."
+            },
+            "government": {
+                "title": "Government Services",
+                "description": "Absher, Muqeem, Jawazat, GOSI, and ministry guides."
+            },
+            "banking": {
+                "title": "Banking",
+                "description": "Opening accounts, transfers, remittances, and credit cards."
+            },
+            "driving": {
+                "title": "Driving",
+                "description": "Saudi driving license, traffic rules, and vehicle registration."
+            },
+            "housing": {
+                "title": "Housing",
+                "description": "Renting, tenant rights, utilities, and neighborhoods."
+            },
+            "healthcare": {
+                "title": "Healthcare",
+                "description": "Health insurance, hospitals, clinics, and medical services."
+            },
+            "education": {
+                "title": "Education",
+                "description": "International schools, universities, and enrollment guides."
+            },
+            "family": {
+                "title": "Family",
+                "description": "Sponsoring family, dependent visas, and family life."
+            },
+            "travel": {
+                "title": "Travel",
+                "description": "Exit visas, travel restrictions, and neighboring countries."
+            },
+            "saudiLife": {
+                "title": "Saudi Life",
+                "description": "Culture, religion, holidays, food, and daily living tips."
+            }
+        }
+    },
+    "featuredGuide": {
+        "label": "Featured Guide",
+        "allGuides": "All Guides",
+        "continueReading": "Continue Reading"
+    },
+    "latestArticles": {
+        "label": "Latest Guides",
+        "title": "Recently Published",
+        "description": "Fresh, verified content covering the most important topics for expats in Saudi Arabia.",
+        "viewAll": "View All Articles"
+    },
+    "search": {
+        "label": "Search",
+        "title": "Find What You Need",
+        "description": "Search across all guides, categories, and topics. Over 120 expert-written articles covering every aspect of expat life in Saudi Arabia.",
+        "placeholder": "Search guides, topics, services...",
+        "button": "Search",
+        "popular": "Popular:",
+        "clearFilters": "Clear filters",
+        "all": "All"
+    },
+    "tools": {
+        "label": "Saudi Tools",
+        "title": "Free Calculators & Tools",
+        "description": "Practical tools built specifically for expats in Saudi Arabia. All tools are free, no account required.",
+        "comingSoon": "Coming Soon",
+        "notice": "All tools will be completely free. We are currently building and verifying each calculator against official Saudi government formulas.",
+        "items": {
+            "iqamaChecker": {
+                "name": "Iqama Expiry Checker",
+                "description": "Enter your Iqama number to instantly check remaining validity and renewal deadlines."
+            },
+            "visaCalc": {
+                "name": "Visa Calculator",
+                "description": "Calculate visa fees, processing times, and document requirements for any visa type."
+            },
+            "salaryCalc": {
+                "name": "Salary Calculator",
+                "description": "Compute your net salary after GOSI deductions, income tax where applicable, and allowances."
+            },
+            "eosCalc": {
+                "name": "End of Service Calculator",
+                "description": "Accurately calculate your EOSB gratuity based on Saudi Labor Law Article 84."
+            },
+            "leaveCalc": {
+                "name": "Leave Calculator",
+                "description": "Calculate annual leave entitlements, carry-over days, and encashment amounts."
+            },
+            "currencyConv": {
+                "name": "Currency Converter",
+                "description": "Convert SAR to any currency with live rates and historical comparison charts."
+            },
+            "calendarConv": {
+                "name": "Saudi Calendar Converter",
+                "description": "Convert between Hijri and Gregorian calendars for official document dates."
+            }
+        }
+    },
+    "resources": {
+        "label": "Quick Reference",
+        "title": "Saudi Resources",
+        "description": "Essential reference guides and external links for everyday expat needs.",
+        "viewResource": "View Resource",
+        "items": {
+            "government": {
+                "title": "Government Services",
+                "description": "Direct links and guides to all major Saudi government portals \u2014 Absher, Muqeem, GOSI, Etimad, and more."
+            },
+            "apps": {
+                "title": "Useful Apps",
+                "description": "The essential smartphone apps every expat in Saudi Arabia should have installed."
+            },
+            "emergency": {
+                "title": "Emergency Numbers",
+                "description": "Quick reference for police, ambulance, fire, and other critical emergency contacts across the Kingdom."
+            },
+            "public": {
+                "title": "Public Services",
+                "description": "Guides to using public transport, healthcare facilities, and municipal services across Saudi cities."
+            },
+            "legal": {
+                "title": "Legal Resources",
+                "description": "Understanding your legal rights as an expatriate \u2014 labor disputes, civil matters, and where to get help."
+            },
+            "embassies": {
+                "title": "Embassies",
+                "description": "Contact information and services for embassies and consulates across Riyadh, Jeddah, and Dammam."
+            }
+        }
+    },
+    "newsletter": {
+        "label": "Newsletter",
+        "title": "Stay Updated on Saudi Regulations",
+        "description": "Get notified when we publish new guides, when Saudi regulations change, and when new tools go live. No spam \u2014 only relevant updates.",
+        "placeholder": "your@email.com",
+        "button": "Subscribe",
+        "success": "You are subscribed. Welcome to ExpatSaudi.",
+        "disclaimer": "Free forever. Unsubscribe at any time."
+    },
+    "faq": {
+        "label": "FAQ",
+        "title": "Frequently Asked Questions",
+        "description": "Quick answers to the most common questions from expats living in Saudi Arabia.",
+        "items": [
+            {
+                "question": "What is an Iqama and why do I need it?",
+                "answer": "An Iqama (\u0625\u0642\u0627\u0645\u0629) is a residency permit issued to all expatriates living and working in Saudi Arabia. It is your legal identification document in the Kingdom and is required for virtually all official transactions \u2014 opening a bank account, renting an apartment, getting a SIM card, accessing healthcare, and renewing your driving license. Your employer (sponsor) is legally responsible for obtaining and renewing your Iqama."
+            },
+            {
+                "question": "How do I renew my Iqama before it expires?",
+                "answer": "Your sponsor or HR department is primarily responsible for Iqama renewal. However, you can monitor your Iqama status and expiry date through the Absher platform (absher.sa) or the Muqeem portal. Renewal typically requires paying a government fee (currently SAR 650/year for most nationalities), ensuring your health insurance is active, and that your employer's Nitaqat compliance status is in good standing. Start the process at least 30 days before expiry to avoid fines."
+            },
+            {
+                "question": "Can I change jobs in Saudi Arabia without losing my residency?",
+                "answer": "Yes, under the Labor Reform Initiative (LRI) introduced in 2021, most expatriates can transfer their sponsorship (Iqama) to a new employer without requiring the current employer's consent, provided they have completed at least one year of service. You can initiate a job transfer through the Absher platform. There are certain restrictions for domestic workers and some sectors \u2014 check the official HRSD portal for the latest eligibility criteria."
+            },
+            {
+                "question": "What is an Exit Re-Entry Visa and do I need one?",
+                "answer": "An Exit Re-Entry Visa (\u062a\u0623\u0634\u064a\u0631\u0629 \u0627\u0644\u062e\u0631\u0648\u062c \u0648\u0627\u0644\u0639\u0648\u062f\u0629) is required if you want to leave Saudi Arabia and return. Without it, leaving the country may be treated as a Final Exit, cancelling your Iqama. You can apply for single or multiple exit re-entry visas through Absher. As of 2021, most expatriates no longer need employer permission to obtain an exit re-entry visa after completing one year of service, thanks to the Labor Reform Initiative."
+            },
+            {
+                "question": "How is End of Service Benefit (EOSB) calculated?",
+                "answer": "Under Saudi Labor Law, EOSB (gratuity) is calculated based on your last basic salary and years of service. For the first 5 years: half a month's salary per year. After 5 years: one full month's salary per year. If you resign before completing 2 years, you receive no EOSB. Between 2-5 years, you receive one-third of the entitlement. Between 5-10 years, you receive two-thirds. After 10 years, you receive the full amount."
+            },
+            {
+                "question": "What health insurance is required for expats in Saudi Arabia?",
+                "answer": "Saudi Arabia mandates that all employers provide health insurance for their expatriate employees and their sponsored dependents under the Cooperative Health Insurance System regulated by the Council of Cooperative Health Insurance (CCHI). The minimum coverage (Class C) covers basic inpatient and outpatient treatment. Employers who fail to provide health insurance face significant fines and Nitaqat compliance penalties."
+            },
+            {
+                "question": "How do I get a Saudi driving license as an expatriate?",
+                "answer": "The process depends on your nationality and the type of license you hold. Citizens of GCC countries and nationals of certain countries with reciprocal agreements (including the US, UK, Canada, Australia, and many European nations) can exchange their foreign license directly at the traffic department (Muroor) without taking a test. Other nationalities must complete a driving course at a licensed driving school and pass both a theory and practical exam."
+            },
+            {
+                "question": "Is it safe to live in Saudi Arabia as an expat?",
+                "answer": "Saudi Arabia consistently ranks as one of the safest countries in the world for expatriates. Violent crime rates are very low. The main considerations for expats are traffic safety (road accidents are a leading cause of injury), workplace rights awareness, and understanding local laws and cultural norms. Alcohol is strictly prohibited, and public behavior is governed by local customs. Most expats report feeling very safe in their daily lives across all major Saudi cities."
+            }
+        ]
+    },
+    "finalCta": {
+        "label": "Get Started",
+        "title": "Start Exploring Saudi Arabia's Most Comprehensive Expat Guide",
+        "description": "Whether you just landed in the Kingdom or have been here for years, ExpatSaudi has the information you need \u2014 organized, current, and written in plain English.",
+        "exploreAll": "Explore All Guides",
+        "browseCategories": "Browse Categories"
+    },
+    "footer": {
+        "tagline": "Trusted information for expatriates living and working in Saudi Arabia.",
+        "copyright": "\u00a9 2026 ExpatSaudi. All rights reserved.",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "groups": {
+            "Company": {
+                "label": "Company",
+                "links": [
+                    {
+                        "label": "About",
+                        "href": "/about"
+                    },
+                    {
+                        "label": "Editorial Standards",
+                        "href": "/about#standards"
+                    },
+                    {
+                        "label": "Contact",
+                        "href": "/about#contact"
+                    }
+                ]
+            },
+            "Categories": {
+                "label": "Categories",
+                "links": [
+                    {
+                        "label": "Iqama & Residency",
+                        "href": "/category"
+                    },
+                    {
+                        "label": "Visa Services",
+                        "href": "/category"
+                    },
+                    {
+                        "label": "Labor Law",
+                        "href": "/category"
+                    },
+                    {
+                        "label": "Government Services",
+                        "href": "/category"
+                    },
+                    {
+                        "label": "Banking & Finance",
+                        "href": "/category"
+                    }
+                ]
+            },
+            "Resources": {
+                "label": "Resources",
+                "links": [
+                    {
+                        "label": "All Articles",
+                        "href": "/articles"
+                    },
+                    {
+                        "label": "Saudi Tools",
+                        "href": "/#tools"
+                    },
+                    {
+                        "label": "Emergency Numbers",
+                        "href": "/articles"
+                    },
+                    {
+                        "label": "Useful Apps",
+                        "href": "/articles"
+                    }
+                ]
+            },
+            "Legal": {
+                "label": "Legal",
+                "links": [
+                    {
+                        "label": "Privacy Policy",
+                        "href": "/about"
+                    },
+                    {
+                        "label": "Terms of Use",
+                        "href": "/about"
+                    },
+                    {
+                        "label": "Disclaimer",
+                        "href": "/about"
+                    }
+                ]
+            }
+        }
+    },
+    "about": {
+        "label": "About ExpatSaudi",
+        "heroTitle": "We built the guide we wished existed when we first arrived in Saudi Arabia.",
+        "heroDescription": "ExpatSaudi is an independent information platform dedicated to helping expatriates navigate life in the Kingdom of Saudi Arabia with confidence, clarity, and accuracy.",
+        "stats": {
+            "guides": "Expert guides published",
+            "categories": "Topic categories covered",
+            "founded": "Year founded",
+            "free": "Free, always"
+        },
+        "mission": {
+            "label": "Our Mission",
+            "title": "Why We Exist"
+        },
+        "story": {
+            "label": "Our Story",
+            "title": "Why We Built This Website"
+        },
+        "standards": {
+            "label": "Editorial Standards",
+            "title": "How We Verify Information",
+            "description": "Our editorial process is designed to ensure every guide on ExpatSaudi meets the highest standards of accuracy and reliability."
+        },
+        "audience": {
+            "label": "Audience",
+            "title": "Who This Website Helps",
+            "description": "ExpatSaudi is built for every expatriate in Saudi Arabia, regardless of nationality, profession, or how long you have been here."
+        },
+        "vision": {
+            "label": "Future Vision",
+            "title": "Where We Are Heading"
+        },
+        "contact": {
+            "label": "Contact",
+            "title": "Get in Touch"
+        }
+    },
+    "metadata": {
+        "home": {
+            "title": "ExpatSaudi \u2014 Your Complete Guide to Living in Saudi Arabia",
+            "description": "Trusted, organized information for expatriates in Saudi Arabia. Iqama, visas, labor law, government services, housing, banking, and more \u2014 all free."
+        },
+        "about": {
+            "title": "About ExpatSaudi \u2014 Our Mission, Standards & Vision",
+            "description": "Learn why we built ExpatSaudi, our editorial standards, how we verify information, and our vision for the most trusted expat resource in Saudi Arabia."
+        },
+        "articles": {
+            "title": "All Guides & Articles \u2014 ExpatSaudi",
+            "description": "Browse all expert-written guides for expatriates in Saudi Arabia. Filter by category, sort by date, and find exactly what you need."
+        },
+        "category": {
+            "title": "Iqama & Residency Guides \u2014 ExpatSaudi",
+            "description": "Complete guides on Iqama renewals, transfers, status checks, and residency requirements for expatriates in Saudi Arabia."
+        },
+        "articleDetail": {
+            "title": "The Complete Guide to Iqama Renewal in Saudi Arabia (2026) \u2014 ExpatSaudi",
+            "description": "Step-by-step guide to renewing your Iqama in Saudi Arabia. Includes fees, required documents, Absher instructions, and what to do if your sponsor is unresponsive."
+        },
+        "searchResults": {
+            "title": "Search Results \u2014 ExpatSaudi",
+            "description": "Search results for expat guides and information about Saudi Arabia."
+        }
+    },
+    "languageSwitcher": {
+        "label": "Language",
+        "en": "English",
+        "ar": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
+    }
+}
