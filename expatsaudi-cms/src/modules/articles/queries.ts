@@ -22,6 +22,7 @@ export async function resolveArticle(
   const result = await payload.find({
     collection: 'articles',
     locale,
+    fallbackLocale: 'en',
     depth: ARTICLE_DEPTH,
     limit: 1,
     where: {
@@ -89,6 +90,7 @@ export async function resolveArticles(
   const categoryResult =
     await payload.find({
       collection: 'categories',
+      fallbackLocale: 'en',
       limit: 1,
       where: {
         slug: {
@@ -149,6 +151,7 @@ export async function resolveArticles(
   return payload.find({
     collection: 'articles',
     locale,
+    fallbackLocale: 'en',
     depth: ARTICLE_DEPTH,
     page,
     limit,
@@ -170,6 +173,7 @@ export async function resolveRelatedArticles(
   const result = await payload.find({
     collection: 'articles',
     locale,
+    fallbackLocale: 'en',
     depth: ARTICLE_DEPTH,
     limit: RELATED_ARTICLES_LIMIT,
     sort: DEFAULT_ARTICLE_SORT,

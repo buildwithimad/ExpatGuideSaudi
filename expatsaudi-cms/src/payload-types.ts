@@ -107,10 +107,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     homepage: Homepage;
+    'seo-pages': SeoPage;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
+    'seo-pages': SeoPagesSelect<false> | SeoPagesSelect<true>;
   };
   locale: 'en' | 'ar' | 'ur' | 'hi' | 'bn' | 'tl';
   widgets: {
@@ -319,6 +321,26 @@ export interface Article {
   author: number | Author;
   relatedArticles?: (number | Article)[] | null;
   governmentSources?: (number | GovernmentSource)[] | null;
+  /**
+   * Optional. Falls back to the article title.
+   */
+  metaTitle?: string | null;
+  /**
+   * Optional. Falls back to the article excerpt.
+   */
+  metaDescription?: string | null;
+  /**
+   * Optional. Falls back to the featured image.
+   */
+  ogImage?: (number | null) | Media;
+  /**
+   * Discourage search engines from indexing this page.
+   */
+  noIndex?: boolean | null;
+  /**
+   * Discourage search engines from following links on this page.
+   */
+  noFollow?: boolean | null;
   status: 'draft' | 'published';
   publishedAt?: string | null;
   /**
@@ -635,6 +657,11 @@ export interface ArticlesSelect<T extends boolean = true> {
   author?: T;
   relatedArticles?: T;
   governmentSources?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  ogImage?: T;
+  noIndex?: T;
+  noFollow?: T;
   status?: T;
   publishedAt?: T;
   lastVerifiedAt?: T;
@@ -731,22 +758,204 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface SiteSetting {
   id: number;
-  siteName: string;
-  organizationName: string;
-  tagline?: string | null;
-  logo?: (number | null) | Media;
-  favicon?: (number | null) | Media;
-  defaultOgImage?: (number | null) | Media;
-  email?: string | null;
-  phone?: string | null;
-  address?: string | null;
-  socialLinks?:
-    | {
-        platform: 'facebook' | 'x' | 'instagram' | 'linkedin' | 'youtube' | 'tiktok';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
+  identity: {
+    siteName: string;
+    organizationName: string;
+    tagline?: string | null;
+    shortDescription?: string | null;
+  };
+  logos?: {
+    primaryLogo?: (number | null) | Media;
+    whiteLogo?: (number | null) | Media;
+    darkLogo?: (number | null) | Media;
+    favicon?: (number | null) | Media;
+    appleTouchIcon?: (number | null) | Media;
+  };
+  /**
+   * Colors used when the website is in light mode.
+   */
+  light: {
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    primary: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    primaryForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    secondary: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    secondaryForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    accent: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    accentForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    background: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    foreground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    card: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    cardForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    muted: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    mutedForeground: string;
+  };
+  /**
+   * Colors used when the website is in dark mode.
+   */
+  dark: {
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    primary: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    primaryForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    secondary: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    secondaryForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    accent: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    accentForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    background: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    foreground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    card: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    cardForeground: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    muted: string;
+    /**
+     * Choose a color or enter a HEX value.
+     */
+    mutedForeground: string;
+  };
+  site: {
+    /**
+     * The canonical base URL of your website.
+     */
+    siteUrl: string;
+    defaultMetaTitle: string;
+    defaultMetaDescription?: string | null;
+  };
+  verification?: {
+    /**
+     * Paste the Google Search Console verification token.
+     */
+    googleVerification?: string | null;
+    /**
+     * Paste the Bing Webmaster verification token.
+     */
+    bingVerification?: string | null;
+  };
+  structuredData: {
+    organizationType: 'Organization' | 'Corporation' | 'NewsMediaOrganization' | 'EducationalOrganization';
+  };
+  socialProfiles?: {
+    /**
+     * Enter a valid URL.
+     */
+    facebook?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    instagram?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    x?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    linkedin?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    youtube?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    tiktok?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    telegram?: string | null;
+  };
+  services?: {
+    /**
+     * Example: G-XXXXXXXXXX
+     */
+    googleAnalyticsId?: string | null;
+    /**
+     * Example: GTM-XXXXXXX
+     */
+    googleTagManagerId?: string | null;
+    microsoftClarityId?: string | null;
+    /**
+     * Example: ca-pub-1234567890123456
+     */
+    googleAdsenseId?: string | null;
+  };
+  website?: {
+    maintenanceMode?: boolean | null;
+    enableSearch?: boolean | null;
+    enableDarkMode?: boolean | null;
+  };
+  content?: {
+    enableReadingTime?: boolean | null;
+    enableTableOfContents?: boolean | null;
+    enableRelatedArticles?: boolean | null;
+  };
+  ads?: {
+    enableAds?: boolean | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -769,24 +978,342 @@ export interface Homepage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-pages".
+ */
+export interface SeoPage {
+  id: number;
+  home?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  articles?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  categories?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  authors?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  about?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  contact?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  privacy?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  terms?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  search?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  error404?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
-  siteName?: T;
-  organizationName?: T;
-  tagline?: T;
-  logo?: T;
-  favicon?: T;
-  defaultOgImage?: T;
-  email?: T;
-  phone?: T;
-  address?: T;
-  socialLinks?:
+  identity?:
     | T
     | {
-        platform?: T;
-        url?: T;
-        id?: T;
+        siteName?: T;
+        organizationName?: T;
+        tagline?: T;
+        shortDescription?: T;
+      };
+  logos?:
+    | T
+    | {
+        primaryLogo?: T;
+        whiteLogo?: T;
+        darkLogo?: T;
+        favicon?: T;
+        appleTouchIcon?: T;
+      };
+  light?:
+    | T
+    | {
+        primary?: T;
+        primaryForeground?: T;
+        secondary?: T;
+        secondaryForeground?: T;
+        accent?: T;
+        accentForeground?: T;
+        background?: T;
+        foreground?: T;
+        card?: T;
+        cardForeground?: T;
+        muted?: T;
+        mutedForeground?: T;
+      };
+  dark?:
+    | T
+    | {
+        primary?: T;
+        primaryForeground?: T;
+        secondary?: T;
+        secondaryForeground?: T;
+        accent?: T;
+        accentForeground?: T;
+        background?: T;
+        foreground?: T;
+        card?: T;
+        cardForeground?: T;
+        muted?: T;
+        mutedForeground?: T;
+      };
+  site?:
+    | T
+    | {
+        siteUrl?: T;
+        defaultMetaTitle?: T;
+        defaultMetaDescription?: T;
+      };
+  verification?:
+    | T
+    | {
+        googleVerification?: T;
+        bingVerification?: T;
+      };
+  structuredData?:
+    | T
+    | {
+        organizationType?: T;
+      };
+  socialProfiles?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        x?: T;
+        linkedin?: T;
+        youtube?: T;
+        tiktok?: T;
+        telegram?: T;
+      };
+  services?:
+    | T
+    | {
+        googleAnalyticsId?: T;
+        googleTagManagerId?: T;
+        microsoftClarityId?: T;
+        googleAdsenseId?: T;
+      };
+  website?:
+    | T
+    | {
+        maintenanceMode?: T;
+        enableSearch?: T;
+        enableDarkMode?: T;
+      };
+  content?:
+    | T
+    | {
+        enableReadingTime?: T;
+        enableTableOfContents?: T;
+        enableRelatedArticles?: T;
+      };
+  ads?:
+    | T
+    | {
+        enableAds?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -804,6 +1331,105 @@ export interface HomepageSelect<T extends boolean = true> {
         title?: T;
         query?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-pages_select".
+ */
+export interface SeoPagesSelect<T extends boolean = true> {
+  home?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  articles?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  categories?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  authors?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  about?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  contact?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  privacy?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  terms?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  search?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  error404?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
       };
   updatedAt?: T;
   createdAt?: T;

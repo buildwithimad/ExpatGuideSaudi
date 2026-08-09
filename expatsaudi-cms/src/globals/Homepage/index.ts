@@ -22,6 +22,7 @@ export const Homepage: GlobalConfig = {
               type: 'relationship',
               relationTo: 'categories',
               hasMany: true,
+              localized: true,
             },
 
             {
@@ -34,12 +35,14 @@ export const Homepage: GlobalConfig = {
                   name: 'title',
                   type: 'text',
                   required: true,
+                  localized: true,
                 },
 
                 {
                   name: 'query',
                   type: 'text',
                   required: true,
+                  localized: true,
                 },
               ],
             },

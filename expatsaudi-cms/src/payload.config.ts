@@ -19,17 +19,17 @@ import { Users } from './collections/Users'
 import { Homepage } from './globals/Homepage'
 import { SiteSettings } from './globals/SiteSettings'
 
-import {
-  articlesEndpoint
-} from '@/endpoints/articles'
-import {
-  categoriesEndpoint,
-} from '@/endpoints/categories'
+import { articleDetailsEndpoint, articlesEndpoint } from '@/endpoints/articles'
+import { categoriesEndpoint } from '@/endpoints/categories'
+import { seoPagesEndpoint } from '@/endpoints/seo-pages'
+import { siteSettingsEndpoint } from '@/endpoints/site-settings'
+
+import { SeoPages } from '@/globals/SeoPages'
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
 
   const allowedOrigins = [
   process.env.NEXT_PUBLIC_SERVER_URL,
@@ -88,7 +88,7 @@ export default buildConfig({
     NewsletterSubscribers,
   ],
 
-  globals: [SiteSettings, Homepage],
+  globals: [SiteSettings, Homepage, SeoPages],
 
   editor: lexicalEditor(),
 
@@ -142,7 +142,10 @@ export default buildConfig({
   homeEndpoint,
   searchEndpoint,
   articlesEndpoint,
-  categoriesEndpoint
+  articleDetailsEndpoint,
+  categoriesEndpoint,
+  siteSettingsEndpoint,
+  seoPagesEndpoint
 
 ],
 

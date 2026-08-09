@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { auditFields } from '@/fields/meta';
 import { publishingFields } from '@/fields/publish';
 import { localizedRichText } from '@/fields/richText';
+import { seoFields } from '@/fields/seo';
 import { slugField } from '@/fields/slug';
 
 import { articlesAccess } from './access';
@@ -64,155 +65,192 @@ export const Articles: CollectionConfig = {
     maxPerDoc: 50,
   },
 
-  fields: [
-    {
-      type: 'tabs',
-      tabs: [
-        {
-          label: 'Content',
-          fields: [
-            {
-              name: 'title',
-              type: 'text',
-              required: true,
-              localized: true,
-              index: true,
-            },
+fields: [
+  {
+    type: 'tabs',
 
-            slugField(),
+    tabs: [
+      /* ------------------------------------------------------------------ */
+      /* Content                                                            */
+      /* ------------------------------------------------------------------ */
 
-            {
-              name: 'subtitle',
-              type: 'text',
-              localized: true,
-            },
+      {
+        label: 'Content',
+        fields: [
+          {
+            name: 'title',
+            type: 'text',
+            required: true,
+            localized: true,
+            index: true,
+          },
 
-            {
-              name: 'excerpt',
-              type: 'textarea',
-              localized: true,
-              maxLength: 240,
-            },
+          slugField(),
 
-            localizedRichText(),
-          ],
-        },
+          {
+            name: 'subtitle',
+            type: 'text',
+            localized: true,
+          },
 
-        {
-          label: 'Media',
-          fields: [
-            {
-              name: 'featuredImage',
-              type: 'upload',
-              relationTo: 'media',
-              required: true,
-            },
-          ],
-        },
+          {
+            name: 'excerpt',
+            type: 'textarea',
+            localized: true,
+            maxLength: 240,
+          },
 
-        {
-          label: 'Relations',
-          fields: [
-            {
-              name: 'category',
-              type: 'relationship',
-              relationTo: 'categories',
-              required: true,
-              index: true,
-            },
+          localizedRichText(),
+        ],
+      },
 
-            {
-              name: 'author',
-              type: 'relationship',
-              relationTo: 'authors',
-              required: true,
-              index: true,
-            },
+      /* ------------------------------------------------------------------ */
+      /* Media                                                              */
+      /* ------------------------------------------------------------------ */
 
-            {
-              name: 'relatedArticles',
-              type: 'relationship',
-              relationTo: 'articles',
-              hasMany: true,
-              maxDepth: 1,
-            },
+      {
+        label: 'Media',
+        fields: [
+          {
+            name: 'featuredImage',
+            type: 'upload',
+            relationTo: 'media',
+            required: true,
+          },
+        ],
+      },
 
-            {
-              name: 'governmentSources',
-              type: 'relationship',
-              relationTo: 'government-sources',
-              hasMany: true,
-              index: true,
-            },
-          ],
-        },
+      /* ------------------------------------------------------------------ */
+      /* Relationships                                                      */
+      /* ------------------------------------------------------------------ */
 
-        {
-          label: 'Publishing',
-          fields: publishingFields(),
-        },
+      {
+        label: 'Relationships',
+        fields: [
+          {
+            name: 'category',
+            type: 'relationship',
+            relationTo: 'categories',
+            required: true,
+            index: true,
+          },
 
-        {
-          label: 'Trust',
-          fields: [
-            {
-              name: 'verifiedBy',
-              type: 'relationship',
-              relationTo: 'users',
-            },
+          {
+            name: 'author',
+            type: 'relationship',
+            relationTo: 'authors',
+            required: true,
+            index: true,
+          },
 
-            {
-              name: 'factChecked',
-              type: 'checkbox',
-              defaultValue: false,
-              index: true,
-            },
+          {
+            name: 'relatedArticles',
+            type: 'relationship',
+            relationTo: 'articles',
+            hasMany: true,
+            maxDepth: 1,
+          },
 
-            {
-              name: 'sourceLinks',
-              type: 'array',
-              fields: [
-                {
-                  name: 'label',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'url',
-                  type: 'text',
-                  required: true,
-                },
-              ],
-            },
-          ],
-        },
+          {
+            name: 'governmentSources',
+            type: 'relationship',
+            relationTo: 'government-sources',
+            hasMany: true,
+            index: true,
+          },
+        ],
+      },
 
-        {
-          label: 'Metadata',
-          fields: [
-            {
-              name: 'readingTime',
-              type: 'number',
-              defaultValue: 1,
-              admin: {
-                readOnly: true,
+      /* ------------------------------------------------------------------ */
+      /* SEO                                                                */
+      /* ------------------------------------------------------------------ */
+
+      {
+        label: 'SEO',
+        fields: seoFields(),
+      },
+
+      /* ------------------------------------------------------------------ */
+      /* Publishing                                                         */
+      /* ------------------------------------------------------------------ */
+
+      {
+        label: 'Publishing',
+        fields: publishingFields(),
+      },
+
+      /* ------------------------------------------------------------------ */
+      /* Trust                                                              */
+      /* ------------------------------------------------------------------ */
+
+      {
+        label: 'Trust',
+        fields: [
+          {
+            name: 'verifiedBy',
+            type: 'relationship',
+            relationTo: 'users',
+          },
+
+          {
+            name: 'factChecked',
+            type: 'checkbox',
+            defaultValue: false,
+            index: true,
+          },
+
+          {
+            name: 'sourceLinks',
+            type: 'array',
+            fields: [
+              {
+                name: 'label',
+                type: 'text',
+                required: true,
+                localized: true,
               },
-            },
 
-            {
-              name: 'viewCount',
-              type: 'number',
-              defaultValue: 0,
-              min: 0,
-              index: true,
-            },
+              {
+                name: 'url',
+                type: 'text',
+                required: true,
+              },
+            ],
+          },
+        ],
+      },
 
-            ...auditFields(),
-          ],
-        },
-      ],
-    },
-  ],
+      /* ------------------------------------------------------------------ */
+      /* System                                                             */
+      /* ------------------------------------------------------------------ */
+
+      {
+        label: 'System',
+        fields: [
+          {
+            name: 'readingTime',
+            type: 'number',
+            defaultValue: 1,
+
+            admin: {
+              readOnly: true,
+            },
+          },
+
+          {
+            name: 'viewCount',
+            type: 'number',
+            defaultValue: 0,
+            min: 0,
+            index: true,
+          },
+
+          ...auditFields(),
+        ],
+      },
+    ],
+  },
+],
 
   timestamps: true,
 };

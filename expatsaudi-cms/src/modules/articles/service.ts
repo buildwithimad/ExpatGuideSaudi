@@ -1,27 +1,28 @@
+import type { Article } from '@/payload-types';
 import type { Payload } from 'payload';
 
 import type {
-    ArticleDetailsDTO,
-    ArticlesListDTO,
+  ArticleDetailsDTO,
+  ArticlesListDTO,
 } from './dto';
 
 import type {
-    GetArticleDetailsOptions,
-    GetArticlesOptions,
+  GetArticleDetailsOptions,
+  GetArticlesOptions,
 } from './types';
 
 import {
-    buildBreadcrumbs,
-    buildTableOfContents,
-    mapArticle,
-    mapArticleCard,
-    mapRelatedArticle,
+  buildBreadcrumbs,
+  buildTableOfContents,
+  mapArticle,
+  mapArticleCard,
+  mapRelatedArticle,
 } from './mappers';
 
 import {
-    resolveArticle,
-    resolveArticles,
-    resolveRelatedArticles,
+  resolveArticle,
+  resolveArticles,
+  resolveRelatedArticles,
 } from './queries';
 
 import { mapPagination } from '@/shared/mappers';
@@ -66,12 +67,27 @@ export async function getArticleDetails(
 );
   }
 
+let relatedArticles: Article[] = [];
+
+// 1. Use manually selected related articles if they exist
+if (
+  Array.isArray(article.relatedArticles) &&
+  article.relatedArticles.length > 0
+) {
+  relatedArticles = article.relatedArticles.filter(
+    (item): item is Article =>
+      typeof item === 'object' &&
+      item !== null &&
+      'id' in item,
+  );
+} else {
+  // 2. Otherwise, fall back to automatic same-category articles
   const categoryId =
     typeof article.category === 'object'
       ? article.category.id
       : article.category;
 
-  const relatedArticles = categoryId
+  relatedArticles = categoryId
     ? await resolveRelatedArticles(
         payload,
         categoryId,
@@ -79,6 +95,7 @@ export async function getArticleDetails(
         locale,
       )
     : [];
+}
 
   return {
     article: mapArticle(article),
@@ -87,7 +104,7 @@ export async function getArticleDetails(
       relatedArticles.map(mapRelatedArticle),
 
     breadcrumbs:
-      buildBreadcrumbs(article),
+      buildBreadcrumbs(article, locale),
 
     tableOfContents:
       buildTableOfContents(article.content),

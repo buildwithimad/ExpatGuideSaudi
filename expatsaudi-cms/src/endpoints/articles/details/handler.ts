@@ -1,5 +1,6 @@
 import type { Endpoint } from 'payload';
 
+
 import type { Locale } from '@/shared/types';
 
 import { NotFoundError } from '@/shared/validators';
@@ -10,7 +11,10 @@ export const articleDetailsEndpoint: Endpoint = {
   path: '/v1/articles/:slug',
   method: 'get',
 
+  
+
   handler: async (req) => {
+ 
     try {
       const locale =
         (req.query?.locale as Locale) ?? 'en';

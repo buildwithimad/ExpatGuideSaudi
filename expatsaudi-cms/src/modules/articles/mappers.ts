@@ -7,6 +7,8 @@ import type {
 } from '@/payload-types';
 
 import type { ImageDTO } from '@/shared/dto';
+import type { Locale } from '@/shared/types';
+
 
 import type {
   ArticleAuthorDTO,
@@ -14,6 +16,7 @@ import type {
   ArticleCategoryDTO,
   ArticleDTO,
   ArticleGovernmentSourceDTO,
+  ArticleSeoDTO,
   BaseArticleDTO,
   BreadcrumbDTO,
   RelatedArticleDTO,
@@ -185,25 +188,72 @@ export function mapArticle(
   article: Article,
 ): ArticleDTO {
   return {
-    ...mapBaseArticle(article),
+  ...mapBaseArticle(article),
 
-    subtitle: article.subtitle ?? null,
+  seo: mapArticleSeo(article),
 
-    content: article.content,
+  subtitle: article.subtitle ?? null,
 
-    governmentSources:
-      article.governmentSources
-        ?.map(mapGovernmentSource)
-        .filter(isGovernmentSourceDTO) ?? [],
+  content: article.content,
 
-    sourceLinks:
-      article.sourceLinks?.map(mapSourceLink) ?? [],
+  governmentSources:
+    article.governmentSources
+      ?.map(mapGovernmentSource)
+      .filter(isGovernmentSourceDTO) ?? [],
 
-    featured: article.featured ?? false,
+  sourceLinks:
+    article.sourceLinks?.map(mapSourceLink) ?? [],
 
-    factChecked: article.factChecked ?? false,
+  featured:
+    article.featured ?? false,
 
-    viewCount: article.viewCount ?? 0,
+  factChecked:
+    article.factChecked ?? false,
+
+  viewCount:
+    article.viewCount ?? 0,
+
+  updatedAt:
+    article.updatedAt,
+
+  lastVerifiedAt:
+    article.lastVerifiedAt ?? null,
+
+  
+};
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                SEO Mapper                                  */
+/* -------------------------------------------------------------------------- */
+
+export function mapArticleSeo(
+  article: Article,
+): ArticleSeoDTO {
+  return {
+    title:
+      article.metaTitle ??
+      article.title,
+
+    description:
+      article.metaDescription ??
+      article.excerpt ??
+      article.subtitle ??
+      null,
+
+    image:
+      mapImage(
+        article.ogImage ??
+        article.featuredImage,
+      ),
+
+    noIndex:
+      article.noIndex ?? false,
+
+    noFollow:
+      article.noFollow ?? false,
   };
 }
 
@@ -225,7 +275,6 @@ export function mapRelatedArticle(
 
     readingTime: article.readingTime ?? 0,
 
-    href: `/articles/${article.slug}`,
   };
 }
 
@@ -236,24 +285,25 @@ export function mapRelatedArticle(
 
 export function buildBreadcrumbs(
   article: Article,
+  locale: Locale
 ): BreadcrumbDTO[] {
-  const breadcrumbs: BreadcrumbDTO[] = [
-    {
-      label: 'Home',
-      href: '/',
-    },
-    {
-      label: 'Articles',
-      href: '/articles',
-    },
-  ];
+const breadcrumbs: BreadcrumbDTO[] = [
+  {
+    label: locale === 'ar' ? 'الرئيسية' : 'Home',
+    href: '/',
+  },
+  {
+    label: locale === 'ar' ? 'المقالات' : 'Articles',
+    href: '/articles',
+  },
+];
 
   const category = mapArticleCategory(article.category);
 
   if (category) {
     breadcrumbs.push({
       label: category.name,
-      href: `/articles/category/${category.slug}`,
+      href: `/articles?category=${category.slug}`,
     });
   }
 
@@ -334,5 +384,8 @@ export function buildTableOfContents(
 
   return toc;
 }
+
+
+
 
 

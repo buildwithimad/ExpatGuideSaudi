@@ -1,10 +1,10 @@
 import type { Endpoint } from 'payload';
 
-import { getCategories } from '@/modules/categories/service';
+import { getSiteSettings } from '@/modules/site-settings';
 import type { Locale } from '@/shared/types';
 
-export const categoriesEndpoint: Endpoint = {
-  path: '/v1/categories',
+export const siteSettingsEndpoint: Endpoint = {
+  path: '/v1/site-settings',
   method: 'get',
 
   handler: async (req) => {
@@ -13,7 +13,7 @@ export const categoriesEndpoint: Endpoint = {
         req.searchParams?.get('locale') ||
         'en') as Locale;
 
-    const data = await getCategories(
+    const data = await getSiteSettings(
       req.payload,
       locale,
     );

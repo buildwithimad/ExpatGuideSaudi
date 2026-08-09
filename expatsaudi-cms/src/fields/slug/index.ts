@@ -7,7 +7,7 @@ type SlugFieldOptions = {
 }
 
 export const slugField = ({
-  localized = true,
+  localized = false,
   required = true,
   readOnly = true,
 }: SlugFieldOptions = {}): Field => ({

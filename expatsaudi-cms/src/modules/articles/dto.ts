@@ -35,6 +35,23 @@ export interface ArticleGovernmentSourceDTO {
   logo: ImageDTO | null;
 }
 
+
+/* -------------------------------------------------------------------------- */
+/*                          Artcile  SEO  DTO                              */
+/* -------------------------------------------------------------------------- */
+
+export interface ArticleSeoDTO {
+  title: string;
+
+  description: string | null;
+
+  image: ImageDTO | null;
+
+  noIndex: boolean;
+
+  noFollow: boolean;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                              Base Article DTO                              */
 /* -------------------------------------------------------------------------- */
@@ -75,6 +92,8 @@ export interface ArticleDTO extends BaseArticleDTO {
 
   content: RichText;
 
+  seo: ArticleSeoDTO;
+
   governmentSources: ArticleGovernmentSourceDTO[];
 
   sourceLinks: SourceLinkDTO[];
@@ -84,6 +103,13 @@ export interface ArticleDTO extends BaseArticleDTO {
   factChecked: boolean;
 
   viewCount: number;
+
+  publishedAt: string;
+
+  updatedAt: string;
+
+  lastVerifiedAt: string | null;
+
 }
 
 /* -------------------------------------------------------------------------- */
@@ -99,7 +125,6 @@ export interface RelatedArticleDTO {
 
   readingTime: number;
 
-  href: string;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -147,6 +172,9 @@ export interface ArticleDetailsDTO {
 
   tableOfContents: TOCItemDTO[];
 }
+
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                              API Responses                                 */

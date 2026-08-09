@@ -73,12 +73,42 @@ export const adminRoles: Role[] = [
   'admin',
 ]
 
-/**
- * Default Collection Access
- */
+/* -------------------------------------------------------------------------- */
+/*                         Default Collection Access                          */
+/* -------------------------------------------------------------------------- */
+
 export const collectionAccess = {
   create: anyoneWithRole(editorialRoles),
+
   read: publicRead,
+
   update: anyoneWithRole(editorialRoles),
+
   delete: anyoneWithRole(adminRoles),
+}
+
+/* -------------------------------------------------------------------------- */
+/*                           Default Global Access                            */
+/* -------------------------------------------------------------------------- */
+
+export const globalAccess: {
+  read: Access;
+  update: Access;
+} = {
+  read: publicRead,
+
+  update: anyoneWithRole(editorialRoles),
+}
+
+/* -------------------------------------------------------------------------- */
+/*                      Site Configuration Access                             */
+/* -------------------------------------------------------------------------- */
+
+export const siteConfigurationAccess: {
+  read: Access;
+  update: Access;
+} = {
+  read: publicRead,
+
+  update: anyoneWithRole(adminRoles),
 }
