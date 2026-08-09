@@ -1,24 +1,45 @@
-import Link from 'next/link'
+import Image from 'next/image';
+import { getPayload } from 'payload';
 
-export default function Logo() {
+import config from '@/payload.config';
+
+export default async function Logo() {
+  const payload = await getPayload({
+    config,
+  });
+
+  const settings = await payload.findGlobal({
+    slug: 'site-settings',
+    locale: 'en',
+    depth: 1,
+    overrideAccess: true,
+  });
+
+  const logo = settings?.logos?.primaryLogo;
+
+  const logoUrl =
+    typeof logo === 'object' && logo?.url
+      ? logo.url
+      : null;
+
+  if (!logoUrl) {
+    return (
+      <div className="text-xl font-bold">
+        ExpatSaudi
+      </div>
+    );
+  }
+
   return (
-    <Link
-      href="/admin"
-      className="flex items-center gap-3 no-underline"
-    >
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#006C35] text-xl font-bold text-white shadow-sm">
-        ES
-      </div>
-
-      <div className="flex flex-col">
-        <span className="text-base font-bold leading-none text-slate-900 dark:text-white">
-          ExpatSaudi
-        </span>
-
-        <span className="mt-1 text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
-          Content Management System
-        </span>
-      </div>
-    </Link>
-  )
+    <div className="flex justify-center">
+      <Image
+        src={logoUrl}
+        alt="ExpatSaudi"
+        width={220}
+        height={80}
+        className="h-auto w-[220px] object-contain"
+        priority
+      />
+    </div>
+  );
 }

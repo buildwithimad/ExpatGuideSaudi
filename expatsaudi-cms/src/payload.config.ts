@@ -131,11 +131,14 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL ?? '',
-    },
-  }),
+ db: postgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URL ?? '',
+    max: 5,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 10000,
+  },
+}),
 
 
   endpoints: [

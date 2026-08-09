@@ -313,9 +313,7 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                   className="transition-transform duration-200 group-hover:scale-[1.03]"
                 />
               )}
-              <span className="font-bold text-xs tracking-tight text-foreground hidden sm:block">
-                {settings.branding.identity.siteName}
-              </span>
+              
             </Link>
 
             {/* Center: Desktop Navigation */}

@@ -13,7 +13,16 @@ const nextConfig: NextConfig = {
         pathname: '/api/media/file/**',
       },
     ],
+
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'zgabdzztlcfbxnvziocu.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
   },
+
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
@@ -23,9 +32,12 @@ const nextConfig: NextConfig = {
 
     return webpackConfig
   },
+
   turbopack: {
     root: path.resolve(dirname),
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default withPayload(nextConfig, {
+  devBundleServerPackages: false,
+})
