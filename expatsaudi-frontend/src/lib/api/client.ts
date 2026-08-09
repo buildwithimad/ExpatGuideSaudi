@@ -16,12 +16,19 @@ export async function apiClient<T>(
   endpoint: string,
   init?: RequestInit,
 ): Promise<T> {
-const url = `${BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+  if (!BASE_URL) {
+    throw new Error(
+      'NEXT_PUBLIC_API_URL is not defined.',
+    );
+  }
 
-console.log('BASE_URL:', BASE_URL);
-console.log('Endpoint:', endpoint);
-console.log('Final URL:', url);
+  const url =
+    `${BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
 
+  console.log(
+    '[API]',
+    url,
+  );
 
   const response = await fetch(url, {
     ...init,
@@ -36,36 +43,44 @@ console.log('Final URL:', url);
     },
   });
 
-
-  console.log(
-  'Content-Type:',
-  response.headers.get('content-type'),
-);
-
   const contentType =
     response.headers.get('content-type');
+
+  console.log(
+    '[API]',
+    response.status,
+    contentType,
+    url,
+  );
 
   if (!contentType?.includes('application/json')) {
     const text = await response.text();
 
-    console.error(text);
+    console.error(
+      '[API] Non-JSON response:',
+      text,
+    );
 
     throw new Error(
       `Expected JSON but received ${contentType}`,
     );
   }
 
-const json = await response.json();
+  const json =
+    (await response.json()) as ApiResponse<T>;
 
-console.log('Status:', response.status);
-console.log('Response:', json);
+  if (!response.ok || !json.success) {
+    throw new Error(
+      json.error?.message ??
+        'Unexpected API error.',
+    );
+  }
 
-if (!response.ok || !json.success) {
-  throw new Error(
-    json.error?.message ??
-    'Unexpected API error.',
-  );
-}
+  if (json.data === undefined) {
+    throw new Error(
+      `API returned no data for ${endpoint}`,
+    );
+  }
 
-return json.data;
+  return json.data;
 }

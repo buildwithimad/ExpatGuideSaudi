@@ -5,6 +5,10 @@ import { getArticle } from '@/lib/api/articles';
 import { getDictionary } from '@/lib/dictionary';
 import { locales, type Locale } from '@/lib/i18n-config';
 
+
+import { generateSiteMetadata } from '@/lib/seo';
+import ArticleSchema from './ArticleSchema';
+
 import ArticlePage from './ArticlePage';
 
 type Props = {
@@ -32,19 +36,54 @@ export async function generateMetadata({
   const currentLocale = locale as Locale;
 
   try {
-    const article = await getArticle({
+    const { article } = await getArticle({
       slug,
       locale: currentLocale,
     });
 
-    return {
-      title: article.article.title,
+    return generateSiteMetadata({
+      locale: currentLocale,
+
+      title:
+        article.seo.title,
 
       description:
-        article.article.excerpt ??
-        article.article.subtitle ??
-        '',
-    };
+        article.seo.description ?? undefined,
+
+      canonical:
+        `/articles/${article.slug}`,
+
+      ogImages:
+        article.seo.image
+          ? [article.seo.image]
+          : article.featuredImage
+            ? [article.featuredImage]
+            : undefined,
+
+      noIndex:
+        article.seo.noIndex,
+
+      noFollow:
+        article.seo.noFollow,
+
+      openGraph: {
+        type: 'article',
+
+        publishedTime:
+          article.publishedAt,
+
+        modifiedTime:
+          article.updatedAt,
+
+        authors:
+          article.author
+            ? [article.author.fullName]
+            : undefined,
+
+        section:
+          article.category?.name,
+      },
+    });
   } catch {
     return {};
   }
@@ -69,11 +108,20 @@ export default async function Page({
     }),
   ]);
 
+
+
   return (
+    <>
+
+     <ArticleSchema
+      article={article.article}
+      locale={currentLocale}
+    />
     <ArticlePage
       locale={currentLocale}
       dict={dict}
       article={article}
     />
+    </>
   );
 }

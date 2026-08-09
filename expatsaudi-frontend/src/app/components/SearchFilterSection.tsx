@@ -48,6 +48,8 @@ export default function SearchFilterSection({
     setActiveFilter('all');
   };
 
+
+
   return (
     <section className="py-16 md:py-20 border-b border-border section-bg">
       <div className="container-editorial">

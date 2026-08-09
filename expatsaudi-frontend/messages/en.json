@@ -1,4 +1,10 @@
 {
+    "notFound": {
+  "title": "Page Not Found",
+  "description": "The page you're looking for doesn't exist. Let's get you back!",
+  "goBack": "Go Back",
+  "home": "Back to Home"
+},
     "nav": {
         "home": "Home",
         "about": "About",
@@ -105,8 +111,29 @@
         "button": "Search",
         "popular": "Popular:",
         "clearFilters": "Clear filters",
-        "all": "All"
-    },
+        "all": "All",   
+  "resultsFor": "Results for",
+  "submit": "Search",
+  "filterByCategory": "Filter by Category",
+  "sortResults": "Sort Results",
+  "mostRelevant": "Most Relevant",
+  "latestFirst": "Latest First",
+  "clearAllFilters": "Clear All Filters",
+  "clear": "Clear",
+  "searching": "Searching...",
+  "loading": "Loading results...",
+  "result": "result",
+  "results": "results",
+  "in": "in",
+  "noResults": "No results found",
+  "noResultsFor": "No results found for",
+  "noResultsDescription": "Try a different search term, remove category filters, or browse all guides.",
+  "clearSearch": "Clear Search",
+  "browseAllGuides": "Browse All Guides",
+  "tryPopularTopics": "Try these popular topics",
+  "previous": "Previous",
+  "next": "Next"
+},
     "tools": {
         "label": "Saudi Tools",
         "title": "Free Calculators & Tools",
@@ -356,6 +383,77 @@
             "title": "Get in Touch"
         }
     },
+    "privacy": {
+  "label": "Privacy",
+  "title": "Privacy Policy",
+  "intro": "This Privacy Policy explains how Expat Guides collects, uses, and protects information when you visit and use our website.",
+  "sections": {
+    "information": {
+      "title": "Information We Collect",
+      "content": "We may collect information you provide voluntarily, such as when you contact us, subscribe to updates, or interact with features on our website. We may also collect limited technical information needed to operate, secure, and improve the website."
+    },
+    "usage": {
+      "title": "How We Use Information",
+      "content": "We use information to operate and improve Expat Guides, respond to inquiries, provide requested services, understand website usage, maintain security, and improve our content and user experience."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "We may use cookies and similar technologies to keep the website functioning, understand how visitors use our pages, and improve website performance. You can manage cookies through your browser settings."
+    },
+    "thirdParty": {
+      "title": "Third-Party Services",
+      "content": "We may use trusted third-party services for functions such as hosting, analytics, advertising, email delivery, or website security. These services may process information according to their own privacy policies."
+    },
+    "security": {
+      "title": "Data Security",
+      "content": "We take reasonable measures to protect information against unauthorized access, misuse, alteration, or disclosure. However, no internet-based service can guarantee complete security."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have questions about this Privacy Policy or how we handle information, please contact us through the Contact page on Expat Guides."
+    }
+  }
+},
+"terms": {
+  "label": "Legal",
+  "title": "Terms & Conditions",
+  "intro": "These Terms & Conditions explain the rules and guidelines for using Expat Guides and its content.",
+  "sections": {
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content": "By accessing or using Expat Guides, you agree to these Terms & Conditions. If you do not agree with these terms, please do not use the website."
+    },
+    "content": {
+      "title": "Use of Our Content",
+      "content": "Our guides and articles are provided for general informational and educational purposes. You may read, share, and link to our content for personal and informational use, provided that the content is not presented as your own."
+    },
+    "accuracy": {
+      "title": "Information Accuracy",
+      "content": "We make reasonable efforts to provide accurate and useful information and to update content when relevant information changes. However, government rules, fees, requirements, and procedures may change without notice. Always verify important information with the relevant official source."
+    },
+    "externalLinks": {
+      "title": "External Links",
+      "content": "Our website may contain links to official government websites and other third-party websites. These links are provided for convenience and reference. We are not responsible for the content, availability, or policies of external websites."
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "content": "Unless otherwise stated, the content, branding, design, graphics, and original materials on Expat Guides are protected by applicable intellectual property laws. You may not reproduce or redistribute our original content for commercial purposes without permission."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "content": "Expat Guides is not a government agency, legal service, immigration authority, or financial institution. Our content should not be considered legal, immigration, financial, or professional advice. You are responsible for verifying information before making decisions or taking action."
+    },
+    "changes": {
+      "title": "Changes to These Terms",
+      "content": "We may update these Terms & Conditions from time to time to reflect changes to our website, services, or policies. Updated terms become effective when published on this page."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have questions about these Terms & Conditions, please contact us through the Contact page on Expat Guides."
+    }
+  }
+},
+
     "metadata": {
         "home": {
             "title": "ExpatSaudi \u2014 Your Complete Guide to Living in Saudi Arabia",
@@ -369,6 +467,10 @@
             "title": "All Guides & Articles \u2014 ExpatSaudi",
             "description": "Browse all expert-written guides for expatriates in Saudi Arabia. Filter by category, sort by date, and find exactly what you need."
         },
+         "categories": {
+    "title": "Saudi Arabia Expat Categories — Iqama, Visas & More",
+    "description": "Explore Saudi Arabia expat guides by category, including Iqama, visas, labor law, banking, driving, jobs, and daily life."
+  },
         "category": {
             "title": "Iqama & Residency Guides \u2014 ExpatSaudi",
             "description": "Complete guides on Iqama renewals, transfers, status checks, and residency requirements for expatriates in Saudi Arabia."
@@ -380,7 +482,19 @@
         "searchResults": {
             "title": "Search Results \u2014 ExpatSaudi",
             "description": "Search results for expat guides and information about Saudi Arabia."
-        }
+        },
+        "contact": {
+  "title": "Contact Expat Guides | Get in Touch",
+  "description": "Have a question, suggestion, or feedback about Expat Guides? Contact us and help us improve our Saudi Arabia expat resources."
+},
+"privacy": {
+  "title": "Privacy Policy | Expat Guides",
+  "description": "Read the Expat Guides Privacy Policy to learn how we collect, use, and protect information on our website."
+},
+"terms": {
+  "title": "Terms & Conditions | Expat Guides",
+  "description": "Read the Expat Guides Terms & Conditions covering website use, content accuracy, external links, intellectual property, and liability."
+}
     },
     "languageSwitcher": {
         "label": "Language",

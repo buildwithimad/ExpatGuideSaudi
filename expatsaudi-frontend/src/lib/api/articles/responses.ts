@@ -7,6 +7,15 @@ import type { LexicalDocument } from '@/components/richtext/types';
 export interface Image {
   url: string;
   alt: string;
+  width?: number;
+  height?: number;
+
+  sizes?: {
+    thumbnail?: string;
+    card?: string;
+    hero?: string;
+    articleAuthor?: string;
+  };
 }
 
 export interface Author {
@@ -82,6 +91,25 @@ export interface ArticleCard {
   featured: boolean;
 }
 
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                Article SEO                                 */
+/* -------------------------------------------------------------------------- */
+
+export interface ArticleSeo {
+  title: string;
+
+  description: string | null;
+
+  image: Image | null;
+
+  noIndex: boolean;
+
+  noFollow: boolean;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               Full Article                                 */
 /* -------------------------------------------------------------------------- */
@@ -91,6 +119,8 @@ export interface Article extends ArticleCard {
 
   content: RichText;
 
+  seo: ArticleSeo;
+
   governmentSources: GovernmentSource[];
 
   sourceLinks: SourceLink[];
@@ -98,6 +128,10 @@ export interface Article extends ArticleCard {
   factChecked: boolean;
 
   viewCount: number;
+
+  updatedAt: string;
+
+  lastVerifiedAt: string | null;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -113,8 +147,10 @@ export interface RelatedArticle {
 
   readingTime: number;
 
-  href: string;
+  
 }
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                                Breadcrumb                                  */

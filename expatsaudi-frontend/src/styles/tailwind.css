@@ -3,23 +3,81 @@
 @tailwind utilities;
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #104d82;
-  --primary: #0F4C81;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F8FAFC;
-  --secondary-foreground: #111827;
-  --accent: #15803D;
-  --accent-foreground: #FFFFFF;
-  --muted: #F8FAFC;
-  --muted-foreground: #6B7280;
-  --card: #FFFFFF;
-  --card-foreground: #111827;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #0F4C81;
-  --radius: 0px;
-  --font-sans: 'DM Sans', sans-serif;
+  /* Base */
+  --background: #ffffff;
+  --foreground: #1f2937;
+
+  /* Brand */
+  --primary: #006C35;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #f8fafc;
+  --secondary-foreground: #1f2937;
+
+  /* Accent */
+  --accent: #15803d;
+  --accent-foreground: #ffffff;
+
+  /* Muted */
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+
+  /* Cards */
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+
+  /* Borders */
+  --border: #e5e7eb;
+  --input: #d1d5db;
+
+  /* Focus */
+  --ring: #006C35;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #dc2626;
+  --info: #0284c7;
+
+  --radius: none;
+}
+
+/* ===========================
+   DARK THEME
+=========================== */
+
+.dark {
+  /* Base */
+  --background: #0b1220;
+  --foreground: #f8fafc;
+
+  /* Brand */
+  --primary: #16a34a;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #111827;
+  --secondary-foreground: #f8fafc;
+
+  /* Accent */
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
+
+  /* Muted */
+  --muted: #1f2937;
+  --muted-foreground: #94a3b8;
+
+  /* Cards */
+  --card: #111827;
+  --card-foreground: #f8fafc;
+
+  /* Borders */
+  --border: #374151;
+  --input: #374151;
+
+  /* Focus */
+  --ring: #22c55e;
 }
 
 @layer base {
@@ -151,8 +209,8 @@
   }
 
   .btn-primary:hover {
-    background-color: #0d4070;
-    border-color: #0d4070;
+    background-color: var(--secondary-foreground);
+    border-color: var(--secondary-foreground);
   }
 
   .btn-secondary {

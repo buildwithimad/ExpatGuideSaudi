@@ -1,23 +1,18 @@
 'use client';
 
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import { RichText } from '@/components/richtext';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
-import type { ArticleDetailsDTO } from '@/lib/api/articles/responses';
+import type { ArticleDetails } from '@/lib/api/articles/responses';
 import type { Locale } from '@/lib/i18n-config';
 import Link from 'next/link';
 import React from 'react';
 import NewsletterSection from '../../../components/NewsletterSection';
 
-
-
-
 interface Props {
   locale: Locale;
   dict: any;
-  article: ArticleDetailsDTO;
+  article: ArticleDetails;
 }
 
 export default function ArticlePage({ locale, dict, article }: Props) {
@@ -38,7 +33,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
     category,
     readingTime,
     publishedAt,
-    governmentSources,
+    sourceLinks,
   } = articleData;
 
   // Format the date based on locale safely
@@ -52,27 +47,35 @@ export default function ArticlePage({ locale, dict, article }: Props) {
 
   return (
     <>
-      <Header locale={locale} dict={dict} />
       <main className="pt-16 md:pt-[68px]">
         
         {/* Breadcrumbs */}
-        <div className="border-b border-border py-3">
+        <div className="border-b border-border py-3 md:py-4 bg-muted/20">
           <div className="container-editorial">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-muted-foreground overflow-hidden">
-              {breadcrumbs?.map((crumb, index) => (
-                <React.Fragment key={index}>
-                  {index > 0 && <Icon name="ChevronRightIcon" size={12} className="flex-shrink-0" />}
-                  {index === breadcrumbs.length - 1 ? (
-                    <span className="text-foreground font-medium truncate max-w-xs">
-                      {crumb.label}
-                    </span>
-                  ) : (
-                    <Link href={crumb.href} className="hover:text-foreground transition-colors whitespace-nowrap">
-                      {crumb.label}
-                    </Link>
-                  )}
-                </React.Fragment>
-              ))}
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 md:gap-2.5 text-xs sm:text-sm text-muted-foreground">
+              {breadcrumbs?.map((crumb, index) => {
+                const isLast = index === breadcrumbs.length - 1;
+                return (
+                  <React.Fragment key={index}>
+                    {index > 0 && <Icon name="ChevronRightIcon" size={14} className="flex-shrink-0 rtl:rotate-180" />}
+                    {isLast ? (
+                      <span 
+                        className="text-foreground font-semibold bg-background px-2.5 py-1 rounded-md border border-border truncate max-w-[200px] sm:max-w-xs shadow-sm" 
+                        aria-current="page"
+                      >
+                        {crumb.label}
+                      </span>
+                    ) : (
+                      <Link 
+                        href={crumb.href} 
+                        className="hover:text-foreground hover:underline underline-offset-4 transition-all whitespace-nowrap"
+                      >
+                        {crumb.label}
+                      </Link>
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </nav>
           </div>
         </div>
@@ -101,9 +104,24 @@ export default function ArticlePage({ locale, dict, article }: Props) {
               
               <div className="flex flex-wrap items-center gap-5 pt-5 border-t border-border">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary flex items-center justify-center">
-                    <Icon name="UserIcon" size={14} className="text-primary-foreground" />
-                  </div>
+                  <div className="relative w-10 h-10 overflow-hidden rounded-full border border-border bg-muted">
+  {author?.photo?.url ? (
+    <AppImage
+      src={author.photo.sizes?.thumbnail || author.photo.url}
+      alt={author.photo.alt || author.fullName}
+      fill
+      className="object-cover"
+    />
+  ) : (
+    <div className="w-full h-full bg-primary flex items-center justify-center">
+      <Icon
+        name="UserIcon"
+        size={16}
+        className="text-primary-foreground"
+      />
+    </div>
+  )}
+</div>
                   <div>
                     <p className="text-xs font-semibold text-foreground">
                       {author?.fullName || 'ExpatSaudi Editorial'}
@@ -152,48 +170,27 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {/* TODO: Payload Lexical Renderer */}
                 <RichText data={articleData.content} />
 
-                {/* Government Sources */}
-                {governmentSources && governmentSources.length > 0 && (
+                {/* Official Source Links */}
+                {sourceLinks && sourceLinks.length > 0 && (
                   <div className="mt-12 pt-8 border-t border-border">
-                    <p className="text-sm font-semibold text-foreground mb-4">
-                      {isAr ? 'المصادر الحكومية المعتمدة' : 'Official Government Sources'}
-                    </p>
-                    <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                      {governmentSources.map((source) => {
-                        const content = (
-                          <>
-                            {source.logo?.url && (
-                              <div className="w-5 h-5 relative flex-shrink-0">
-                                <AppImage 
-                                  src={source.logo.url} 
-                                  alt={source.logo.alt || source.name} 
-                                  fill 
-                                  className="object-contain" 
-                                />
-                              </div>
-                            )}
-                            <span className="text-sm font-medium">{source.name}</span>
-                          </>
-                        );
-
-                        const classes = "flex items-center gap-2.5 border border-border p-3 hover:border-primary transition-colors bg-background";
-
-                        return source.officialWebsite ? (
-                          <a 
-                            key={source.id} 
-                            href={source.officialWebsite} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className={classes}
-                          >
-                            {content}
-                          </a>
-                        ) : (
-                          <div key={source.id} className={classes}>
-                            {content}
-                          </div>
-                        );
-                      })}
+                    <h3 className="text-lg font-semibold text-foreground mb-5">
+                      {isAr ? 'روابط المصادر الرسمية' : 'Official Source Links'}
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {sourceLinks.map((source, index) => (
+                        <a 
+                          key={index} 
+                          href={source.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="group flex items-center justify-between gap-3 p-4 border border-border rounded-lg hover:border-primary hover:bg-muted/30 transition-all bg-background shadow-sm hover:shadow-md"
+                        >
+                          <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                            {source.label}
+                          </span>
+                          <Icon name="ExternalLinkIcon" size={18} className="text-muted-foreground flex-shrink-0 group-hover:text-primary transition-colors rtl:rotate-180" />
+                        </a>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -201,10 +198,12 @@ export default function ArticlePage({ locale, dict, article }: Props) {
 
               {/* Sidebar */}
               <aside className="lg:col-span-4 space-y-6">
+
+                <div className="sticky top-24 space-y-6">
                 
                 {/* Table of Contents */}
                 {tableOfContents && tableOfContents.length > 0 && (
-                  <div className="border border-border p-5 sticky top-24">
+                  <div className="border border-border p-5 ">
                     <p className="label-caps text-foreground mb-4">
                       {isAr ? 'محتويات المقال' : 'Table of Contents'}
                     </p>
@@ -224,11 +223,11 @@ export default function ArticlePage({ locale, dict, article }: Props) {
 
                 {/* Related Articles */}
                 {relatedArticles && relatedArticles.length > 0 && (
-                  <div className="border border-border p-5">
-                    <p className="label-caps text-foreground mb-4">
+                  <div className="border border-border p-5 bg-muted/10">
+                    <p className="label-caps text-foreground mb-4 border-b border-border pb-3">
                       {isAr ? 'مقالات ذات صلة' : 'Related Articles'}
                     </p>
-                    <div className="space-y-4">
+                    <div className="space-y-6 pt-1">
                       {relatedArticles.map((rel) => (
                         <Link 
                           key={rel.slug} 
@@ -236,19 +235,26 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                           className="block group"
                         >
                           {rel.category && (
-                            <span className="badge-blue mb-1.5 inline-block">{rel.category}</span>
-                          )}
-                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug mb-1">
+  <span className="badge-blue mb-2 inline-block">
+    {rel.category}
+  </span>
+)}
+                          <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug mb-1.5 line-clamp-2">
                             {rel.title}
                           </p>
                           {rel.readingTime && (
-                            <span className="text-xs text-muted-foreground">{rel.readingTime} {isAr ? 'دقيقة قراءة' : 'min read'}</span>
+                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                              <Icon name="ClockIcon" size={12} />
+                              {rel.readingTime} {isAr ? 'دقيقة قراءة' : 'min read'}
+                            </span>
                           )}
                         </Link>
                       ))}
                     </div>
                   </div>
                 )}
+
+                </div>
                 
               </aside>
             </div>
@@ -257,7 +263,6 @@ export default function ArticlePage({ locale, dict, article }: Props) {
 
         <NewsletterSection dict={dict} />
       </main>
-      <Footer locale={locale} dict={dict} />
     </>
   );
 }

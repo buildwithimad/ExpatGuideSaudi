@@ -1,7 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import type { Dictionary } from '@/lib/dictionary';
+import Link from 'next/link';
 
 
 interface HeroSectionProps {

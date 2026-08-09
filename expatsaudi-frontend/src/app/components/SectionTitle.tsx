@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface SectionTitleProps {
   label?: string;
@@ -6,6 +5,7 @@ interface SectionTitleProps {
   description?: string;
   align?: 'left' | 'center';
   className?: string;
+  titleAs?: 'h1' | 'h2' | 'h3';
 }
 
 export default function SectionTitle({
@@ -14,17 +14,31 @@ export default function SectionTitle({
   description,
   align = 'left',
   className = '',
+  titleAs = 'h2',
 }: SectionTitleProps) {
-  const alignClass = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+  const TitleTag = titleAs;
+
+  const alignClass =
+    align === 'center'
+      ? 'text-center items-center'
+      : 'text-left items-start';
 
   return (
-    <div className={`flex flex-col gap-3 ${alignClass} ${className}`}>
+    <div
+      className={`flex flex-col gap-3 ${alignClass} ${className}`}
+    >
       {label && (
-        <span className="label-caps text-primary">{label}</span>
+        <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+          {label}
+        </span>
       )}
-      <h2 className="text-section-title text-foreground">{title}</h2>
+
+      <TitleTag className="text-4xl font-bold tracking-tight">
+        {title}
+      </TitleTag>
+
       {description && (
-        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
+        <p className="max-w-2xl text-muted-foreground">
           {description}
         </p>
       )}

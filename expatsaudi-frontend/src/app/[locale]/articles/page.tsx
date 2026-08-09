@@ -1,94 +1,124 @@
-  import { getArticles } from '@/lib/api/articles';
-import { getCategories } from '@/lib/api/categories';
-import { getDictionary } from '@/lib/dictionary';
-import { locales, type Locale } from '@/lib/i18n-config';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-  import ArticlesPageContent from './ArticlesPageContent';
+import { getArticles } from '@/lib/api/articles';
+import { getCategories } from '@/lib/api/categories';
+import { getDictionary } from '@/lib/dictionary';
+import {
+  locales,
+  type Locale,
+} from '@/lib/i18n-config';
+import { generateSiteMetadata } from '@/lib/seo';
+import { resolvePageSeo } from '@/lib/seo/resolvePageSeo';
 
-  export async function generateStaticParams() {
-    return locales.map((locale) => ({ locale }));
+import ArticlesPageContent from './ArticlesPageContent';
+import ArticlesSchema from './ArticlesSchema';
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (
+    !locales.includes(locale as Locale)
+  ) {
+    return {};
   }
 
-  export async function generateMetadata({
-    params,
-  }: {
-    params: Promise<{ locale: string }>;
-  }): Promise<Metadata> {
-    const { locale } = await params;
+  const currentLocale =
+    locale as Locale;
 
-    if (!locales.includes(locale as Locale)) {
-      return {};
-    }
+  const dict =
+    await getDictionary(
+      currentLocale,
+    );
 
-    const currentLocale = locale as Locale;
+  const seo =
+    await resolvePageSeo(
+      currentLocale,
+      'articles',
+      dict.metadata.articles,
+    );
 
-    const dict = await getDictionary(currentLocale);
+  return generateSiteMetadata({
+    locale: currentLocale,
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+    ...seo,
 
-    return {
-      title: dict.metadata.articles.title,
+    canonical: '/articles',
+  });
+}
 
-      description: dict.metadata.articles.description,
+export default async function LocaleArticlesPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{
+    locale: string;
+  }>;
 
-      alternates: {
-        canonical: `/${currentLocale}/articles`,
+  searchParams: Promise<{
+    category?: string;
+    page?: string;
+    search?: string;
+  }>;
+}) {
+  const { locale } =
+    await params;
 
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `/${l}/articles`]),
-        ),
-      },
+  const {
+    category,
+    page,
+    search,
+  } = await searchParams;
 
-      openGraph: {
-        url: `${siteUrl}/${currentLocale}/articles`,
-      },
-    };
+  if (
+    !locales.includes(locale as Locale)
+  ) {
+    notFound();
   }
 
-  export default async function LocaleArticlesPage({
-    params,
-    searchParams,
-  }: {
-    params: Promise<{ locale: string }>;
-    searchParams: Promise<{
-      category?: string;
-      page?: string;
-      search?: string;
-    }>;
-  }) {
-    const { locale } = await params;
+  const currentLocale =
+    locale as Locale;
 
-    const {
-      category,
-      page,
-      search,
-    } = await searchParams;
-
-    if (!locales.includes(locale as Locale)) {
-      notFound();
-    }
-
-    const currentLocale = locale as Locale;
-
-    const articles = await getArticles({
+  const articles =
+    await getArticles({
       locale: currentLocale,
+
       page: Number(page ?? 1),
+
       limit: 12,
+
       category,
+
       search,
     });
 
-      const categories = await getCategories(locale);
-
-
-    return (
-      <ArticlesPageContent
-  locale={currentLocale}
-  articles={articles}
-  categories={categories}
-  selectedCategory={category}
-/>
+  const categories =
+    await getCategories(
+      currentLocale,
     );
-  }
+
+  return (
+  <>
+    <ArticlesSchema
+      locale={currentLocale}
+    />
+
+    <ArticlesPageContent
+      locale={currentLocale}
+      articles={articles}
+      categories={categories}
+      selectedCategory={category}
+    />
+  </>
+);
+}

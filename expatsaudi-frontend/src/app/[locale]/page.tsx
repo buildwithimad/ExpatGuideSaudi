@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import CategoriesSection from '../components/CategoriesSection';
 import FAQSection from '../components/FAQSection';
@@ -14,16 +14,26 @@ import ToolsSection from '../components/ToolsSection';
 
 import { getHome } from '@/lib/api/home';
 import { getDictionary } from '@/lib/dictionary';
-import { locales, type Locale } from '@/lib/i18n-config';
+import {
+  locales,
+  type Locale,
+} from '@/lib/i18n-config';
+import { generateSiteMetadata } from '@/lib/seo';
+import { resolvePageSeo } from '@/lib/seo/resolvePageSeo';
 
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+/* -------------------------------------------------------------------------- */
+/*                           Static Params                                     */
+/* -------------------------------------------------------------------------- */
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({
     locale,
   }));
 }
+
+/* -------------------------------------------------------------------------- */
+/*                           Home Metadata                                    */
+/* -------------------------------------------------------------------------- */
 
 export async function generateMetadata({
   params,
@@ -36,42 +46,30 @@ export async function generateMetadata({
     return {};
   }
 
+  const currentLocale = locale as Locale;
+
   const dict = await getDictionary(
-    locale as Locale,
+    currentLocale,
   );
 
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL;
+  const seo = await resolvePageSeo(
+    currentLocale,
+    'home',
+    dict.metadata.home,
+  );
 
-  return {
-    title: dict.metadata.home.title,
-    description:
-      dict.metadata.home.description,
+  return generateSiteMetadata({
+    locale: currentLocale,
 
-    alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `/${l}`]),
-      ),
-    },
+    ...seo,
 
-    openGraph: {
-      title: dict.metadata.home.title,
-      description:
-        dict.metadata.home.description,
-
-      url: `${siteUrl}/${locale}`,
-
-      images: [
-        {
-          url: '/assets/images/app_logo.png',
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-  };
+    canonical: '',
+  });
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               Home Page                                    */
+/* -------------------------------------------------------------------------- */
 
 export default async function LocaleHomePage({
   params,
@@ -84,8 +82,10 @@ export default async function LocaleHomePage({
     notFound();
   }
 
+  const currentLocale = locale as Locale;
+
   const dict = await getDictionary(
-    locale as Locale,
+    currentLocale,
   );
 
   const {
@@ -93,67 +93,63 @@ export default async function LocaleHomePage({
     latestArticles,
     categories,
     homepage,
-  } = await getHome(locale);
+  } = await getHome(currentLocale);
 
   return (
     <>
-      <Header
-        locale={locale as Locale}
+      <HeroSection
         dict={dict}
       />
 
-      <main>
-        <HeroSection dict={dict} />
-
-        <CategoriesSection
-          dict={dict}
-          locale={locale as Locale}
-          categories={categories}
-        />
-
-        <FeaturedGuide
-          dict={dict}
-          locale={locale as Locale}
-          article={featuredArticle}
-        />
-
-        <LatestArticles
-          dict={dict}
-          locale={locale as Locale}
-          articles={latestArticles}
-        />
-
-        <SearchFilterSection
-          dict={dict}
-          locale={locale as Locale}
-          filters={
-            homepage.categoryFilters
-          }
-          popularSearches={
-            homepage.popularSearches
-          }
-        />
-
-        <ToolsSection dict={dict} />
-
-        <ResourcesSection
-          dict={dict}
-          locale={locale as Locale}
-        />
-
-        <NewsletterSection dict={dict} />
-
-        <FAQSection dict={dict} />
-
-        <FinalCTA
-          dict={dict}
-          locale={locale as Locale}
-        />
-      </main>
-
-      <Footer
-        locale={locale as Locale}
+      <CategoriesSection
         dict={dict}
+        locale={currentLocale}
+        categories={categories}
+      />
+
+      <FeaturedGuide
+        dict={dict}
+        locale={currentLocale}
+        article={featuredArticle}
+      />
+
+      <LatestArticles
+        dict={dict}
+        locale={currentLocale}
+        articles={latestArticles}
+      />
+
+      <SearchFilterSection
+        dict={dict}
+        locale={currentLocale}
+        filters={
+          homepage.categoryFilters
+        }
+        popularSearches={
+          homepage.popularSearches
+        }
+      />
+
+      <ToolsSection
+        dict={dict}
+      />
+
+      <ResourcesSection
+        dict={dict}
+        locale={currentLocale}
+      />
+
+      <NewsletterSection
+        dict={dict}
+      />
+
+      <FAQSection
+        dict={dict}
+      />
+
+      <FinalCTA
+        dict={dict}
+        locale={currentLocale}
       />
     </>
   );

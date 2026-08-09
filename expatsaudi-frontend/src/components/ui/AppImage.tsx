@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { memo, useCallback, useMemo, useState } from 'react';
 
 interface AppImageProps {
@@ -16,6 +16,7 @@ interface AppImageProps {
   fill?: boolean;
   sizes?: string;
   onClick?: () => void;
+  onLoad?: NonNullable<ImageProps['onLoad']>;
   fallbackSrc?: string;
   loading?: 'lazy' | 'eager';
   unoptimized?: boolean;
@@ -34,6 +35,7 @@ const AppImage = memo(function AppImage({
   fill = false,
   sizes,
   onClick,
+  onLoad,
   fallbackSrc = '/assets/images/no_image.png',
   loading = 'lazy',
   unoptimized = false,
@@ -49,9 +51,13 @@ const AppImage = memo(function AppImage({
     setIsLoading(false);
   }, [imageSrc, fallbackSrc]);
 
-  const handleLoad = useCallback(() => {
+  const handleLoad = useCallback(
+  (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsLoading(false);
-  }, []);
+    onLoad?.(e);
+  },
+  [onLoad]
+);
 
   const imageClassName = useMemo(() => {
     return [

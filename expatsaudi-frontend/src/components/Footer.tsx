@@ -1,28 +1,79 @@
-import React from 'react';
-import Link from 'next/link';
-import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
-import type { Locale } from '@/lib/i18n-config';
+import AppLogo from '@/components/ui/AppLogo';
+import type { SiteSettings } from '@/lib/api/site-settings';
 import type { Dictionary } from '@/lib/dictionary';
+import type { Locale } from '@/lib/i18n-config';
+import Link from 'next/link';
 
 interface FooterProps {
   locale?: Locale;
   dict?: Dictionary;
+  settings: SiteSettings;
 }
 
-const socialLinks = [
-  { label: 'Twitter', icon: 'GlobeAltIcon', href: '#' },
-  { label: 'LinkedIn', icon: 'BriefcaseIcon', href: '#' },
-  { label: 'YouTube', icon: 'PlayCircleIcon', href: '#' },
-];
 
-export default function Footer({ locale = 'en', dict }: FooterProps) {
+
+export default function Footer({ locale = 'en', dict, settings }: FooterProps) {
+
+
+
+const socialProfiles =
+  settings.social?.socialProfiles ?? {};
+
+
+const socialLinks = [
+  {
+    label: 'Facebook',
+    icon: 'Facebook',
+    href: socialProfiles.facebook,
+  },
+  {
+    label: 'Instagram',
+    icon: 'Instagram',
+    href: socialProfiles.instagram,
+  },
+  {
+    label: 'X',
+    icon: 'X',
+    href: socialProfiles.x,
+  },
+  {
+    label: 'LinkedIn',
+    icon: 'LinkedIn',
+    href: socialProfiles.linkedin,
+  },
+  {
+    label: 'YouTube',
+    icon: 'YouTube',
+    href: socialProfiles.youtube,
+  },
+  {
+    label: 'TikTok',
+    icon: 'TikTok',
+    href: socialProfiles.tiktok,
+  },
+  {
+    label: 'Telegram',
+    icon: 'Telegram',
+    href: socialProfiles.telegram,
+  },
+].filter(
+  (
+    item,
+  ): item is {
+    label: string;
+    icon: string;
+    href: string;
+  } => Boolean(item.href),
+);
+
+
   const t = dict?.footer;
   const groups = t?.groups ?? {
     Company: { label: 'Company', links: [{ label: 'About', href: '/about' }, { label: 'Editorial Standards', href: '/about#standards' }, { label: 'Contact', href: '/about#contact' }] },
     Categories: { label: 'Categories', links: [{ label: 'Iqama & Residency', href: '/category' }, { label: 'Visa Services', href: '/category' }, { label: 'Labor Law', href: '/category' }, { label: 'Government Services', href: '/category' }, { label: 'Banking & Finance', href: '/category' }] },
     Resources: { label: 'Resources', links: [{ label: 'All Articles', href: '/articles' }, { label: 'Saudi Tools', href: '/#tools' }, { label: 'Emergency Numbers', href: '/articles' }, { label: 'Useful Apps', href: '/articles' }] },
-    Legal: { label: 'Legal', links: [{ label: 'Privacy Policy', href: '/about' }, { label: 'Terms of Use', href: '/about' }, { label: 'Disclaimer', href: '/about' }] },
+    Legal: { label: 'Legal', links: [{ label: 'Privacy Policy', href: '/privacy-policy' }, { label: 'Terms of Use', href: '/terms' }, { label: 'Disclaimer', href: '/about' }] },
   };
 
   return (
@@ -33,8 +84,12 @@ export default function Footer({ locale = 'en', dict }: FooterProps) {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <Link href={`/${locale}`} className="flex items-center gap-2.5 mb-4">
-              <AppLogo size={28} />
-              <span className="font-bold text-base tracking-tight text-foreground">ExpatSaudi</span>
+              <AppLogo
+  size={28}
+/>
+              <span className="font-bold text-base tracking-tight text-foreground">
+  {settings.branding.identity.siteName}
+</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {t?.tagline ?? 'Trusted information for expatriates living and working in Saudi Arabia.'}
@@ -79,9 +134,9 @@ export default function Footer({ locale = 'en', dict }: FooterProps) {
             ))}
           </div>
           <p className="text-sm text-muted-foreground order-3">
-            <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{t?.privacy ?? 'Privacy'}</Link>
+            <Link href={`/${locale}/privacy-policy`} className="hover:text-foreground transition-colors">{t?.privacy ?? 'Privacy'}</Link>
             <span className="mx-2 text-border">·</span>
-            <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{t?.terms ?? 'Terms'}</Link>
+            <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{t?.terms ?? 'Terms'}</Link>
           </p>
         </div>
       </div>

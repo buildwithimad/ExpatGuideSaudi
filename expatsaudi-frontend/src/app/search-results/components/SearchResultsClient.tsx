@@ -6,21 +6,28 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { getDictionary } from '@/lib/dictionary';
+import type { Locale } from '@/lib/i18n-config';
+
 import { searchArticles } from '@/lib/api/search';
 import type {
-    SearchArticle,
-    SearchPagination,
+  SearchArticle,
+  SearchPagination,
 } from '@/lib/api/search/types';
-import type { Locale } from '@/lib/i18n-config';
+
+type Dictionary = Awaited<ReturnType<typeof getDictionary>>;
 
 interface SearchResultsClientProps {
   locale: Locale;
+  dict: Dictionary;
+
   categoryFilters: {
     name: string;
     slug: string;
     description?: string | null;
     icon?: string | null;
   }[];
+
   popularSearches: {
     title: string;
     query: string;
@@ -29,6 +36,7 @@ interface SearchResultsClientProps {
 
 export default function SearchResultsClient({
   locale,
+  dict,
   categoryFilters,
   popularSearches,
 }: SearchResultsClientProps) {
@@ -46,8 +54,8 @@ export default function SearchResultsClient({
 
   // Prepend "All" option to backend categories
   const allCategories = useMemo(
-    () => [{ name: 'All', slug: 'all' }, ...categoryFilters],
-    [categoryFilters]
+    () => [{ name: locale === 'ar' ? 'الكل' : 'All', slug: 'all' }, ...categoryFilters],
+    [categoryFilters, locale]
   );
 
   const currentCategory = useMemo(
@@ -162,7 +170,7 @@ export default function SearchResultsClient({
       } catch (err) {
         if (isMounted) {
           console.error(err);
-          setError('Failed to load search results.');
+          setError(locale === 'ar' ? 'فشل تحميل نتائج البحث.' : 'Failed to load search results.');
         }
       } finally {
         if (isMounted) {
@@ -187,15 +195,15 @@ export default function SearchResultsClient({
       <section className="border-b border-border py-10 md:py-12">
         <div className="container-editorial">
           <div className="max-w-2xl">
-            <span className="label-caps text-primary mb-3 block">Search</span>
+            <span className="label-caps text-primary mb-3 block">{dict.search.label}</span>
             <h1 className="text-display text-foreground mb-6">
               {currentQ ? (
                 <>
-                  Results for{' '}
+                  {dict.search.resultsFor}{' '}
                   <span className="text-primary">&ldquo;{currentQ}&rdquo;</span>
                 </>
               ) : (
-                'Search ExpatSaudi'
+                dict.search.title
               )}
             </h1>
 
@@ -208,7 +216,7 @@ export default function SearchResultsClient({
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Search guides, topics, services..."
+                placeholder={dict.search.placeholder}
                 className="flex-grow py-3.5 pr-4 text-base text-foreground bg-transparent outline-none placeholder:text-muted-foreground"
                 style={{ borderRadius: 0 }}
                 autoFocus
@@ -230,14 +238,14 @@ export default function SearchResultsClient({
                 className="btn-primary text-sm px-6 py-3.5 flex-shrink-0"
                 style={{ borderRadius: 0 }}
               >
-                Search
+                {dict.search.submit}
               </button>
             </form>
 
             {/* Popular Searches */}
             {!currentQ && popularSearches.length > 0 && (
               <div className="flex flex-wrap items-center gap-2">
-                <span className="label-caps text-muted-foreground mr-1">Popular:</span>
+                <span className="label-caps text-muted-foreground mr-1">{dict.search.popular}</span>
                 {popularSearches.map((term, index) => (
                   <button
                     key={`${term.query}-${index}`}
@@ -265,7 +273,7 @@ export default function SearchResultsClient({
                 
                 {/* Category Filter */}
                 <div className="border border-border p-5">
-                  <p className="label-caps text-foreground mb-4">Filter by Category</p>
+                  <p className="label-caps text-foreground mb-4">{dict.search.filterByCategory}</p>
                   <div className="space-y-1">
                     {allCategories.map((cat) => (
                       <button
@@ -292,11 +300,11 @@ export default function SearchResultsClient({
 
                 {/* Sort */}
                 <div className="border border-border p-5">
-                  <p className="label-caps text-foreground mb-4">Sort Results</p>
+                  <p className="label-caps text-foreground mb-4">{dict.search.sortResults}</p>
                   <div className="space-y-1">
                     {[
-                      { value: 'relevant', label: 'Most Relevant' },
-                      { value: 'latest', label: 'Latest First' },
+                      { value: 'relevant', label: dict.search.mostRelevant },
+                      { value: 'latest', label: dict.search.latestFirst },
                     ].map((option) => (
                       <button
                         key={option.value}
@@ -323,7 +331,7 @@ export default function SearchResultsClient({
                     className="w-full btn-secondary text-sm py-2.5 flex items-center justify-center gap-2"
                   >
                     <Icon name="XMarkIcon" size={14} />
-                    Clear All Filters
+                    {dict.search.clearAllFilters}
                   </button>
                 )}
               </div>
@@ -336,20 +344,20 @@ export default function SearchResultsClient({
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
                 <p className="text-sm text-muted-foreground">
                   {loading ? (
-                    'Searching...'
+                    dict.search.searching
                   ) : results.length > 0 ? (
                     <>
                       <strong className="text-foreground">{pagination?.totalDocs || results.length}</strong>{' '}
-                      {pagination?.totalDocs === 1 ? 'result' : 'results'}
+                      {pagination?.totalDocs === 1 ? dict.search.result : dict.search.results}
                       {currentQ && (
-                        <> for <strong className="text-foreground">&ldquo;{currentQ}&rdquo;</strong></>
+                        <> {locale === 'ar' ? 'لـ' : 'for'} <strong className="text-foreground">&ldquo;{currentQ}&rdquo;</strong></>
                       )}
                       {currentCatSlug !== 'all' && (
-                        <> in <strong className="text-foreground">{currentCategory.name}</strong></>
+                        <> {dict.search.in} <strong className="text-foreground">{currentCategory.name}</strong></>
                       )}
                     </>
                   ) : (
-                    'No results found'
+                    dict.search.noResults
                   )}
                 </p>
                 {(currentQ || currentCatSlug !== 'all') && !loading && (
@@ -358,7 +366,7 @@ export default function SearchResultsClient({
                     className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
                   >
                     <Icon name="XMarkIcon" size={12} />
-                    Clear
+                    {dict.search.clear}
                   </button>
                 )}
               </div>
@@ -367,7 +375,7 @@ export default function SearchResultsClient({
               {loading ? (
                 <div className="py-20 text-center flex flex-col items-center">
                   <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
-                  <p className="text-muted-foreground">Loading results...</p>
+                  <p className="text-muted-foreground">{dict.search.loading}</p>
                 </div>
               ) : error ? (
                 <div className="py-16 text-center border border-border text-red-500">
@@ -398,10 +406,12 @@ export default function SearchResultsClient({
                       <div className="flex-grow p-5 flex flex-col gap-2.5">
                         <div className="flex items-center gap-2">
                           <span className="badge-blue">
-                            {article.category?.name || 'Article'}
+                            {article.category?.name || (locale === 'ar' ? 'مقال' : 'Article')}
                           </span>
                           {article.readingTime && (
-                            <span className="text-xs text-muted-foreground">{article.readingTime} min read</span>
+                            <span className="text-xs text-muted-foreground">
+                              {article.readingTime} {locale === 'ar' ? 'دقيقة قراءة' : 'min read'}
+                            </span>
                           )}
                         </div>
 
@@ -446,27 +456,32 @@ export default function SearchResultsClient({
                     <Icon name="MagnifyingGlassIcon" size={24} className="text-muted-foreground" />
                   </div>
                   <h2 className="text-lg font-semibold text-foreground mb-2">
-                    No results found
-                    {currentQ && <> for &ldquo;<span className="text-primary">{currentQ}</span>&rdquo;</>}
+                    {currentQ ? (
+                      <>
+                        {dict.search.noResultsFor} &ldquo;<span className="text-primary">{currentQ}</span>&rdquo;
+                      </>
+                    ) : (
+                      dict.search.noResults
+                    )}
                   </h2>
                   <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
-                    Try a different search term, remove category filters, or browse all guides.
+                    {dict.search.noResultsDescription}
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-3">
                     <button
                       onClick={clearFilters}
                       className="btn-secondary text-sm py-2 px-4"
                     >
-                      Clear Search
+                      {dict.search.clearSearch}
                     </button>
                     <Link href={`/${locale}/articles`} className="btn-primary text-sm py-2 px-4">
-                      Browse All Guides
+                      {dict.search.browseAllGuides}
                     </Link>
                   </div>
 
                   {popularSearches.length > 0 && (
                     <div className="mt-8 pt-6 border-t border-border">
-                      <p className="label-caps text-muted-foreground mb-4">Try these popular topics</p>
+                      <p className="label-caps text-muted-foreground mb-4">{dict.search.tryPopularTopics}</p>
                       <div className="flex flex-wrap justify-center gap-2">
                         {popularSearches.map((term, index) => (
                           <button
@@ -492,7 +507,7 @@ export default function SearchResultsClient({
                     disabled={!pagination.hasPrevPage}
                     className={`btn-secondary text-sm py-2 px-4 ${!pagination.hasPrevPage ? 'opacity-40 cursor-not-allowed' : ''}`}
                   >
-                    ← Previous
+                    {locale === 'ar' ? '→' : '←'} {dict.search.previous}
                   </button>
                   <div className="flex items-center gap-1">
                     {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((page) => (
@@ -515,7 +530,7 @@ export default function SearchResultsClient({
                     disabled={!pagination.hasNextPage}
                     className={`btn-secondary text-sm py-2 px-4 flex items-center gap-1.5 ${!pagination.hasNextPage ? 'opacity-40 cursor-not-allowed' : ''}`}
                   >
-                    Next <Icon name="ArrowRightIcon" size={14} />
+                    {dict.search.next} <Icon name="ArrowRightIcon" size={14} className={locale === 'ar' ? 'rotate-180' : ''} />
                   </button>
                 </div>
               )}
