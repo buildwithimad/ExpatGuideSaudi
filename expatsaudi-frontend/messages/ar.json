@@ -16,7 +16,14 @@
     "openMenu": "فتح القائمة",
     "closeMenu": "إغلاق القائمة",
     "searchGuides": "بحث",
-    "subscribeNewsletter": "الاشتراك في النشرة البريدية"
+    "subscribeNewsletter": "الاشتراك في النشرة البريدية",
+    "utilityNavigation": "الخدمات",
+  "goldRates": "أسعار الذهب",
+  "hijriToday": "التاريخ الهجري",
+  "silverRates": "أسعار الفضة",
+  "overtimeCalculator": "حاسبة العمل الإضافي",
+  "iqamaFees": "رسوم الإقامة"
+
   },
   "hero": {
     "badge": "مباشر ومحدث 2026",

@@ -84,9 +84,7 @@ export default async function LocaleHomePage({
 
   const currentLocale = locale as Locale;
 
-  const dict = await getDictionary(
-    currentLocale,
-  );
+  const dict = await getDictionary(currentLocale);
 
   const {
     featuredArticle,
@@ -99,6 +97,8 @@ export default async function LocaleHomePage({
     <>
       <HeroSection
         dict={dict}
+        locale={currentLocale}
+        articles={latestArticles}
       />
 
       <CategoriesSection
@@ -122,35 +122,19 @@ export default async function LocaleHomePage({
       <SearchFilterSection
         dict={dict}
         locale={currentLocale}
-        filters={
-          homepage.categoryFilters
-        }
-        popularSearches={
-          homepage.popularSearches
-        }
+        filters={homepage.categoryFilters}
+        popularSearches={homepage.popularSearches}
       />
 
-      <ToolsSection
-        dict={dict}
-      />
+      <ToolsSection dict={dict} />
 
-      <ResourcesSection
-        dict={dict}
-        locale={currentLocale}
-      />
+      <ResourcesSection dict={dict} locale={currentLocale} />
 
-      <NewsletterSection
-        dict={dict}
-      />
+      <NewsletterSection dict={dict} />
 
-      <FAQSection
-        dict={dict}
-      />
+      <FAQSection dict={dict} />
 
-      <FinalCTA
-        dict={dict}
-        locale={currentLocale}
-      />
+      <FinalCTA dict={dict} locale={currentLocale} />
     </>
   );
 }

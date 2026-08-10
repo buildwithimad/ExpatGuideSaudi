@@ -5,30 +5,11 @@ import { memo, useMemo } from 'react';
 import AppImage from './AppImage';
 
 interface AppLogoProps {
-  /**
-   * CMS Primary Logo.
-   * Used as a fallback when theme-specific logos are unavailable.
-   */
   primaryLogo?: string | null;
-
-  /**
-   * CMS Dark Logo.
-   * Used on light backgrounds.
-   */
   darkLogo?: string | null;
-
-  /**
-   * CMS White Logo.
-   * Used on dark backgrounds.
-   */
   whiteLogo?: string | null;
-
-  /**
-   * Existing local logo fallback.
-   */
   fallbackSrc?: string;
 
-  size?: number;
   className?: string;
   onClick?: () => void;
   alt?: string;
@@ -39,41 +20,64 @@ const AppLogo = memo(function AppLogo({
   darkLogo,
   whiteLogo,
   fallbackSrc = '/assets/images/app_logo.png',
-  size = 64,
   className = '',
   onClick,
   alt = 'Expat Guides',
 }: AppLogoProps) {
-  /* ---------------------------------------------------------------------- */
-  /* Light Mode                                                             */
-  /* ---------------------------------------------------------------------- */
-
+  /*
+   * ============================================================
+   * LIGHT THEME LOGO
+   * ============================================================
+   *
+   * Used when the website has a light background.
+   *
+   * Priority:
+   * 1. Dark Logo from CMS
+   * 2. Primary Logo from CMS
+   * 3. Local fallback
+   */
   const lightModeLogo =
     darkLogo ||
     primaryLogo ||
     fallbackSrc;
 
-  /* ---------------------------------------------------------------------- */
-  /* Dark Mode                                                              */
-  /* ---------------------------------------------------------------------- */
-
+  /*
+   * ============================================================
+   * DARK THEME LOGO
+   * ============================================================
+   *
+   * Used when the website has a dark background.
+   *
+   * Priority:
+   * 1. White Logo from CMS
+   * 2. Primary Logo from CMS
+   * 3. Local fallback
+   */
   const darkModeLogo =
     whiteLogo ||
     primaryLogo ||
     fallbackSrc;
 
-  /* ---------------------------------------------------------------------- */
-  /* Container                                                              */
-  /* ---------------------------------------------------------------------- */
-
+  /*
+   * ============================================================
+   * CONTAINER
+   * ============================================================
+   */
   const containerClassName = useMemo(() => {
-    const classes = ['flex items-center'];
+    const classes = [
+      'relative',
+      'flex',
+      'items-center',
+      'shrink-0',
+      'leading-none',
+    ];
 
     if (onClick) {
       classes.push(
         'cursor-pointer',
         'hover:opacity-80',
         'transition-opacity',
+        'duration-200',
       );
     }
 
@@ -84,38 +88,35 @@ const AppLogo = memo(function AppLogo({
     return classes.join(' ');
   }, [onClick, className]);
 
-  /* ---------------------------------------------------------------------- */
-  /* Render                                                                 */
-  /* ---------------------------------------------------------------------- */
-
   return (
-    <div
-      className={containerClassName}
-      onClick={onClick}
-    >
-      {/* Light Mode */}
-      <div className="block dark:hidden">
+    <div className={containerClassName}>
+      {/* ======================================================
+          LIGHT MODE
+          ====================================================== */}
+
+      <div className="relative flex h-full w-full items-center dark:hidden">
         <AppImage
           src={lightModeLogo}
           alt={alt}
-          width={size}
-          height={size}
-          className="flex-shrink-0"
+          fill
           priority
           unoptimized={lightModeLogo.endsWith('.svg')}
+          className="object-contain object-left"
         />
       </div>
 
-      {/* Dark Mode */}
-      <div className="hidden dark:block">
+      {/* ======================================================
+          DARK MODE
+          ====================================================== */}
+
+      <div className="relative hidden h-full w-full items-center dark:flex">
         <AppImage
           src={darkModeLogo}
           alt={alt}
-          width={size}
-          height={size}
-          className="flex-shrink-0"
+          fill
           priority
           unoptimized={darkModeLogo.endsWith('.svg')}
+          className="object-contain object-left"
         />
       </div>
     </div>

@@ -5,19 +5,26 @@
   "goBack": "Go Back",
   "home": "Back to Home"
 },
-    "nav": {
-        "home": "Home",
-        "about": "About",
-        "categories": "Categories",
-        "articles": "Articles",
-        "tools": "Tools",
-        "subscribe": "Subscribe",
-        "search": "Search",
-        "openMenu": "Open menu",
-        "closeMenu": "Close menu",
-        "searchGuides": "Search",
-        "subscribeNewsletter": "Subscribe to Newsletter"
-    },
+   "nav": {
+  "home": "Home",
+  "about": "About",
+  "categories": "Categories",
+  "articles": "Articles",
+  "tools": "Tools",
+  "subscribe": "Subscribe",
+  "search": "Search",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "searchGuides": "Search Expat Guides",
+  "subscribeNewsletter": "Subscribe to Newsletter",
+
+  "utilityNavigation": "Utilities",
+  "goldRates": "Gold Rates",
+  "hijriToday": "Hijri Today",
+  "silverRates": "Silver Rates",
+  "overtimeCalculator": "Overtime Calculator",
+  "iqamaFees": "Iqama Fees"
+},
     "hero": {
         "badge": "Live & Updated 2026",
         "title": "Everything Expats Need to Know About Saudi Arabia",

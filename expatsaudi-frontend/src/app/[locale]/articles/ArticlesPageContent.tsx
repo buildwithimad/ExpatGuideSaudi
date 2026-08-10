@@ -196,7 +196,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
         </section>
 
         {/* STICKY FILTER BAR */}
-        <section className="sticky top-16 md:top-[68px] z-30 bg-background/95 backdrop-blur-sm border-b border-border py-3 md:py-4 supports-[backdrop-filter]:bg-background/90">
+        <section className="sticky top-16 md:top-[68px] z-30 bg-background border-b border-border py-3 md:py-4 supports-[backdrop-filter]:bg-background/90">
           <div className="container-editorial">
             <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
               

@@ -16,6 +16,11 @@ const dictionaries: Record<
     import('../../messages/ar.json').then(
       (m) => m.default,
     ),
+
+  ur: () =>
+    import('../../messages/ur.json').then(
+      (m) => m.default,
+    ),
 };
 
 export async function getDictionary(
