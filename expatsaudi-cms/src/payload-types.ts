@@ -118,7 +118,6 @@ export interface Config {
   };
   locale: 'en' | 'ar' | 'ur' | 'hi' | 'bn' | 'tl';
   widgets: {
-    overview: OverviewWidget;
     collections: CollectionsWidget;
   };
   user: User;
@@ -1473,16 +1472,6 @@ export interface SeoPagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "overview_widget".
- */
-export interface OverviewWidget {
-  data?: {
-    [k: string]: unknown;
-  };
-  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

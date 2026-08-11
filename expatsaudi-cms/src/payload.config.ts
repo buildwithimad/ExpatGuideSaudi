@@ -52,29 +52,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
 
-    // Dashboard
-    dashboard: {
-      widgets: [
-        {
-          slug: 'overview',
-          Component:
-            './components/admin/dashboard/widgets/OverviewWidget.tsx#default',
-          minWidth: 'full',
-          maxWidth: 'full',
-        },
-      ],
-
-      defaultLayout: () => [
-        {
-          widgetSlug: 'overview',
-          width: 'full',
-        },
-        {
-          widgetSlug: 'collections',
-          width: 'full',
-        },
-      ],
-    },
+   
 
     // Admin Components
     components: {
