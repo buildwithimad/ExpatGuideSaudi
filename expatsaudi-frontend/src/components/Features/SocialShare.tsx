@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
     FaFacebookF,
@@ -24,100 +24,99 @@ export default function SocialShare({
   locale,
   title,
 }: SocialShareProps) {
-  const [copied, setCopied] = useState(false)
+  const [articleUrl, setArticleUrl] =
+    useState('')
+
+  const [copied, setCopied] =
+    useState(false)
 
   const isAr = locale === 'ar'
   const isUr = locale === 'ur'
 
   /* -------------------------------------------------------------------------- */
-  /*                              Share Actions                                */
+  /*                              Article URL                                   */
   /* -------------------------------------------------------------------------- */
 
-  const handleWhatsAppShare = () => {
-    const articleUrl = window.location.href
+  useEffect(() => {
+    // Get the real public URL only on the client.
+    setArticleUrl(window.location.href)
+  }, [])
 
-    const shareText =
-      `${title}\n\n${articleUrl}`
+  /* -------------------------------------------------------------------------- */
+  /*                              Share URLs                                    */
+  /* -------------------------------------------------------------------------- */
 
-    const shareUrl =
-      `https://wa.me/?text=${encodeURIComponent(
-        shareText,
+  const encodedUrl =
+    articleUrl
+      ? encodeURIComponent(articleUrl)
+      : ''
+
+  const encodedTitle =
+    encodeURIComponent(title)
+
+  const whatsappUrl = articleUrl
+    ? `https://wa.me/?text=${encodeURIComponent(
+        `${title}\n\n${articleUrl}`,
       )}`
+    : '#'
 
-    window.open(
-      shareUrl,
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
+  const facebookUrl = articleUrl
+    ? `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
+    : '#'
 
-  const handleFacebookShare = () => {
-    const articleUrl = window.location.href
+  const xUrl = articleUrl
+    ? `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`
+    : '#'
 
-    const shareUrl =
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        articleUrl,
-      )}`
-
-    window.open(
-      shareUrl,
-      '_blank',
-      'width=700,height=600,noopener,noreferrer',
-    )
-  }
-
-  const handleXShare = () => {
-    const articleUrl = window.location.href
-
-    const shareUrl =
-      `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        title,
-      )}&url=${encodeURIComponent(
-        articleUrl,
-      )}`
-
-    window.open(
-      shareUrl,
-      '_blank',
-      'width=700,height=600,noopener,noreferrer',
-    )
-  }
-
-  const handleLinkedInShare = () => {
-    const articleUrl = window.location.href
-
-    const shareUrl =
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        articleUrl,
-      )}`
-
-    window.open(
-      shareUrl,
-      '_blank',
-      'width=700,height=600,noopener,noreferrer',
-    )
-  }
+  const linkedinUrl = articleUrl
+    ? `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+    : '#'
 
   /* -------------------------------------------------------------------------- */
   /*                              Copy Link                                     */
   /* -------------------------------------------------------------------------- */
 
   const handleCopyLink = async () => {
-    try {
-      const articleUrl =
-        window.location.href
+    if (!articleUrl) return
 
-      await navigator.clipboard.writeText(
-        articleUrl,
-      )
+    try {
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+        await navigator.clipboard.writeText(
+          articleUrl,
+        )
+      } else {
+        // Fallback for older browsers.
+        const textarea =
+          document.createElement('textarea')
+
+        textarea.value = articleUrl
+        textarea.style.position = 'fixed'
+        textarea.style.opacity = '0'
+
+        document.body.appendChild(
+          textarea,
+        )
+
+        textarea.focus()
+        textarea.select()
+
+        document.execCommand('copy')
+
+        document.body.removeChild(
+          textarea,
+        )
+      }
 
       setCopied(true)
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         setCopied(false)
       }, 2000)
     } catch {
-      // Clipboard unavailable
+      setCopied(false)
     }
   }
 
@@ -175,9 +174,10 @@ export default function SocialShare({
         <div className="flex items-center gap-2">
 
           {/* WhatsApp */}
-          <button
-            type="button"
-            onClick={handleWhatsAppShare}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Share on WhatsApp"
             title="Share on WhatsApp"
             className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-[#25D366] transition-colors"
@@ -186,12 +186,13 @@ export default function SocialShare({
               size={17}
               className="text-[#25D366]"
             />
-          </button>
+          </a>
 
           {/* Facebook */}
-          <button
-            type="button"
-            onClick={handleFacebookShare}
+          <a
+            href={facebookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Share on Facebook"
             title="Share on Facebook"
             className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-[#1877F2] transition-colors"
@@ -200,12 +201,13 @@ export default function SocialShare({
               size={15}
               className="text-[#1877F2]"
             />
-          </button>
+          </a>
 
           {/* X */}
-          <button
-            type="button"
-            onClick={handleXShare}
+          <a
+            href={xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Share on X"
             title="Share on X"
             className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-foreground transition-colors"
@@ -214,12 +216,13 @@ export default function SocialShare({
               size={16}
               className="text-foreground"
             />
-          </button>
+          </a>
 
           {/* LinkedIn */}
-          <button
-            type="button"
-            onClick={handleLinkedInShare}
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Share on LinkedIn"
             title="Share on LinkedIn"
             className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-[#0A66C2] transition-colors"
@@ -228,15 +231,16 @@ export default function SocialShare({
               size={16}
               className="text-[#0A66C2]"
             />
-          </button>
+          </a>
 
           {/* Copy Link */}
           <button
             type="button"
             onClick={handleCopyLink}
+            disabled={!articleUrl}
             aria-label="Copy link"
             title="Copy link"
-            className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-primary transition-colors"
+            className="w-9 h-9 flex items-center justify-center border border-border bg-background hover:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {copied ? (
               <FiCheck
@@ -255,7 +259,7 @@ export default function SocialShare({
       </div>
 
       {/* -------------------------------------------------------------------- */}
-      {/*                            Copied Message                             */}
+      {/*                          Copied Message                              */}
       {/* -------------------------------------------------------------------- */}
 
       {copied && (
