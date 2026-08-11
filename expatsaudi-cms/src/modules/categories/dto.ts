@@ -1,13 +1,15 @@
-import type { ImageDTO } from '@/shared/dto';
+import type { ImageDTO } from '@/shared/dto'
 
 export interface CategoryDTO {
-  id: number;
+  id: number
 
-  name: string;
+  name: string
 
-  slug: string;
+  slug: string
 
-  description: string | null;
+  description: string | null
 
-  icon: ImageDTO | null;
+  icon: ImageDTO | null
+
+  articleCount: number
 }

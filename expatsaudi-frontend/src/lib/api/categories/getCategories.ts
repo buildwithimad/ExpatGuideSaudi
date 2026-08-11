@@ -12,6 +12,7 @@ export interface Category {
     height: number;
     sizes: Record<string, string | null>;
   } | null;
+  articleCount: number
 }
 
 export async function getCategories(

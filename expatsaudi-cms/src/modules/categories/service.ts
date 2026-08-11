@@ -1,18 +1,46 @@
-import type { Locale } from '@/shared/types';
-import type { Payload } from 'payload';
-import type { CategoryDTO } from './dto';
+import type { Payload } from 'payload'
 
-import { mapCategory } from './mapper';
-import { findCategories } from './query';
+import { mapCategory } from './mapper'
+import { findCategories } from './query'
+import type { GetCategoriesOptions } from './types'
 
 export async function getCategories(
   payload: Payload,
-  locale: Locale,
-): Promise<CategoryDTO[]> {
+  options: GetCategoriesOptions,
+) {
   const categories = await findCategories(
     payload,
-    locale,
-  );
+    options.locale,
+  )
 
-  return categories.map(mapCategory);
+  const mappedCategories = await Promise.all(
+    categories.map(async (category) => {
+      const articleCount =
+        await payload.count({
+          collection: 'articles',
+          locale: options.locale,
+          where: {
+            and: [
+              {
+                category: {
+                  equals: category.id,
+                },
+              },
+              {
+                _status: {
+                  equals: 'published',
+                },
+              },
+            ],
+          },
+        })
+
+      return mapCategory(
+        category,
+        articleCount.totalDocs,
+      )
+    }),
+  )
+
+  return mappedCategories
 }

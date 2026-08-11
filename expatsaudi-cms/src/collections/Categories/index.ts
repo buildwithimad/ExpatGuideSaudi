@@ -17,7 +17,6 @@ export const Categories: CollectionConfig = {
     defaultColumns: [
       'name',
       'slug',
-      'parentCategory',
       'status',
       'sortOrder',
     ],
@@ -53,15 +52,6 @@ export const Categories: CollectionConfig = {
               label: 'Description',
               type: 'textarea',
               localized: true,
-            },
-
-            {
-              name: 'parentCategory',
-              label: 'Parent Category',
-              type: 'relationship',
-              relationTo: 'categories',
-              maxDepth: 1,
-              index: true,
             },
           ],
         },

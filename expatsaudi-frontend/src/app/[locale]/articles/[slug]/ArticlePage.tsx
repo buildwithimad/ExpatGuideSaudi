@@ -1,5 +1,6 @@
 'use client';
 
+import SocialShare from '@/components/Features/SocialShare';
 import { RichText } from '@/components/richtext';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
@@ -7,7 +8,6 @@ import type { ArticleDetails } from '@/lib/api/articles/responses';
 import type { Locale } from '@/lib/i18n-config';
 import Link from 'next/link';
 import React from 'react';
-import NewsletterSection from '../../../components/NewsletterSection';
 
 interface Props {
   locale: Locale;
@@ -183,7 +183,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                           href={source.url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="group flex items-center justify-between gap-3 p-4 border border-border rounded-lg hover:border-primary hover:bg-muted/30 transition-all bg-background shadow-sm hover:shadow-md"
+                          className="group flex items-center justify-between gap-3 p-4 border border-border hover:border-primary hover:bg-muted/30 transition-all bg-background shadow-sm hover:shadow-md"
                         >
                           <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
                             {source.label}
@@ -194,6 +194,11 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                     </div>
                   </div>
                 )}
+
+                <SocialShare
+  locale={locale}
+  title={title}
+/>
               </article>
 
               {/* Sidebar */}
@@ -261,7 +266,6 @@ export default function ArticlePage({ locale, dict, article }: Props) {
           </div>
         </section>
 
-        <NewsletterSection dict={dict} />
       </main>
     </>
   );

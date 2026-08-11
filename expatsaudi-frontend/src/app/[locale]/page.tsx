@@ -7,19 +7,25 @@ import FeaturedGuide from '../components/FeaturedGuide';
 import FinalCTA from '../components/FinalCTA';
 import HeroSection from '../components/HeroSection';
 import LatestArticles from '../components/LatestArticles';
-import NewsletterSection from '../components/NewsletterSection';
 import ResourcesSection from '../components/ResourcesSection';
 import SearchFilterSection from '../components/SearchFilterSection';
 import ToolsSection from '../components/ToolsSection';
 
+import { getFaqs } from '@/lib/api/faqs';
 import { getHome } from '@/lib/api/home';
+
+
 import { getDictionary } from '@/lib/dictionary';
 import {
   locales,
   type Locale,
 } from '@/lib/i18n-config';
+
+
+import { getCategories } from '@/lib/api/categories';
 import { generateSiteMetadata } from '@/lib/seo';
 import { resolvePageSeo } from '@/lib/seo/resolvePageSeo';
+
 
 /* -------------------------------------------------------------------------- */
 /*                           Static Params                                     */
@@ -89,9 +95,13 @@ export default async function LocaleHomePage({
   const {
     featuredArticle,
     latestArticles,
-    categories,
     homepage,
   } = await getHome(currentLocale);
+
+  const categories = await getCategories(currentLocale)
+
+
+  const faqs = await getFaqs(currentLocale)
 
   return (
     <>
@@ -99,6 +109,13 @@ export default async function LocaleHomePage({
         dict={dict}
         locale={currentLocale}
         articles={latestArticles}
+      />
+
+       <SearchFilterSection
+        dict={dict}
+        locale={currentLocale}
+        filters={homepage.categoryFilters}
+        popularSearches={homepage.popularSearches}
       />
 
       <CategoriesSection
@@ -119,20 +136,18 @@ export default async function LocaleHomePage({
         articles={latestArticles}
       />
 
-      <SearchFilterSection
-        dict={dict}
-        locale={currentLocale}
-        filters={homepage.categoryFilters}
-        popularSearches={homepage.popularSearches}
-      />
+     
 
       <ToolsSection dict={dict} />
 
-      <ResourcesSection dict={dict} locale={currentLocale} />
+      <ResourcesSection
+  dict={dict}
+  locale={currentLocale}
+  
+/>
 
-      <NewsletterSection dict={dict} />
 
-      <FAQSection dict={dict} />
+      <FAQSection dict={dict} locale={currentLocale} faqs={faqs}/>
 
       <FinalCTA dict={dict} locale={currentLocale} />
     </>

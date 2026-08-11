@@ -318,7 +318,7 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                   href={searchHref}
                   onClick={(e) => handleNavigate(e, searchHref)}
                   aria-disabled={isPending}
-                  className={`hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  className={`flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     loadingPath === searchHref ? 'opacity-70 pointer-events-none cursor-wait bg-muted' : ''
                   }`}
                   aria-label={t?.search ?? 'Search'}

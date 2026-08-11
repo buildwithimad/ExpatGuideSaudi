@@ -48,6 +48,8 @@
         "viewAll": "View All Categories",
         "explore": "Explore",
         "guides": "guides",
+        "article": "Article",
+  "articles": "Articles",
         "items": {
             "iqama": {
                 "title": "Iqama",
@@ -179,37 +181,55 @@
         }
     },
     "resources": {
-        "label": "Quick Reference",
-        "title": "Saudi Resources",
-        "description": "Essential reference guides and external links for everyday expat needs.",
-        "viewResource": "View Resource",
-        "items": {
-            "government": {
-                "title": "Government Services",
-                "description": "Direct links and guides to all major Saudi government portals \u2014 Absher, Muqeem, GOSI, Etimad, and more."
-            },
-            "apps": {
-                "title": "Useful Apps",
-                "description": "The essential smartphone apps every expat in Saudi Arabia should have installed."
-            },
-            "emergency": {
-                "title": "Emergency Numbers",
-                "description": "Quick reference for police, ambulance, fire, and other critical emergency contacts across the Kingdom."
-            },
-            "public": {
-                "title": "Public Services",
-                "description": "Guides to using public transport, healthcare facilities, and municipal services across Saudi cities."
-            },
-            "legal": {
-                "title": "Legal Resources",
-                "description": "Understanding your legal rights as an expatriate \u2014 labor disputes, civil matters, and where to get help."
-            },
-            "embassies": {
-                "title": "Embassies",
-                "description": "Contact information and services for embassies and consulates across Riyadh, Jeddah, and Dammam."
-            }
-        }
+  "label": "Quick Reference",
+  "title": "Saudi Resources",
+  "description": "Essential reference guides and external links for everyday expat needs.",
+  "viewResource": "View Resource",
+  "backToHome": "Back to Home",
+  "noResources": "No resources available yet.",
+  "categoryDescriptions": {
+    "government-services": "Official Saudi government platforms and services useful for expatriates.",
+    "useful-apps": "Useful mobile applications and digital services for expatriates living in Saudi Arabia.",
+    "emergency-numbers": "Important emergency numbers and essential contacts for expatriates in Saudi Arabia.",
+    "public-services": "Essential public services for everyday life in Saudi Arabia."
+  },
+"seo": {
+  "government-services": {
+    "title": "Saudi Government Services for Expats | URExpat",
+    "description": "Find official Saudi government platforms and services for expatriates, including Absher, Qiwa, GOSI, and other essential digital services."
+  },
+  "useful-apps": {
+    "title": "Useful Saudi Apps for Expats | URExpat",
+    "description": "Discover useful mobile apps and digital services that make everyday life easier for expatriates living in Saudi Arabia."
+  },
+  "emergency-numbers": {
+    "title": "Saudi Emergency Numbers for Expats | URExpat",
+    "description": "Find important emergency numbers and essential contacts in Saudi Arabia, including police, ambulance, fire, and other emergency services."
+  },
+  "public-services": {
+    "title": "Saudi Public Services for Expats | URExpat",
+    "description": "Find useful public services and official resources for everyday life in Saudi Arabia."
+  }
+},
+  "items": {
+    "government": {
+      "title": "Government Services",
+      "description": "Direct links and guides to major Saudi government portals and digital services."
     },
+    "apps": {
+      "title": "Useful Apps",
+      "description": "Essential smartphone apps and digital services for everyday life in Saudi Arabia."
+    },
+    "emergency": {
+      "title": "Emergency Numbers",
+      "description": "Quick reference for police, ambulance, fire, and other critical emergency contacts across the Kingdom."
+    },
+    "public": {
+      "title": "Public Services",
+      "description": "Useful links and information for accessing essential public services across Saudi Arabia."
+    }
+  }
+},
     "newsletter": {
         "label": "Newsletter",
         "title": "Stay Updated on Saudi Regulations",

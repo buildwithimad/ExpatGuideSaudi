@@ -1,22 +1,15 @@
-import type { CollectionBeforeChangeHook } from 'payload';
+import type { CollectionBeforeChangeHook } from 'payload'
 
-import { calculateReadingTime } from './content';
-
-/* -------------------------------------------------------------------------- */
-/*                            Reading Time                                    */
-/* -------------------------------------------------------------------------- */
+import { calculateReadingTime } from './content'
 
 export const setReadingTime: CollectionBeforeChangeHook = ({
   data,
 }) => {
   if (!data?.content) {
-    return data;
+    return data
   }
 
-  data.readingTime = Math.max(
-    1,
-    calculateReadingTime(data.content),
-  );
+  data.readingTime = calculateReadingTime(data.content)
 
-  return data;
-};
+  return data
+}

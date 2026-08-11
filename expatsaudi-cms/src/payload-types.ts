@@ -75,6 +75,7 @@ export interface Config {
     articles: Article;
     faqs: Faq;
     'newsletter-subscribers': NewsletterSubscriber;
+    resources: Resource;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -258,7 +260,6 @@ export interface Category {
    */
   slug: string;
   description?: string | null;
-  parentCategory?: (number | null) | Category;
   icon?: (number | null) | Media;
   status: 'active' | 'inactive' | 'archived';
   sortOrder?: number | null;
@@ -388,7 +389,7 @@ export interface Faq {
     };
     [k: string]: unknown;
   };
-  category: number | Category;
+  category?: (number | null) | Category;
   relatedArticles?: (number | Article)[] | null;
   sortOrder?: number | null;
   createdBy?: (number | null) | User;
@@ -407,6 +408,24 @@ export interface NewsletterSubscriber {
   source?: ('website' | 'article' | 'landing-page' | 'popup') | null;
   status: 'subscribed' | 'unsubscribed' | 'bounced';
   subscribedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: number;
+  title: string;
+  description?: string | null;
+  icon?: (number | null) | Media;
+  category: 'government-services' | 'useful-apps' | 'emergency-numbers' | 'public-services';
+  url: string;
+  sortOrder?: number | null;
+  status: 'active' | 'inactive';
+  createdBy?: (number | null) | User;
+  lastModifiedBy?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -465,6 +484,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'newsletter-subscribers';
         value: number | NewsletterSubscriber;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -619,7 +642,6 @@ export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   description?: T;
-  parentCategory?: T;
   icon?: T;
   status?: T;
   sortOrder?: T;
@@ -709,6 +731,23 @@ export interface NewsletterSubscribersSelect<T extends boolean = true> {
   source?: T;
   status?: T;
   subscribedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  icon?: T;
+  category?: T;
+  url?: T;
+  sortOrder?: T;
+  status?: T;
+  createdBy?: T;
+  lastModifiedBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }

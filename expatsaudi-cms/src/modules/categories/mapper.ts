@@ -1,10 +1,11 @@
-import type { CategoryDTO } from './dto';
-import type { CategoryDocument } from './types';
+import type { Category } from '@/payload-types'
+import type { CategoryDTO } from './dto'
 
-import { mapImage } from '@/shared/mappers/image';
+import { mapImage } from '@/shared/mappers/image'
 
 export function mapCategory(
-  category: CategoryDocument,
+  category: Category,
+  articleCount = 0,
 ): CategoryDTO {
   return {
     id: category.id,
@@ -13,8 +14,11 @@ export function mapCategory(
 
     slug: category.slug,
 
-    description: category.description ?? null,
+    description:
+      category.description ?? null,
 
     icon: mapImage(category.icon),
-  };
+
+    articleCount,
+  }
 }

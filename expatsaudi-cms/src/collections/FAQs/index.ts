@@ -43,7 +43,6 @@ export const FAQs: CollectionConfig = {
               name: 'category',
               type: 'relationship',
               relationTo: 'categories',
-              required: true,
               index: true,
             },
             {

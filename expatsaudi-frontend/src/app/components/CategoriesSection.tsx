@@ -1,14 +1,14 @@
-import Icon from '@/components/ui/AppIcon';
-import type { Dictionary } from '@/lib/dictionary';
-import type { Locale } from '@/lib/i18n-config';
-import Link from 'next/link';
-import RevealWrapper from './RevealWrapper';
-import SectionTitle from './SectionTitle';
+import Icon from '@/components/ui/AppIcon'
+import type { Dictionary } from '@/lib/dictionary'
+import type { Locale } from '@/lib/i18n-config'
+import Link from 'next/link'
+import RevealWrapper from './RevealWrapper'
+import SectionTitle from './SectionTitle'
 
 interface CategoriesSectionProps {
-  dict?: Dictionary;
-  locale?: Locale;
-  categories: any[];
+  dict?: Dictionary
+  locale?: Locale
+  categories: any[]
 }
 
 export default function CategoriesSection({
@@ -16,11 +16,13 @@ export default function CategoriesSection({
   locale = 'en',
   categories,
 }: CategoriesSectionProps) {
-  const t = dict?.categories;
+  const t = dict?.categories
 
   return (
     <section className="py-16 md:py-20 border-b border-border">
       <div className="container-editorial">
+
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <SectionTitle
             label={t?.label ?? 'Browse by Topic'}
@@ -31,6 +33,7 @@ export default function CategoriesSection({
             }
           />
 
+          {/* Desktop View All */}
           <Link
             href={`/${locale}/category`}
             className="btn-secondary text-sm py-2 px-4 flex-shrink-0 self-start md:self-auto"
@@ -39,6 +42,7 @@ export default function CategoriesSection({
           </Link>
         </div>
 
+        {/* Categories Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-border">
           {categories?.map((category: any, i: number) => (
             <RevealWrapper
@@ -48,7 +52,11 @@ export default function CategoriesSection({
             >
               <Link
                 href={`/${locale}/category/${category.slug}`}
-                className="category-card flex flex-col gap-3 h-full bg-background"
+                className={`
+                  category-card
+                  flex flex-col gap-3 h-full bg-background
+                  ${i >= 6 ? 'hidden md:flex' : ''}
+                `}
               >
                 <div className="flex items-center justify-between">
                   <div className="w-9 h-9 bg-muted flex items-center justify-center">
@@ -59,9 +67,13 @@ export default function CategoriesSection({
                     />
                   </div>
 
-                  <span className="label-caps text-muted-foreground">
-                    {t?.guides ?? 'Guides'}
-                  </span>
+                  {/* Article Count */}
+<span className="label-caps text-muted-foreground">
+  {category.articleCount ?? 0}{' '}
+  {category.articleCount === 1
+    ? t?.article ?? 'Article'
+    : t?.articles ?? 'Articles'}
+</span>
                 </div>
 
                 <div>
@@ -89,7 +101,18 @@ export default function CategoriesSection({
             </RevealWrapper>
           ))}
         </div>
+
+        {/* Mobile View All */}
+        <div className="mt-8 flex justify-center md:hidden">
+          <Link
+            href={`/${locale}/category`}
+            className="btn-secondary text-sm py-2 px-4"
+          >
+            {t?.viewAll ?? 'View All Categories'}
+          </Link>
+        </div>
+
       </div>
     </section>
-  );
+  )
 }

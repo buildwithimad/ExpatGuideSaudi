@@ -1,12 +1,17 @@
 const collectText = (value: unknown): string => {
-  if (value == null) return ''
+  if (value == null) {
+    return ''
+  }
 
   if (typeof value === 'string') {
     return value
   }
 
   if (Array.isArray(value)) {
-    return value.map(collectText).join(' ')
+    return value
+      .map(collectText)
+      .filter(Boolean)
+      .join(' ')
   }
 
   if (typeof value === 'object') {
@@ -15,7 +20,10 @@ const collectText = (value: unknown): string => {
     return [
       collectText(record.text),
       collectText(record.children),
-    ].join(' ')
+      collectText(record.root),
+    ]
+      .filter(Boolean)
+      .join(' ')
   }
 
   return ''
@@ -30,7 +38,15 @@ export const calculateReadingTime = (
   const wordCount = text
     .trim()
     .split(/\s+/)
-    .filter(Boolean).length
+    .filter(Boolean)
+    .length
 
-  return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
+  const readingTime = Math.max(
+    1,
+    Math.ceil(wordCount / wordsPerMinute),
+  )
+
+ 
+
+  return readingTime
 }
