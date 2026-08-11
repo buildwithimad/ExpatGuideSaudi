@@ -107,7 +107,6 @@ export default async function LocaleLayout({
   const settings =
     await getSiteSettings(currentLocale);
 
-    console.log("Setting: ", settings)
 
   /* ------------------------------------------------------------------------ */
   /* Locale Configuration                                                     */
