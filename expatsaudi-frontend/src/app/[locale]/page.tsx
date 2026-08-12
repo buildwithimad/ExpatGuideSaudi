@@ -103,6 +103,7 @@ export default async function LocaleHomePage({
 
   const faqs = await getFaqs(currentLocale)
 
+
   return (
     <>
       <HeroSection

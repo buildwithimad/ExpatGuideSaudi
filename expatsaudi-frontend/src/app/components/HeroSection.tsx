@@ -5,6 +5,7 @@ import AppImage from '@/components/ui/AppImage';
 import type { Article } from '@/lib/api/articles';
 import type { Dictionary } from '@/lib/dictionary';
 import type { Locale } from '@/lib/i18n-config';
+import { getImageUrl } from '@/lib/utils/getImageUrl';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -81,12 +82,7 @@ export default function HeroSection({
     setIsPaused(false);
   };
 
-  // Type-safe image extraction to fix the Payload CMS "Property 'url' does not exist on type 'string'" error
-  const getImageUrl = (image: any): string => {
-    if (!image) return '';
-    if (typeof image === 'string') return image;
-    return image?.sizes?.card?.url || image?.url || '';
-  };
+ 
 
   // Type-safe category extraction
   const getCategoryTitle = (category: any): string => {
@@ -165,16 +161,17 @@ export default function HeroSection({
                         tabIndex={currentIndex === idx ? 0 : -1}
                       >
                         {/* Featured Editorial Image */}
-                        <div className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-muted overflow-hidden border border-border">
-                          <AppImage
-                            src={getImageUrl(article.featuredImage)}
-                            alt={article.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            sizes="(max-width: 1024px) 100vw, 60vw"
-                            priority={idx === 0}
-                          />
-                        </div>
+<div className="relative w-full aspect-[1730/910] bg-muted overflow-hidden border border-border">
+  <AppImage
+    src={getImageUrl(article.featuredImage, 'original')}
+    alt={article.featuredImage?.alt || article.title}
+    fill
+    objectFit="cover"
+    className="transition-transform duration-700 group-hover:scale-[1.02]"
+    sizes="(max-width: 1024px) 100vw, 60vw"
+    priority={idx === 0}
+  />
+</div>
 
                         {/* Article Content Area */}
                         <div className="pt-6 flex flex-col gap-3">

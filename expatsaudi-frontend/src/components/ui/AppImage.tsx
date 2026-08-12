@@ -1,25 +1,26 @@
-'use client';
+'use client'
 
-import Image, { ImageProps } from 'next/image';
-import { memo, useCallback, useMemo, useState } from 'react';
+import Image, { ImageProps } from 'next/image'
+import { memo, useCallback, useMemo, useState } from 'react'
 
 interface AppImageProps {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  className?: string;
-  priority?: boolean;
-  quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
-  fill?: boolean;
-  sizes?: string;
-  onClick?: () => void;
-  onLoad?: NonNullable<ImageProps['onLoad']>;
-  fallbackSrc?: string;
-  loading?: 'lazy' | 'eager';
-  unoptimized?: boolean;
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  className?: string
+  priority?: boolean
+  quality?: number
+  placeholder?: 'blur' | 'empty'
+  blurDataURL?: string
+  fill?: boolean
+  sizes?: string
+  onClick?: () => void
+  onLoad?: NonNullable<ImageProps['onLoad']>
+  fallbackSrc?: string
+  loading?: 'lazy' | 'eager'
+  unoptimized?: boolean
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
 }
 
 const AppImage = memo(function AppImage({
@@ -39,25 +40,26 @@ const AppImage = memo(function AppImage({
   fallbackSrc = '/assets/images/no_image.png',
   loading = 'lazy',
   unoptimized = false,
+  objectFit = 'cover',
 }: AppImageProps) {
-  const [imageSrc, setImageSrc] = useState(src);
-  const [isLoading, setIsLoading] = useState(true);
+  const [imageSrc, setImageSrc] = useState(src)
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleError = useCallback(() => {
     if (imageSrc !== fallbackSrc) {
-      setImageSrc(fallbackSrc);
+      setImageSrc(fallbackSrc)
     }
 
-    setIsLoading(false);
-  }, [imageSrc, fallbackSrc]);
+    setIsLoading(false)
+  }, [imageSrc, fallbackSrc])
 
   const handleLoad = useCallback(
-  (e: React.SyntheticEvent<HTMLImageElement>) => {
-    setIsLoading(false);
-    onLoad?.(e);
-  },
-  [onLoad]
-);
+    (e: React.SyntheticEvent<HTMLImageElement>) => {
+      setIsLoading(false)
+      onLoad?.(e)
+    },
+    [onLoad],
+  )
 
   const imageClassName = useMemo(() => {
     return [
@@ -67,8 +69,8 @@ const AppImage = memo(function AppImage({
         'cursor-pointer hover:opacity-90 transition-opacity duration-200',
     ]
       .filter(Boolean)
-      .join(' ');
-  }, [className, isLoading, onClick]);
+      .join(' ')
+  }, [className, isLoading, onClick])
 
   const imageProps = {
     src: imageSrc,
@@ -81,16 +83,12 @@ const AppImage = memo(function AppImage({
     onLoad: handleLoad,
     onClick,
     unoptimized,
-  };
+  }
 
   if (fill) {
     return (
       <div
-        className="relative"
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
+        className="relative h-full w-full"
       >
         <Image
           {...imageProps}
@@ -99,14 +97,14 @@ const AppImage = memo(function AppImage({
           loading={priority ? undefined : loading}
           sizes={
             sizes ??
-            '(max-width:768px)100vw,(max-width:1200px)50vw,33vw'
+            '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           }
           style={{
-            objectFit: 'cover',
+            objectFit,
           }}
         />
       </div>
-    );
+    )
   }
 
   return (
@@ -118,9 +116,9 @@ const AppImage = memo(function AppImage({
       loading={priority ? undefined : loading}
       sizes={sizes}
     />
-  );
-});
+  )
+})
 
-AppImage.displayName = 'AppImage';
+AppImage.displayName = 'AppImage'
 
-export default AppImage;
+export default AppImage

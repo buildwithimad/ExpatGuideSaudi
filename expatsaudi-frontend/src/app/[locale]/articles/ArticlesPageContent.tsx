@@ -5,12 +5,12 @@ import AppImage from '@/components/ui/AppImage';
 import type { ArticlesList } from '@/lib/api/articles';
 import type { Category } from '@/lib/api/categories';
 import type { Locale } from '@/lib/i18n-config';
+import { getImageUrl } from '@/lib/utils/getImageUrl';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { memo, useCallback, useEffect, useState, useTransition } from 'react';
 import RevealWrapper from '../../components/RevealWrapper';
 import SectionTitle from '../../components/SectionTitle';
-
 
 // ============================================================================
 // Types
@@ -35,9 +35,9 @@ const Spinner = memo(({ className = '' }: { className?: string }) => (
 ));
 Spinner.displayName = 'Spinner';
 
-const ArticleSkeleton = memo(() => (
-  <div className="flex flex-col h-full border border-border bg-background animate-pulse" aria-hidden="true">
-    <div className="aspect-[16/9] bg-muted border-b border-border" />
+const ArticleSkeleton = memo(({ viewMode = 'grid', isRTL = false }: { viewMode?: 'grid' | 'list', isRTL?: boolean }) => (
+  <div className={`flex ${viewMode === 'grid' ? 'flex-col' : 'flex-col md:flex-row'} h-full border border-border bg-background animate-pulse`} aria-hidden="true">
+    <div className={`aspect-[16/9] bg-muted border-border ${viewMode === 'grid' ? 'w-full border-b' : `w-full md:w-2/5 shrink-0 border-b md:border-b-0 ${isRTL ? 'md:border-l' : 'md:border-r'}`}`} />
     <div className="p-4 md:p-6 flex flex-col gap-4 flex-grow">
       <div className="flex items-center justify-between">
         <div className="w-16 h-6 bg-muted rounded-none" />
@@ -72,6 +72,9 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
   const [loadingCard, setLoadingCard] = useState<string | null>(null);
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
   const [isImageLoading, setIsImageLoading] = useState<Record<string, boolean>>({});
+  
+  // View mode state (grid or list)
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   // Reset loading states when URL transition finishes
   useEffect(() => {
@@ -120,15 +123,23 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
     e.preventDefault();
 
     setLoadingAction(`category-${slug}`);
+    
+    // When "All" is selected, completely clear query strings
+    if (slug === 'all') {
+      startTransition(() => {
+        router.push(`/${locale}/articles`, { scroll: false });
+      });
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
-    if (slug === 'all') params.delete('category');
-    else params.set('category', slug);
+    params.set('category', slug);
     params.delete('page');
 
     startTransition(() => {
       router.push(`${pathname}?${params.toString()}`, { scroll: false }); // Prevent scroll jump on filter
     });
-  }, [isPending, searchParams, pathname, router]);
+  }, [isPending, searchParams, pathname, router, locale]);
 
   const handleArticleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0 || isPending) return;
@@ -169,7 +180,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
 
   return (
     <>
-      <main className="pt-16 md:pt-[68px] bg-background selection:bg-foreground selection:text-background">
+      <main className="pt-16 md:pt-[68px] bg-background selection:bg-foreground selection:text-background mt-10">
         
         {/* HERO SECTION - Reduced padding on mobile so filters are visible immediately */}
         <section className="border-b border-border py-8 md:py-20 bg-background">
@@ -263,33 +274,16 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 })}
               </nav>
 
-              {/* Sort - Desktop right aligned, mobile inline */}
-              <div className="hidden md:flex items-center gap-2.5 flex-shrink-0 lg:ms-auto">
-                <label htmlFor="sort-select" className="text-xs font-medium text-muted-foreground whitespace-nowrap">
-                  {dict.sort}
-                </label>
-                <div className="relative">
-                  <select 
-                    id="sort-select"
-                    className="appearance-none bg-background border border-border text-foreground rounded-none py-1.5 ps-3 pe-8 text-sm outline-none focus:border-foreground focus:ring-1 focus:ring-foreground transition-colors duration-200 cursor-pointer" 
-                    defaultValue="latest"
-                  >
-                    <option value="latest">{dict.latest}</option>
-                    <option value="popular">{dict.popular}</option>
-                    <option value="az">A–Z</option>
-                  </select>
-                  <Icon name="ChevronDownIcon" size={12} className="text-muted-foreground absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>
 
-        {/* ARTICLES GRID */}
+        {/* ARTICLES GRID / LIST */}
         <section className="py-10 md:py-16 min-h-[60vh]">
           <div className="container-editorial">
             
-            {/* Grid Header Info */}
+            {/* Header Info & View Toggles */}
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
               <p className="text-[13px] md:text-sm font-medium text-muted-foreground transition-opacity duration-200" style={{ opacity: isPending ? 0.5 : 1 }}>
                 {isRTL ? (
@@ -300,11 +294,21 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
               </p>
               
               <div className="flex items-center gap-1.5" role="group" aria-label="View toggle">
-                <button className="w-8 h-8 border border-foreground bg-foreground flex items-center justify-center cursor-default outline-none" aria-pressed="true" aria-label="Grid view">
-                  <Icon name="Squares2X2Icon" size={14} className="text-background" />
+                <button 
+                  onClick={() => setViewMode('grid')}
+                  className={`w-8 h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'grid' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
+                  aria-pressed={viewMode === 'grid'}
+                  aria-label="Grid view"
+                >
+                  <Icon name="Squares2X2Icon" size={14} className={viewMode === 'grid' ? 'text-background' : ''} />
                 </button>
-                <button className="w-8 h-8 border border-border flex items-center justify-center text-muted-foreground hover:border-foreground hover:text-foreground transition-colors outline-none focus-visible:ring-1 focus-visible:ring-foreground" aria-pressed="false" aria-label="List view">
-                  <Icon name="ListBulletIcon" size={14} />
+                <button 
+                  onClick={() => setViewMode('list')}
+                  className={`w-8 h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'list' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
+                  aria-pressed={viewMode === 'list'}
+                  aria-label="List view"
+                >
+                  <Icon name="ListBulletIcon" size={14} className={viewMode === 'list' ? 'text-background' : ''} />
                 </button>
               </div>
             </div>
@@ -333,14 +337,14 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                   </button>
                 </div>
               ) : (
-                // Grid State
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                // Grid / List State
+                <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" : "flex flex-col gap-6 md:gap-8"}>
                   
                   {isPending && loadingAction === 'search' 
-                    ? Array.from({ length: 6 }).map((_, i) => <ArticleSkeleton key={`skel-${i}`} />)
+                    ? Array.from({ length: 6 }).map((_, i) => <ArticleSkeleton key={`skel-${i}`} viewMode={viewMode} isRTL={isRTL} />)
                     : articles.docs.map((article: any, i: number) => {
                     
-                    const featuredImageUrl = article.featuredImage?.sizes?.card ?? article.featuredImage?.url ?? "/images/placeholder.jpg";
+                    const featuredImageUrl = getImageUrl(article.featuredImage, 'original') || '/images/placeholder.jpg';
                     const featuredImageAlt = article.featuredImage?.alt ?? article.title;
                     const categoryName = article.category?.name ?? "General";
                     const excerpt = article.excerpt ?? "";
@@ -356,7 +360,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                           <Link 
                             href={`/${locale}/articles/${article.slug}`} 
                             onClick={(e) => handleArticleClick(e, article.slug)}
-                            className={`group flex flex-col h-full border border-border bg-background transition-all duration-200 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 ${isCardLoading ? 'opacity-70 cursor-wait pointer-events-none' : ''}`}
+                            className={`group flex ${viewMode === 'grid' ? 'flex-col' : 'flex-col md:flex-row'} h-full border border-border bg-background transition-all duration-200 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 ${isCardLoading ? 'opacity-70 cursor-wait pointer-events-none' : ''}`}
                             aria-busy={isCardLoading}
                           >
                             {isCardLoading && (
@@ -365,16 +369,38 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                               </div>
                             )}
                             
-                            {/* Image Container with Skeleton Background */}
-                            <div className="aspect-[16/9] overflow-hidden relative border-b border-border bg-muted">
-                              {imgLoading && <div className="absolute inset-0 animate-pulse bg-muted z-0" aria-hidden="true" />}
-                              <AppImage 
-                                src={featuredImageUrl} 
-                                alt={featuredImageAlt} 
-                                fill 
-                                onLoad={() => setIsImageLoading(prev => ({ ...prev, [article.slug]: false }))}
-                                className={`object-cover z-10 transition-all duration-500 ease-out ${imgLoading ? 'opacity-0 scale-[1.02]' : 'opacity-100 scale-100 group-hover:scale-[1.03]'}`} 
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" 
+                            {/* Image Container */}
+                            <div className={`relative aspect-[1730/910] overflow-hidden border-border bg-muted ${viewMode === 'grid' ? 'w-full border-b' : `w-full md:w-2/5 shrink-0 border-b md:border-b-0 ${isRTL ? 'md:border-l' : 'md:border-r'}`}`}>
+                              {imgLoading && (
+                                <div
+                                  className="absolute inset-0 z-0 animate-pulse bg-muted"
+                                  aria-hidden="true"
+                                />
+                              )}
+
+                              <AppImage
+                                src={featuredImageUrl}
+                                alt={featuredImageAlt}
+                                fill
+                                onLoad={() =>
+                                  setIsImageLoading((prev) => ({
+                                    ...prev,
+                                    [article.slug]: false,
+                                  }))
+                                }
+                                className={`
+                                  z-10
+                                  object-contain
+                                  transition-all
+                                  duration-500
+                                  ease-out
+                                  ${
+                                    imgLoading
+                                      ? 'scale-[1.02] opacity-0'
+                                      : 'scale-100 opacity-100 group-hover:scale-[1.02]'
+                                  }
+                                `}
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                               />
                             </div>
 

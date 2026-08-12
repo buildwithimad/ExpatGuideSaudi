@@ -1,18 +1,30 @@
-import RenderChildren from './RenderChildren';
-import type { LexicalDocument } from './types';
+import RenderChildren from './RenderChildren'
+import type { LexicalDocument } from './types'
 
-interface Props {
-  data: LexicalDocument | null | undefined;
+interface HeadingItem {
+  id: string
+  label: string
 }
 
-export default function RichText({ data }: Props) {
+interface Props {
+  data: LexicalDocument | null | undefined
+  headingIds?: HeadingItem[]
+}
+
+export default function RichText({
+  data,
+  headingIds = [],
+}: Props) {
   if (!data?.root?.children) {
-    return null;
+    return null
   }
 
   return (
     <div className="prose-editorial max-w-none">
-      <RenderChildren nodes={data.root.children} />
+      <RenderChildren
+        nodes={data.root.children}
+        headingIds={headingIds}
+      />
     </div>
-  );
+  )
 }

@@ -1,5 +1,28 @@
+export function mapMedia(media: any) {
+  if (!media) return null
+
+  return {
+    url: media.url,
+    alt: media.alt ?? '',
+    width: media.width ?? undefined,
+    height: media.height ?? undefined,
+
+    sizes: media.sizes
+      ? {
+          thumbnail: media.sizes.thumbnail?.url ?? media.sizes.thumbnail ?? undefined,
+          card: media.sizes.card?.url ?? media.sizes.card ?? undefined,
+          hero: media.sizes.hero?.url ?? media.sizes.hero ?? undefined,
+          articleAuthor:
+            media.sizes.articleAuthor?.url ??
+            media.sizes.articleAuthor ??
+            undefined,
+        }
+      : undefined,
+  }
+}
+
 export function mapArticle(article: any) {
-  if (!article) return null;
+  if (!article) return null
 
   return {
     id: article.id,
@@ -14,12 +37,7 @@ export function mapArticle(article: any) {
 
     publishedAt: article.publishedAt,
 
-    featuredImage: article.featuredImage
-      ? {
-          url: article.featuredImage.url,
-          alt: article.featuredImage.alt,
-        }
-      : null,
+    featuredImage: mapMedia(article.featuredImage),
 
     author: article.author
       ? {
@@ -33,7 +51,7 @@ export function mapArticle(article: any) {
           slug: article.category.slug,
         }
       : null,
-  };
+  }
 }
 
 export function mapCategory(category: any) {
@@ -47,5 +65,5 @@ export function mapCategory(category: any) {
     description: category.description,
 
     icon: category.icon ?? null,
-  };
+  }
 }

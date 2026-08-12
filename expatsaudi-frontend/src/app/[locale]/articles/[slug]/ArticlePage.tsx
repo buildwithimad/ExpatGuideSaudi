@@ -47,7 +47,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
 
   return (
     <>
-      <main className="pt-16 md:pt-[68px]">
+      <main className="pt-16 md:pt-[68px] mt-10">
         
         {/* Breadcrumbs */}
         <div className="border-b border-border py-3 md:py-4 bg-muted/20">
@@ -83,7 +83,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
         {/* Hero Section */}
         <section className="border-b border-border py-10 md:py-14">
           <div className="container-editorial">
-            <div className="max-w-3xl">
+            <div className="max-w-7xl">
               <div className="flex flex-wrap items-center gap-3 mb-5">
                 {category?.name && (
                   <span className="badge-blue">{category.name}</span>
@@ -142,22 +142,25 @@ export default function ArticlePage({ locale, dict, article }: Props) {
           </div>
         </section>
 
-        {/* Featured Image */}
-        <div className="border-b border-border">
-          <div className="container-editorial py-0">
-            <div className="aspect-[21/9] overflow-hidden relative bg-muted">
-              {featuredImage?.url && (
-                <AppImage 
-                  src={featuredImage.url} 
-                  alt={featuredImage.alt || title} 
-                  fill 
-                  className="object-cover" 
-                  priority 
-                />
-              )}
-            </div>
-          </div>
-        </div>
+   {/* Featured Image */}
+<div className="border-b border-border">
+  <div className="container-editorial">
+    <div className="relative w-full overflow-hidden bg-muted">
+      {featuredImage?.url && (
+        <AppImage
+          src={featuredImage.url}
+          alt={featuredImage.alt || title}
+          width={featuredImage.width || 1730}
+          height={featuredImage.height || 909}
+          priority
+          objectFit="contain"
+          className="block h-auto w-full"
+          sizes="(max-width: 768px) 100vw, 1200px"
+        />
+      )}
+    </div>
+  </div>
+</div>
 
         {/* Article Content & Sidebar */}
         <section className="py-12 md:py-16">
@@ -168,7 +171,10 @@ export default function ArticlePage({ locale, dict, article }: Props) {
               <article className="lg:col-span-8 prose-editorial">
                 
                 {/* TODO: Payload Lexical Renderer */}
-                <RichText data={articleData.content} />
+                <RichText
+  data={articleData.content}
+  headingIds={tableOfContents}
+/>
 
                 {/* Official Source Links */}
                 {sourceLinks && sourceLinks.length > 0 && (

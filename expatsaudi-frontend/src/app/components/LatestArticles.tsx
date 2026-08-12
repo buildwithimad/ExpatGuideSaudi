@@ -5,6 +5,7 @@ import AppImage from '@/components/ui/AppImage'
 import type { Dictionary } from '@/lib/dictionary'
 import type { Locale } from '@/lib/i18n-config'
 
+import { getImageUrl } from '@/lib/utils/getImageUrl'
 import RevealWrapper from './RevealWrapper'
 import SectionTitle from './SectionTitle'
 
@@ -23,15 +24,26 @@ export default function LatestArticles({
 
   const articleCount = articles?.length ?? 0
 
+  // Use the number of available articles to determine the layout.
+  // 1 article  → 1 column
+  // 2 articles → 2 columns
+  // 3 articles → 3 columns
+  // 4+ articles → 4 columns
+  const gridColumns =
+    articleCount === 1
+      ? 'grid-cols-1'
+      : articleCount === 2
+        ? 'grid-cols-1 sm:grid-cols-2'
+        : articleCount === 3
+          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+          : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+
   return (
-    <section className="py-16 md:py-20 border-b border-border">
+    <section className="border-b border-border py-12 md:py-16 lg:py-20">
       <div className="container-editorial">
 
-        {/* ------------------------------------------------------------------ */}
-        {/* Section Header                                                      */}
-        {/* ------------------------------------------------------------------ */}
-
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        {/* Section Header */}
+        <div className="mb-8 flex flex-col gap-5 md:mb-10 md:flex-row md:items-end md:justify-between">
           <SectionTitle
             label={t?.label ?? 'Latest Guides'}
             title={t?.title ?? 'Recently Published'}
@@ -43,7 +55,18 @@ export default function LatestArticles({
 
           <Link
             href={`/${locale}/articles`}
-            className="btn-secondary text-sm py-2 px-4 flex-shrink-0 self-start md:self-auto flex items-center gap-1.5"
+            className="
+              btn-secondary
+              flex
+              w-fit
+              shrink-0
+              items-center
+              gap-1.5
+              px-4
+              py-2
+              text-xs
+              md:text-sm
+            "
           >
             {t?.viewAll ?? 'View All Articles'}
 
@@ -54,148 +77,201 @@ export default function LatestArticles({
           </Link>
         </div>
 
-        {/* ------------------------------------------------------------------ */}
-        {/* Articles                                                            */}
-        {/* ------------------------------------------------------------------ */}
-
+        {/* Articles */}
         {articleCount > 0 ? (
           <div
-            className={
-              articleCount === 1
-                ? 'flex items-start'
-                : articleCount === 2
-                  ? 'grid grid-cols-1 md:grid-cols-2 gap-px bg-border'
-                  : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border'
-            }
+            className={`
+              grid
+              ${gridColumns}
+              gap-px
+              bg-border
+            `}
           >
             {articles.map((article, i) => (
-              <div
+              <RevealWrapper
                 key={
-                  article?.id ||
-                  article?.title ||
+                  article?.id ??
+                  article?.slug ??
+                  article?.title ??
                   i
                 }
-                className={
-                  articleCount === 1
-                    ? 'w-full md:w-1/2 lg:w-1/3'
-                    : 'w-full'
-                }
+                delay={i * 60}
+                type="up"
               >
-                <RevealWrapper
-                  delay={i * 60}
-                  type="up"
+                <Link
+                  href={`/${locale}/articles/${article?.slug}`}
+                  className="
+                    article-card
+                    group
+                    flex
+                    h-full
+                    w-full
+                    flex-col
+                    bg-background
+                    transition-colors
+                  "
                 >
-                  <Link
-                    href={`/${locale}/articles/${article?.slug}`}
-                    className="article-card flex flex-col h-full w-full bg-background group"
+
+                {/* Image */}
+<div
+  className="
+    relative
+    aspect-[1730/909]
+    w-full
+    overflow-hidden
+    bg-muted
+  "
+>
+  {article?.featuredImage ? (
+    <AppImage
+      src={getImageUrl(article.featuredImage, 'original')}
+      alt={
+        article.featuredImage.alt ||
+        article.title
+      }
+      fill
+      objectFit="contain"
+      className="
+        transition-transform
+        duration-500
+        group-hover:scale-[1.02]
+      "
+      sizes="
+        (max-width: 640px) 100vw,
+        (max-width: 1024px) 50vw,
+        25vw
+      "
+    />
+  ) : (
+    <div className="h-full w-full bg-muted" />
+  )}
+</div>
+                  {/* Content */}
+                  <div
+                    className="
+                      flex
+                      flex-grow
+                      flex-col
+                      gap-3
+                      p-4
+                      sm:p-5
+                    "
                   >
 
-                    {/* ------------------------------------------------------ */}
-                    {/* Image                                                    */}
-                    {/* ------------------------------------------------------ */}
+                    {/* Category + Reading Time */}
+                    <div className="flex min-h-[22px] flex-wrap items-center gap-2">
+                      {article?.category?.name && (
+                        <span className="badge-blue text-[10px] sm:text-xs">
+                          {article.category.name}
+                        </span>
+                      )}
 
-                    <div className="aspect-[16/9] overflow-hidden relative">
-                      {article?.featuredImage?.url ? (
-                        <AppImage
-                          src={
-                            article.featuredImage
-                              .sizes?.card ??
-                            article.featuredImage.url
-                          }
-                          alt={
-                            article.featuredImage.alt ||
-                            article.title
-                          }
-                          fill
-                          className="object-cover transition-transform duration-400 group-hover:scale-[1.03]"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      {article?.readingTime && (
+                        <span className="text-[11px] text-muted-foreground sm:text-xs">
+                          {article.readingTime} min read
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className="
+                        line-clamp-3
+                        text-sm
+                        font-semibold
+                        leading-snug
+                        text-foreground
+                        transition-colors
+                        duration-200
+                        group-hover:text-primary
+                        sm:text-base
+                      "
+                    >
+                      {article?.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    {article?.excerpt && (
+                      <p
+                        className="
+                          line-clamp-3
+                          flex-grow
+                          text-xs
+                          leading-relaxed
+                          text-muted-foreground
+                          sm:text-sm
+                        "
+                      >
+                        {article.excerpt}
+                      </p>
+                    )}
+
+                    {/* Footer */}
+                    <div
+                      className="
+                        mt-auto
+                        flex
+                        min-w-0
+                        items-center
+                        justify-between
+                        gap-2
+                        border-t
+                        border-border
+                        pt-3
+                      "
+                    >
+
+                      {/* Author */}
+                      <div className="flex min-w-0 items-center gap-1.5">
+                        <Icon
+                          name="UserCircleIcon"
+                          size={14}
+                          className="shrink-0 text-muted-foreground"
                         />
-                      ) : (
-                        <div className="w-full h-full bg-muted" />
-                      )}
-                    </div>
 
-                    {/* ------------------------------------------------------ */}
-                    {/* Content                                                  */}
-                    {/* ------------------------------------------------------ */}
-
-                    <div className="p-5 flex flex-col gap-3 flex-grow">
-
-                      {/* Category + Reading Time */}
-
-                      <div className="flex items-center gap-2">
-                        {article?.category?.name && (
-                          <span className="badge-blue">
-                            {article.category.name}
-                          </span>
-                        )}
-
-                        {article?.readingTime && (
-                          <span className="text-xs text-muted-foreground">
-                            {article.readingTime} min read
-                          </span>
-                        )}
+                        <span
+                          className="
+                            truncate
+                            text-[11px]
+                            text-muted-foreground
+                            sm:text-xs
+                          "
+                        >
+                          {article?.author?.fullName}
+                        </span>
                       </div>
 
-                      {/* Title */}
-
-                      <h3 className="text-base font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-200">
-                        {article?.title}
-                      </h3>
-
-                      {/* Excerpt */}
-
-                      {article?.excerpt && (
-                        <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                          {article.excerpt}
-                        </p>
+                      {/* Date */}
+                      {article?.publishedAt && (
+                        <span
+                          className="
+                            shrink-0
+                            text-[10px]
+                            text-muted-foreground
+                            sm:text-xs
+                          "
+                        >
+                          {new Date(
+                            article.publishedAt,
+                          ).toLocaleDateString(locale)}
+                        </span>
                       )}
 
-                      {/* Footer */}
-
-                      <div className="flex items-center justify-between pt-3 border-t border-border mt-auto">
-
-                        <div className="flex items-center gap-1.5">
-                          <Icon
-                            name="UserCircleIcon"
-                            size={14}
-                            className="text-muted-foreground"
-                          />
-
-                          <span className="text-xs text-muted-foreground">
-                            {article?.author?.fullName}
-                          </span>
-                        </div>
-
-                        {article?.publishedAt && (
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(
-                              article.publishedAt,
-                            ).toLocaleDateString(
-                              locale,
-                            )}
-                          </span>
-                        )}
-
-                      </div>
                     </div>
-                  </Link>
-                </RevealWrapper>
-              </div>
+                  </div>
+                </Link>
+              </RevealWrapper>
             ))}
           </div>
         ) : (
 
-          /* ---------------------------------------------------------------- */
-          /* Empty State                                                       */
-          /* ---------------------------------------------------------------- */
-
+          /* Empty State */
           <div className="border border-border bg-muted/30 px-6 py-12 text-center">
 
             <Icon
               name="DocumentTextIcon"
               size={28}
-              className="mx-auto text-muted-foreground mb-3"
+              className="mx-auto mb-3 text-muted-foreground"
             />
 
             <p className="text-sm font-medium text-foreground">
@@ -206,7 +282,7 @@ export default function LatestArticles({
                   : 'No articles published yet'}
             </p>
 
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="mt-1 text-xs text-muted-foreground">
               {locale === 'ar'
                 ? 'سيتم نشر أدلة ومعلومات جديدة قريبًا.'
                 : locale === 'ur'

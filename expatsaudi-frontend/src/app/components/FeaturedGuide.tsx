@@ -1,80 +1,159 @@
-import Icon from '@/components/ui/AppIcon';
-import AppImage from '@/components/ui/AppImage';
-import type { Dictionary } from '@/lib/dictionary';
-import type { Locale } from '@/lib/i18n-config';
-import Link from 'next/link';
-import RevealWrapper from './RevealWrapper';
+import Icon from '@/components/ui/AppIcon'
+import AppImage from '@/components/ui/AppImage'
+import type { Dictionary } from '@/lib/dictionary'
+import type { Locale } from '@/lib/i18n-config'
+import { getImageUrl } from '@/lib/utils/getImageUrl'
+import Link from 'next/link'
+import RevealWrapper from './RevealWrapper'
 
 interface FeaturedGuideProps {
-  dict?: Dictionary;
-  locale?: Locale;
-  article?: any;
+  dict?: Dictionary
+  locale?: Locale
+  article?: any
 }
 
-export default function FeaturedGuide({ dict, locale = 'en', article }: FeaturedGuideProps) {
-  const t = dict?.featuredGuide;
+export default function FeaturedGuide({
+  dict,
+  locale = 'en',
+  article,
+}: FeaturedGuideProps) {
+  const t = dict?.featuredGuide
 
-  if (!article) return null;
+  if (!article) return null
 
   return (
-    <section className="py-16 md:py-20 border-b border-border">
+    <section className="py-12 md:py-20 border-b border-border">
       <div className="container-editorial">
-        <div className="flex items-center justify-between mb-8">
-          <span className="label-caps text-primary">{t?.label ?? 'Featured Guide'}</span>
-          <Link href={`/${locale}/articles`} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
-            {t?.allGuides ?? 'All Guides'} <Icon name="ArrowRightIcon" size={14} />
+
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-6 md:mb-8">
+          <span className="label-caps text-primary">
+            {t?.label ?? 'Featured Guide'}
+          </span>
+
+          <Link
+            href={`/${locale}/articles`}
+            className="text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+          >
+            {t?.allGuides ?? 'All Guides'}
+            <Icon name="ArrowRightIcon" size={14} />
           </Link>
         </div>
 
         <RevealWrapper type="up">
-          <Link href={`/${locale}/articles/${article?.slug}`} className="group block border border-border hover:border-foreground/20 transition-colors duration-300">
+          <Link
+            href={`/${locale}/articles/${article.slug}`}
+            className="group block border border-border hover:border-foreground/20 transition-colors duration-300"
+          >
             <div className="grid lg:grid-cols-2">
-              <div className="aspect-[16/9] lg:aspect-auto overflow-hidden relative">
-                <AppImage
-  src={
-    article.featuredImage?.sizes?.hero ??
-    article.featuredImage?.url ??
-    ''
-  }
-  alt={
-    article.featuredImage?.alt ||
-    article.title
-  }
-  fill
-  priority
-  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-  sizes="(max-width: 1024px) 100vw, 50vw"
-/>
-              </div>
-              <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-between gap-8 bg-muted">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="badge-blue">{article?.category?.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      {article?.readingTime ? `${article.readingTime} min read` : null}
-                    </span>
-                    <span className="text-xs text-muted-foreground">·</span>
-                    <span className="text-xs text-muted-foreground">
-                      {article?.publishedAt ? new Date(article.publishedAt).toLocaleDateString(locale) : null}
-                    </span>
+
+              {/* Image */}
+             <div className="relative w-full aspect-[1730/910] overflow-hidden bg-muted">
+  <AppImage
+    src={getImageUrl(article.featuredImage, 'original')}
+    alt={article.featuredImage?.alt || article.title}
+    fill
+    priority
+    objectFit="contain"
+    className="transition-transform duration-500 group-hover:scale-[1.02]"
+    sizes="(max-width: 1024px) 100vw, 50vw"
+  />
+</div>
+
+              {/* Content */}
+              <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between gap-6 md:gap-8 bg-muted">
+
+                <div className="flex flex-col gap-3 md:gap-4">
+
+                  {/* Meta */}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {article?.category?.name && (
+                      <span className="badge-blue text-[10px] md:text-xs">
+                        {article.category.name}
+                      </span>
+                    )}
+
+                    {article?.readingTime && (
+                      <span className="text-[11px] md:text-xs text-muted-foreground">
+                        {article.readingTime} min read
+                      </span>
+                    )}
+
+                    {article?.publishedAt && (
+                      <>
+                        <span className="text-[11px] md:text-xs text-muted-foreground">
+                          ·
+                        </span>
+
+                        <span className="text-[11px] md:text-xs text-muted-foreground">
+                          {new Date(
+                            article.publishedAt,
+                          ).toLocaleDateString(locale)}
+                        </span>
+                      </>
+                    )}
                   </div>
-                  <h2 className="text-display text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
-                    {article?.title}
+
+                  {/* Title */}
+                  <h2
+                    className="
+                      text-xl
+                      font-bold
+                      text-foreground
+                      leading-[1.2]
+                      group-hover:text-primary
+                      transition-colors
+                      duration-200
+                    "
+                  >
+                    {article.title}
                   </h2>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {article?.excerpt}
-                  </p>
+
+                  {/* Excerpt */}
+                  {article?.excerpt && (
+                    <p
+                      className="
+                        text-sm
+                        text-muted-foreground
+                        leading-relaxed
+                        line-clamp-3
+                      "
+                    >
+                      {article.excerpt}
+                    </p>
+                  )}
                 </div>
-                <div className="flex items-center justify-between pt-6 border-t border-border">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 bg-primary flex items-center justify-center">
-                      <Icon name="UserIcon" size={14} className="text-primary-foreground" />
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-2 border-t border-border">
+
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-6 h-6 rounded-full shrink-0 bg-primary flex items-center justify-center">
+                      <Icon
+                        name="UserIcon"
+                        size={14}
+                        className="text-primary-foreground"
+                      />
                     </div>
-                    <span className="text-sm font-medium text-foreground">{article?.author?.fullName}</span>
+
+                    <span className="text-xs md:text-sm font-medium text-foreground truncate">
+                      {article?.author?.fullName}
+                    </span>
                   </div>
-                  <span className="btn-primary text-sm py-2 px-5">
+
+                  <span
+                    className="
+                      btn-primary
+                      text-xs
+                      py-2
+                      px-3
+                      md:px-5
+                      shrink-0
+                    "
+                  >
                     {t?.continueReading ?? 'Continue Reading'}
                   </span>
+
                 </div>
               </div>
             </div>
@@ -82,5 +161,5 @@ export default function FeaturedGuide({ dict, locale = 'en', article }: Featured
         </RevealWrapper>
       </div>
     </section>
-  );
+  )
 }

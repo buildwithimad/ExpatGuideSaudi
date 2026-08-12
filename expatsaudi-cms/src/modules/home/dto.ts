@@ -1,6 +1,16 @@
+export interface MediaSizesDTO {
+  thumbnail?: string;
+  card?: string;
+  hero?: string;
+  articleAuthor?: string;
+}
+
 export interface MediaDTO {
   url: string;
   alt: string;
+  width?: number;
+  height?: number;
+  sizes?: MediaSizesDTO;
 }
 
 export interface AuthorDTO {
