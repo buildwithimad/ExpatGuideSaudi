@@ -31,14 +31,12 @@ export default function RenderChildren({
         let headingId: string | undefined
 
         if (node.type === 'heading') {
-          headingId =
-            headingIds[headingIndex.current]?.id
-
+          headingId = headingIds[headingIndex.current]?.id
           headingIndex.current += 1
         }
 
         return (
-          <Fragment key={index}>
+          <Fragment key={node.key ?? index}>
             <RenderNode
               node={node}
               headingId={headingId}

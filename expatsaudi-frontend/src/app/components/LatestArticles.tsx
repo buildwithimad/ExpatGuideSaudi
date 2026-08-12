@@ -26,9 +26,9 @@ export default function LatestArticles({
 
   // Use the number of available articles to determine the layout.
   // 1 article  → 1 column
-  // 2 articles → 2 columns
-  // 3 articles → 3 columns
-  // 4+ articles → 4 columns
+  // 2 articles → 2 columns on tablet+ (1 on mobile)
+  // 3 articles → 3 columns on desktop (1 on mobile)
+  // 4+ articles → 4 columns on desktop (1 on mobile, 2 on tablet)
   const gridColumns =
     articleCount === 1
       ? 'grid-cols-1'
@@ -39,11 +39,11 @@ export default function LatestArticles({
           : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
 
   return (
-    <section className="border-b border-border py-12 md:py-16 lg:py-20">
+    <section className="border-b border-border py-10 sm:py-12 md:py-16 lg:py-20">
       <div className="container-editorial">
 
         {/* Section Header */}
-        <div className="mb-8 flex flex-col gap-5 md:mb-10 md:flex-row md:items-end md:justify-between">
+        <div className="mb-6 flex flex-col gap-4 sm:gap-5 md:mb-10 md:flex-row md:items-end md:justify-between">
           <SectionTitle
             label={t?.label ?? 'Latest Guides'}
             title={t?.title ?? 'Recently Published'}
@@ -62,9 +62,12 @@ export default function LatestArticles({
               shrink-0
               items-center
               gap-1.5
-              px-4
-              py-2
-              text-xs
+              px-3.5
+              py-1.5
+              text-[11px]
+              sm:px-4
+              sm:py-2
+              sm:text-xs
               md:text-sm
             "
           >
@@ -73,6 +76,7 @@ export default function LatestArticles({
             <Icon
               name="ArrowRightIcon"
               size={14}
+              className="h-3 w-3 sm:h-3.5 sm:w-3.5"
             />
           </Link>
         </div>
@@ -112,62 +116,65 @@ export default function LatestArticles({
                   "
                 >
 
-                {/* Image */}
-<div
-  className="
-    relative
-    aspect-[1730/909]
-    w-full
-    overflow-hidden
-    bg-muted
-  "
->
-  {article?.featuredImage ? (
-    <AppImage
-      src={getImageUrl(article.featuredImage, 'original')}
-      alt={
-        article.featuredImage.alt ||
-        article.title
-      }
-      fill
-      objectFit="contain"
-      className="
-        transition-transform
-        duration-500
-        group-hover:scale-[1.02]
-      "
-      sizes="
-        (max-width: 640px) 100vw,
-        (max-width: 1024px) 50vw,
-        25vw
-      "
-    />
-  ) : (
-    <div className="h-full w-full bg-muted" />
-  )}
-</div>
+                  {/* Image */}
+                  <div
+                    className="
+                      relative
+                      aspect-[1730/909]
+                      w-full
+                      overflow-hidden
+                      bg-muted
+                    "
+                  >
+                    {article?.featuredImage ? (
+                      <AppImage
+                        src={getImageUrl(article.featuredImage, 'original')}
+                        alt={
+                          article.featuredImage.alt ||
+                          article.title
+                        }
+                        fill
+                        objectFit="contain"
+                        className="
+                          transition-transform
+                          duration-500
+                          group-hover:scale-[1.02]
+                        "
+                        sizes="
+                          (max-width: 640px) 100vw,
+                          (max-width: 1024px) 50vw,
+                          25vw
+                        "
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-muted" />
+                    )}
+                  </div>
+
                   {/* Content */}
                   <div
                     className="
                       flex
                       flex-grow
                       flex-col
-                      gap-3
-                      p-4
-                      sm:p-5
+                      gap-2.5
+                      p-3.5
+                      sm:gap-3
+                      sm:p-4
+                      md:p-5
                     "
                   >
 
                     {/* Category + Reading Time */}
-                    <div className="flex min-h-[22px] flex-wrap items-center gap-2">
+                    <div className="flex min-h-[20px] flex-wrap items-center gap-1.5 sm:min-h-[22px] sm:gap-2">
                       {article?.category?.name && (
-                        <span className="badge-blue text-[10px] sm:text-xs">
+                        <span className="badge-blue text-[9px] px-1.5 py-0.5 sm:text-[10px] md:text-xs">
                           {article.category.name}
                         </span>
                       )}
 
                       {article?.readingTime && (
-                        <span className="text-[11px] text-muted-foreground sm:text-xs">
+                        <span className="text-[10px] text-muted-foreground sm:text-[11px] md:text-xs">
                           {article.readingTime} min read
                         </span>
                       )}
@@ -176,15 +183,17 @@ export default function LatestArticles({
                     {/* Title */}
                     <h3
                       className="
-                        line-clamp-3
-                        text-sm
+                        line-clamp-2
+                        text-xs
                         font-semibold
                         leading-snug
                         text-foreground
                         transition-colors
                         duration-200
                         group-hover:text-primary
-                        sm:text-base
+                        sm:line-clamp-3
+                        sm:text-sm
+                        md:text-base
                       "
                     >
                       {article?.title}
@@ -194,12 +203,14 @@ export default function LatestArticles({
                     {article?.excerpt && (
                       <p
                         className="
-                          line-clamp-3
+                          line-clamp-2
                           flex-grow
-                          text-xs
+                          text-[11px]
                           leading-relaxed
                           text-muted-foreground
-                          sm:text-sm
+                          sm:line-clamp-3
+                          sm:text-xs
+                          md:text-sm
                         "
                       >
                         {article.excerpt}
@@ -217,24 +228,26 @@ export default function LatestArticles({
                         gap-2
                         border-t
                         border-border
-                        pt-3
+                        pt-2.5
+                        sm:pt-3
                       "
                     >
 
                       {/* Author */}
-                      <div className="flex min-w-0 items-center gap-1.5">
+                      <div className="flex min-w-0 items-center gap-1 sm:gap-1.5">
                         <Icon
                           name="UserCircleIcon"
                           size={14}
-                          className="shrink-0 text-muted-foreground"
+                          className="h-3 w-3 shrink-0 text-muted-foreground sm:h-3.5 sm:w-3.5"
                         />
 
                         <span
                           className="
                             truncate
-                            text-[11px]
+                            text-[10px]
                             text-muted-foreground
-                            sm:text-xs
+                            sm:text-[11px]
+                            md:text-xs
                           "
                         >
                           {article?.author?.fullName}
@@ -246,9 +259,10 @@ export default function LatestArticles({
                         <span
                           className="
                             shrink-0
-                            text-[10px]
+                            text-[9px]
                             text-muted-foreground
-                            sm:text-xs
+                            sm:text-[10px]
+                            md:text-xs
                           "
                         >
                           {new Date(
@@ -266,15 +280,15 @@ export default function LatestArticles({
         ) : (
 
           /* Empty State */
-          <div className="border border-border bg-muted/30 px-6 py-12 text-center">
+          <div className="border border-border bg-muted/30 px-4 py-8 text-center sm:px-6 sm:py-12">
 
             <Icon
               name="DocumentTextIcon"
-              size={28}
-              className="mx-auto mb-3 text-muted-foreground"
+              size={24}
+              className="mx-auto mb-2 text-muted-foreground sm:mb-3 sm:size-[28px]"
             />
 
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-xs font-medium text-foreground sm:text-sm">
               {locale === 'ar'
                 ? 'لا توجد مقالات منشورة بعد'
                 : locale === 'ur'
@@ -282,7 +296,7 @@ export default function LatestArticles({
                   : 'No articles published yet'}
             </p>
 
-            <p className="mt-1 text-xs text-muted-foreground">
+            <p className="mt-1 text-[11px] text-muted-foreground sm:text-xs">
               {locale === 'ar'
                 ? 'سيتم نشر أدلة ومعلومات جديدة قريبًا.'
                 : locale === 'ur'

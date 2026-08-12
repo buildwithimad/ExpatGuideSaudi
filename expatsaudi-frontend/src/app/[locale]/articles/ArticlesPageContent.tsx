@@ -38,22 +38,22 @@ Spinner.displayName = 'Spinner';
 const ArticleSkeleton = memo(({ viewMode = 'grid', isRTL = false }: { viewMode?: 'grid' | 'list', isRTL?: boolean }) => (
   <div className={`flex ${viewMode === 'grid' ? 'flex-col' : 'flex-col md:flex-row'} h-full border border-border bg-background animate-pulse`} aria-hidden="true">
     <div className={`aspect-[16/9] bg-muted border-border ${viewMode === 'grid' ? 'w-full border-b' : `w-full md:w-2/5 shrink-0 border-b md:border-b-0 ${isRTL ? 'md:border-l' : 'md:border-r'}`}`} />
-    <div className="p-4 md:p-6 flex flex-col gap-4 flex-grow">
+    <div className="p-3.5 sm:p-4 md:p-6 flex flex-col gap-3 md:gap-4 flex-grow">
       <div className="flex items-center justify-between">
-        <div className="w-16 h-6 bg-muted rounded-none" />
-        <div className="w-12 h-4 bg-muted rounded-none" />
+        <div className="w-14 sm:w-16 h-5 sm:h-6 bg-muted rounded-none" />
+        <div className="w-10 sm:w-12 h-3.5 sm:h-4 bg-muted rounded-none" />
       </div>
-      <div className="space-y-3 mt-1">
-        <div className="w-full h-6 bg-muted rounded-none" />
-        <div className="w-5/6 h-6 bg-muted rounded-none" />
+      <div className="space-y-2 sm:space-y-3 mt-1">
+        <div className="w-full h-5 sm:h-6 bg-muted rounded-none" />
+        <div className="w-5/6 h-5 sm:h-6 bg-muted rounded-none" />
       </div>
-      <div className="space-y-2 mt-2">
-        <div className="w-full h-4 bg-muted rounded-none" />
-        <div className="w-4/5 h-4 bg-muted rounded-none" />
+      <div className="space-y-1.5 sm:space-y-2 mt-1 sm:mt-2">
+        <div className="w-full h-3.5 sm:h-4 bg-muted rounded-none" />
+        <div className="w-4/5 h-3.5 sm:h-4 bg-muted rounded-none" />
       </div>
-      <div className="flex items-center justify-between pt-4 mt-auto border-t border-border">
-        <div className="w-24 h-4 bg-muted rounded-none" />
-        <div className="w-16 h-4 bg-muted rounded-none" />
+      <div className="flex items-center justify-between pt-3 sm:pt-4 mt-auto border-t border-border">
+        <div className="w-20 sm:w-24 h-3.5 sm:h-4 bg-muted rounded-none" />
+        <div className="w-14 sm:w-16 h-3.5 sm:h-4 bg-muted rounded-none" />
       </div>
     </div>
   </div>
@@ -180,24 +180,24 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
 
   return (
     <>
-      <main className="pt-16 md:pt-[68px] bg-background selection:bg-foreground selection:text-background mt-10">
+      <main className="pt-12 sm:pt-16 md:pt-[68px] bg-background selection:bg-foreground selection:text-background mt-4 sm:mt-6 md:mt-10">
         
         {/* HERO SECTION - Reduced padding on mobile so filters are visible immediately */}
-        <section className="border-b border-border py-8 md:py-20 bg-background">
+        <section className="border-b border-border py-6 sm:py-8 md:py-20 bg-background">
           <div className="container-editorial">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-10">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 md:gap-10">
               <div className="w-full lg:w-2/3 max-w-3xl">
                 <SectionTitle
-                titleAs="h1"
+                  titleAs="h1"
                   label={dict.latestArticles.label}
                   title={isRTL ? 'أدلة متخصصة للمغتربين في المملكة' : 'Expert Guides for Expats in Saudi Arabia'}
                   description={isRTL ? 'تصفح مكتبتنا الكاملة من الأدلة الموثّقة التي تغطي كل جانب من جوانب حياة المغتربين في المملكة. تُحدّث بانتظام وفق المصادر الرسمية.' : 'Browse our complete library of verified guides covering every aspect of expat life in the Kingdom. Updated regularly against official Saudi sources.'}
                 />
               </div>
               <div className="lg:w-1/3 flex lg:justify-end shrink-0">
-                <div className="inline-flex items-center justify-center gap-3 border border-border py-2.5 px-4 md:py-3 md:px-5 bg-background w-full sm:w-auto transition-opacity duration-300">
-                  <Icon name="DocumentTextIcon" size={16} className="text-foreground shrink-0" />
-                  <span className="text-xs md:text-sm font-medium text-muted-foreground tracking-wide whitespace-nowrap">
+                <div className="inline-flex items-center justify-center gap-2 sm:gap-3 border border-border py-2 px-3 sm:py-2.5 sm:px-4 md:py-3 md:px-5 bg-background w-full sm:w-auto transition-opacity duration-300">
+                  <Icon name="DocumentTextIcon" size={16} className="text-foreground shrink-0 w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="text-[11px] sm:text-xs md:text-sm font-medium text-muted-foreground tracking-wide whitespace-nowrap">
                     <strong className="text-foreground font-semibold">{articles.pagination.totalDocs || 0}</strong> {isRTL ? 'دليل منشور' : 'guides published'}
                   </span>
                 </div>
@@ -207,41 +207,41 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
         </section>
 
         {/* STICKY FILTER BAR */}
-        <section className="sticky top-16 md:top-[68px] z-30 bg-background border-b border-border py-3 md:py-4 supports-[backdrop-filter]:bg-background/90">
+        <section className="sticky top-12 sm:top-16 md:top-[68px] z-30 bg-background border-b border-border py-2.5 sm:py-3 md:py-4 supports-[backdrop-filter]:bg-background/90">
           <div className="container-editorial">
-            <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 items-stretch lg:items-center justify-between">
               
               {/* Search - Mobile First Width */}
               <div className="relative w-full lg:w-72 flex-shrink-0 group">
                 <Icon 
                   name="MagnifyingGlassIcon" 
                   size={16} 
-                  className="text-muted-foreground absolute start-3 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-foreground" 
+                  className="text-muted-foreground absolute start-3 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-foreground w-3.5 h-3.5 sm:w-4 sm:h-4" 
                   aria-hidden="true" 
                 />
                 <input 
                   type="search" 
                   placeholder={dict.search} 
-                  className="w-full bg-background border border-border text-foreground rounded-none ps-9 pe-3 py-2.5 md:py-2 text-sm outline-none focus:border-foreground focus:ring-1 focus:ring-foreground transition-all duration-200 placeholder:text-muted-foreground/70" 
+                  className="w-full bg-background border border-border text-foreground rounded-none ps-8 sm:ps-9 pe-3 py-2 sm:py-2.5 md:py-2 text-xs sm:text-sm outline-none focus:border-foreground focus:ring-1 focus:ring-foreground transition-all duration-200 placeholder:text-muted-foreground/70" 
                   defaultValue={searchParams.get('search') || ''}
                   onKeyDown={handleSearch}
                   disabled={isPending}
                   aria-label={dict.search}
                 />
                 {(loadingAction === 'search') && (
-                  <Spinner className="w-4 h-4 text-foreground absolute end-3 top-1/2 -translate-y-1/2" />
+                  <Spinner className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground absolute end-3 top-1/2 -translate-y-1/2" />
                 )}
               </div>
 
               {/* Categories - Hardware accelerated horizontal scroll, hidden scrollbars, snap behavior */}
               <nav 
-                className="flex flex-row overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-2 w-full lg:flex-wrap items-center touch-pan-x" 
+                className="flex flex-row overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-1.5 sm:gap-2 w-full lg:flex-wrap items-center touch-pan-x" 
                 aria-label="Category filters"
               >
                 <a
                   href={`/${locale}/articles`}
                   onClick={(e) => handleCategoryClick(e, 'all')}
-                  className={`snap-start shrink-0 text-[13px] md:text-xs font-medium px-4 h-10 md:h-9 border rounded-none transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${
+                  className={`snap-start shrink-0 text-[11px] sm:text-[13px] md:text-xs font-medium px-3 sm:px-4 h-8 sm:h-10 md:h-9 border rounded-none transition-colors duration-200 flex items-center justify-center gap-1.5 sm:gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${
                     !selectedCategory
                       ? 'bg-foreground text-background border-foreground'
                       : 'bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground'
@@ -260,7 +260,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                       key={category.id}
                       href={`/${locale}/articles?category=${category.slug}`}
                       onClick={(e) => handleCategoryClick(e, category.slug)}
-                      className={`snap-start shrink-0 text-[13px] md:text-xs font-medium px-4 h-10 md:h-9 border rounded-none transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${
+                      className={`snap-start shrink-0 text-[11px] sm:text-[13px] md:text-xs font-medium px-3 sm:px-4 h-8 sm:h-10 md:h-9 border rounded-none transition-colors duration-200 flex items-center justify-center gap-1.5 sm:gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${
                         isActive
                           ? 'bg-foreground text-background border-foreground'
                           : 'bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground'
@@ -274,18 +274,17 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 })}
               </nav>
 
-              
             </div>
           </div>
         </section>
 
         {/* ARTICLES GRID / LIST */}
-        <section className="py-10 md:py-16 min-h-[60vh]">
+        <section className="py-6 sm:py-10 md:py-16 min-h-[60vh]">
           <div className="container-editorial">
             
             {/* Header Info & View Toggles */}
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
-              <p className="text-[13px] md:text-sm font-medium text-muted-foreground transition-opacity duration-200" style={{ opacity: isPending ? 0.5 : 1 }}>
+            <div className="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-border">
+              <p className="text-xs sm:text-[13px] md:text-sm font-medium text-muted-foreground transition-opacity duration-200" style={{ opacity: isPending ? 0.5 : 1 }}>
                 {isRTL ? (
                   <>عرض <strong className="text-foreground">{articles.docs.length}</strong> من <strong className="text-foreground">{articles.pagination.totalDocs}</strong> دليل</>
                 ) : (
@@ -293,10 +292,10 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 )}
               </p>
               
-              <div className="flex items-center gap-1.5" role="group" aria-label="View toggle">
+              <div className="flex items-center gap-1 sm:gap-1.5" role="group" aria-label="View toggle">
                 <button 
                   onClick={() => setViewMode('grid')}
-                  className={`w-8 h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'grid' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'grid' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
                   aria-pressed={viewMode === 'grid'}
                   aria-label="Grid view"
                 >
@@ -304,7 +303,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 </button>
                 <button 
                   onClick={() => setViewMode('list')}
-                  className={`w-8 h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'list' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 border flex items-center justify-center outline-none transition-colors focus-visible:ring-1 focus-visible:ring-foreground ${viewMode === 'list' ? 'border-foreground bg-foreground text-background cursor-default' : 'border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground'}`}
                   aria-pressed={viewMode === 'list'}
                   aria-label="List view"
                 >
@@ -320,25 +319,25 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
             >
               {articles.docs.length === 0 && !isPending ? (
                 // Empty State
-                <div className="py-20 md:py-32 flex flex-col items-center justify-center text-center border border-border bg-background px-4">
-                  <Icon name="DocumentMagnifyingGlassIcon" size={48} className="text-muted-foreground mb-5 opacity-80" />
-                  <h3 className="text-base md:text-lg font-semibold text-foreground mb-2">
+                <div className="py-12 sm:py-20 md:py-32 flex flex-col items-center justify-center text-center border border-border bg-background px-4">
+                  <Icon name="DocumentMagnifyingGlassIcon" size={48} className="text-muted-foreground mb-4 sm:mb-5 opacity-80 w-9 h-9 sm:w-12 sm:h-12" />
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground mb-1.5 sm:mb-2">
                     {dict.emptyTitle}
                   </h3>
-                  <p className="text-[13px] md:text-sm text-muted-foreground mb-6 max-w-md mx-auto">
+                  <p className="text-xs sm:text-[13px] md:text-sm text-muted-foreground mb-5 sm:mb-6 max-w-md mx-auto">
                     {dict.emptyDesc}
                   </p>
                   <button 
                     onClick={clearFilters}
                     disabled={isPending}
-                    className="text-xs md:text-sm font-medium border border-border px-6 py-2.5 hover:border-foreground hover:text-foreground text-foreground transition-colors duration-200 rounded-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground disabled:opacity-50"
+                    className="text-xs md:text-sm font-medium border border-border px-5 sm:px-6 py-2 sm:py-2.5 hover:border-foreground hover:text-foreground text-foreground transition-colors duration-200 rounded-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground disabled:opacity-50"
                   >
                     {dict.clearFilters}
                   </button>
                 </div>
               ) : (
                 // Grid / List State
-                <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" : "flex flex-col gap-6 md:gap-8"}>
+                <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8" : "flex flex-col gap-4 sm:gap-6 md:gap-8"}>
                   
                   {isPending && loadingAction === 'search' 
                     ? Array.from({ length: 6 }).map((_, i) => <ArticleSkeleton key={`skel-${i}`} viewMode={viewMode} isRTL={isRTL} />)
@@ -365,7 +364,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                           >
                             {isCardLoading && (
                               <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/50">
-                                <Spinner className="w-6 h-6 text-foreground" />
+                                <Spinner className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
                               </div>
                             )}
                             
@@ -404,31 +403,31 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                               />
                             </div>
 
-                            <div className="p-4 md:p-5 flex flex-col gap-3 md:gap-4 flex-grow">
+                            <div className="p-3.5 sm:p-4 md:p-5 flex flex-col gap-2.5 sm:gap-3 md:gap-4 flex-grow">
                               <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-foreground border border-border px-2 py-1 leading-none">
+                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-foreground border border-border px-1.5 sm:px-2 py-0.5 sm:py-1 leading-none">
                                   {categoryName}
                                 </span>
-                                <span className="text-[11px] md:text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-                                  <Icon name="ClockIcon" size={12} />
+                                <span className="text-[10px] sm:text-[11px] md:text-xs font-medium text-muted-foreground flex items-center gap-1 sm:gap-1.5">
+                                  <Icon name="ClockIcon" size={12} className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                                   {readingTime}
                                 </span>
                               </div>
                               
-                              <div className="mt-1">
-                                <h2 className="text-base md:text-lg font-semibold text-foreground leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-muted-foreground">
+                              <div className="mt-0.5 sm:mt-1">
+                                <h2 className="text-sm sm:text-base md:text-lg font-semibold text-foreground leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-muted-foreground">
                                   {article.title}
                                 </h2>
-                                <p className="mt-2 text-[13px] md:text-sm text-muted-foreground leading-relaxed line-clamp-2 md:line-clamp-3">
+                                <p className="mt-1 sm:mt-2 text-xs sm:text-[13px] md:text-sm text-muted-foreground leading-relaxed line-clamp-2 md:line-clamp-3">
                                   {excerpt}
                                 </p>
                               </div>
                               
-                              <div className="flex items-center justify-between pt-4 mt-auto border-t border-border">
-                                <span className="text-[11px] md:text-xs font-semibold text-foreground tracking-wide truncate max-w-[60%]">
+                              <div className="flex items-center justify-between pt-3 sm:pt-4 mt-auto border-t border-border">
+                                <span className="text-[10px] sm:text-[11px] md:text-xs font-semibold text-foreground tracking-wide truncate max-w-[60%]">
                                   {authorName}
                                 </span>
-                                <span className="text-[11px] md:text-xs font-medium text-muted-foreground shrink-0">
+                                <span className="text-[10px] sm:text-[11px] md:text-xs font-medium text-muted-foreground shrink-0">
                                   {formattedDate}
                                 </span>
                               </div>
@@ -444,13 +443,13 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
 
             {/* PAGINATION */}
             {articles.pagination.totalDocs > 0 && totalPages > 1 && (
-              <nav aria-label="Pagination" className="flex items-center justify-between mt-12 md:mt-16 pt-5 border-t border-border">
+              <nav aria-label="Pagination" className="flex items-center justify-between mt-8 sm:mt-12 md:mt-16 pt-4 sm:pt-5 border-t border-border">
                 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <Link 
                     href={page > 1 ? createPageUrl(1) : '#'} 
                     onClick={page > 1 ? handlePaginationClick : (e) => e.preventDefault()}
-                    className={`flex items-center justify-center min-h-[36px] min-w-[36px] px-3 md:px-4 text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${page <= 1 || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
+                    className={`flex items-center justify-center min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] px-2.5 sm:px-3 md:px-4 text-[11px] sm:text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${page <= 1 || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
                     aria-disabled={page <= 1 || isPending}
                   >
                     {isRTL ? 'الأول' : 'First'}
@@ -458,20 +457,20 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                   <Link 
                     href={hasPrevPage ? createPageUrl(prevPage) : '#'} 
                     onClick={hasPrevPage ? handlePaginationClick : (e) => e.preventDefault()}
-                    className={`flex items-center justify-center min-h-[36px] min-w-[36px] px-3 md:px-4 text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${!hasPrevPage || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
+                    className={`flex items-center justify-center min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] px-2.5 sm:px-3 md:px-4 text-[11px] sm:text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${!hasPrevPage || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
                     aria-disabled={!hasPrevPage || isPending}
                   >
                     {isRTL ? 'السابق' : 'Prev'}
                   </Link>
                 </div>
 
-                <div className="flex items-center gap-1.5 hidden sm:flex">
+                <div className="flex items-center gap-1 sm:gap-1.5 hidden sm:flex">
                   {generatePagination().map((p) => (
                     <Link 
                       key={p} 
                       href={createPageUrl(p)}
                       onClick={p !== page ? handlePaginationClick : (e) => e.preventDefault()}
-                      className={`w-9 h-9 flex items-center justify-center text-xs font-semibold border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${p === page ? 'border-foreground text-background bg-foreground' : 'border-transparent text-muted-foreground hover:border-border hover:text-foreground bg-transparent'} ${isPending && p !== page ? 'opacity-50 pointer-events-none' : ''}`}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-xs font-semibold border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${p === page ? 'border-foreground text-background bg-foreground' : 'border-transparent text-muted-foreground hover:border-border hover:text-foreground bg-transparent'} ${isPending && p !== page ? 'opacity-50 pointer-events-none' : ''}`}
                       aria-current={p === page ? 'page' : undefined}
                       aria-disabled={isPending}
                     >
@@ -480,11 +479,11 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <Link 
                     href={hasNextPage ? createPageUrl(nextPage) : '#'}
                     onClick={hasNextPage ? handlePaginationClick : (e) => e.preventDefault()}
-                    className={`flex items-center justify-center min-h-[36px] min-w-[36px] px-3 md:px-4 text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${!hasNextPage || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
+                    className={`flex items-center justify-center min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] px-2.5 sm:px-3 md:px-4 text-[11px] sm:text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${!hasNextPage || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
                     aria-disabled={!hasNextPage || isPending}
                   >
                     {isRTL ? 'التالي' : 'Next'}
@@ -492,7 +491,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                   <Link 
                     href={page < totalPages ? createPageUrl(totalPages) : '#'} 
                     onClick={page < totalPages ? handlePaginationClick : (e) => e.preventDefault()}
-                    className={`flex items-center justify-center min-h-[36px] min-w-[36px] px-3 md:px-4 text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${page >= totalPages || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
+                    className={`flex items-center justify-center min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] px-2.5 sm:px-3 md:px-4 text-[11px] sm:text-[13px] md:text-xs font-medium border rounded-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground ${page >= totalPages || isPending ? 'opacity-40 pointer-events-none border-border text-muted-foreground bg-muted/30' : 'border-border text-muted-foreground hover:border-foreground hover:text-foreground bg-background'}`}
                     aria-disabled={page >= totalPages || isPending}
                   >
                     {isRTL ? 'الأخير' : 'Last'}

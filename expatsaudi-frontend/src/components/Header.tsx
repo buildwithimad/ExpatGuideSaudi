@@ -252,7 +252,7 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
         {/* ================= LEVEL 1: Primary Brand Header (White) ================= */}
         <div className={`bg-background text-foreground relative z-20 transition-all duration-300 border-b ${scrolled ? 'shadow-sm border-border' : 'border-border/60'}`}>
           <div className="container-editorial">
-            <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-[72px]' : 'h-[80px] md:h-[96px]'}`}>
+            <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-[60px] sm:h-[64px] md:h-[72px]' : 'h-[64px] sm:h-[80px] md:h-[96px]'}`}>
               
               {/* Left: Big Prominent Logo */}
               <Link 
@@ -264,38 +264,36 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                 aria-label="ExpatSaudi Home"
               >
                 {loadingPath === `/${locale}` ? (
-                  <div className="flex items-center justify-center w-10 h-10">
-                     <Spinner className="w-6 h-6 text-primary" />
+                  <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10">
+                     <Spinner className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                   </div>
                 ) : (
-           <AppLogo
-  primaryLogo={settings.branding.logos.primaryLogo?.url}
-  darkLogo={settings.branding.logos.darkLogo?.url}
-  whiteLogo={settings.branding.logos.whiteLogo?.url}
-  alt={settings.branding.identity.siteName || 'Expat Guides'}
-  className={`
-    w-[100px] h-[32px]
+                  <AppLogo
+                    primaryLogo={settings.branding.logos.primaryLogo?.url}
+                    darkLogo={settings.branding.logos.darkLogo?.url}
+                    whiteLogo={settings.branding.logos.whiteLogo?.url}
+                    alt={settings.branding.identity.siteName || 'Expat Guides'}
+                    className={`
+                      w-[100px] h-[32px]
 
-    sm:w-[120px] sm:h-[48px]
+                      sm:w-[120px] sm:h-[48px]
 
-    md:w-[135px] md:h-[42px]
+                      md:w-[135px] md:h-[42px]
 
-    lg:w-[190px] lg:h-[92px]
+                      lg:w-[190px] lg:h-[92px]
 
-    transition-transform
-    duration-300
-    ease-out
+                      transition-transform
+                      duration-300
+                      ease-out
 
-    ${scrolled ? 'scale-[0.92]' : 'scale-100'}
-  `}
-/>
+                      ${scrolled ? 'scale-[0.92]' : 'scale-100'}
+                    `}
+                  />
                 )}
               </Link>
 
-            
-
               {/* Right: Actions */}
-              <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4 flex-shrink-0 ms-auto lg:ms-0">
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0 ms-auto lg:ms-0">
                 
                 {/* Language Switcher */}
                 <LanguageSwitcher 
@@ -306,7 +304,7 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                   variant="header"
                 />
 
-                <div className="w-[1px] h-4 sm:h-5 bg-border mx-0.5" aria-hidden="true" />
+                <div className="w-[1px] h-3.5 sm:h-4 md:h-5 bg-border mx-0.5" aria-hidden="true" />
 
                 {/* Theme Toggle */}
                 <div className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
@@ -318,12 +316,12 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                   href={searchHref}
                   onClick={(e) => handleNavigate(e, searchHref)}
                   aria-disabled={isPending}
-                  className={`flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     loadingPath === searchHref ? 'opacity-70 pointer-events-none cursor-wait bg-muted' : ''
                   }`}
                   aria-label={t?.search ?? 'Search'}
                 >
-                  {loadingPath === searchHref ? <Spinner className="w-4.5 h-4.5 text-primary" /> : <Icon name="MagnifyingGlassIcon" size={20} />}
+                  {loadingPath === searchHref ? <Spinner className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-primary" /> : <Icon name="MagnifyingGlassIcon" size={18} className="sm:w-5 sm:h-5" />}
                 </Link>
                 
                 {/* Clean, Large Hamburger Button */}
@@ -333,9 +331,9 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                   aria-expanded={isOpen}
                   aria-controls="mobile-menu"
                   aria-label={isOpen ? (t?.closeMenu ?? 'Close menu') : (t?.openMenu ?? 'Open menu')}
-                  className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-foreground bg-transparent border-none outline-none focus:outline-none focus-visible:ring-0 p-0 hover:scale-110 active:scale-90 transition-transform duration-300 ease-out cursor-pointer ms-1"
+                  className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 text-foreground bg-transparent border-none outline-none focus:outline-none focus-visible:ring-0 p-0 hover:scale-110 active:scale-90 transition-transform duration-300 ease-out cursor-pointer ms-0.5 sm:ms-1"
                 >
-                  <Icon name="Bars3Icon" size={36} />
+                  <Icon name="Bars3Icon" size={28} className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9" />
                 </button>
               </div>
             </div>
@@ -381,21 +379,21 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
           }`}
         >
           {/* Drawer Top Bar */}
-          <div className="flex items-center justify-between h-[80px] px-8 border-b border-border shrink-0">
-            <span className="text-xs font-bold tracking-widest text-primary uppercase">
+          <div className="flex items-center justify-between h-[64px] sm:h-[80px] px-5 sm:px-8 border-b border-border shrink-0">
+            <span className="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase">
               EXPLORE {siteNameUpper}
             </span>
             <button
               onClick={close}
               aria-label={t?.closeMenu ?? 'Close menu'}
-              className="flex items-center justify-center w-12 h-12 -me-3 text-muted-foreground hover:text-foreground rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 -me-2 sm:-me-3 text-muted-foreground hover:text-foreground rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <Icon name="XMarkIcon" size={32} />
+              <Icon name="XMarkIcon" size={24} className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>
           </div>
 
           {/* Centered Drawer Links Area */}
-          <div className="flex-1 overflow-y-auto overscroll-contain px-8 flex flex-col justify-center pb-12">
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 sm:px-8 flex flex-col justify-center pb-12">
             <nav aria-label="Main Navigation" className="flex flex-col">
               {primaryLinks.map((link) => {
                 const active = pathname.startsWith(link.href) && 
@@ -408,12 +406,12 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
                     href={link.href}
                     onClick={(e) => handleNavigate(e, link.href)}
                     aria-current={active ? 'page' : undefined}
-                    className={`flex items-center gap-3 py-5 border-b border-border/60 group transition-all duration-200 ${
+                    className={`flex items-center gap-3 py-4 sm:py-5 border-b border-border/60 group transition-all duration-200 ${
                       isItemLoading ? 'opacity-60 pointer-events-none cursor-wait' : ''
                     }`}
                   >
-                    {isItemLoading && <Spinner className="w-5 h-5 shrink-0 text-primary" />}
-                    <span className={`text-[24px] font-bold leading-tight transition-all duration-300 ease-out ${
+                    {isItemLoading && <Spinner className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-primary" />}
+                    <span className={`text-[20px] sm:text-[24px] font-bold leading-tight transition-all duration-300 ease-out ${
                       active ? 'text-primary translate-x-1.5 rtl:-translate-x-1.5' : 'text-foreground/90 group-hover:text-primary group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5'
                     }`}>
                       {link.label}

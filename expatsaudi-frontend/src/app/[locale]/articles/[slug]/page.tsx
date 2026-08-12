@@ -109,7 +109,7 @@ export default async function Page({
   ]);
 
 
-
+console.log("Artcile Details: ", article)
 
 
   return (

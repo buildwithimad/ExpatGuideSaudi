@@ -28,7 +28,7 @@ export default function ToolsSection({ dict }: ToolsSectionProps) {
             title={t?.title ?? 'Free Calculators & Tools'}
             description={t?.description ?? 'Practical tools built specifically for expats in Saudi Arabia. All tools are free, no account required.'}
           />
-          <span className="badge-green self-start md:self-auto">{t?.comingSoon ?? 'Coming Soon'}</span>
+          <span className="badge self-start md:self-auto">{t?.comingSoon ?? 'Coming Soon'}</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
@@ -39,7 +39,7 @@ export default function ToolsSection({ dict }: ToolsSectionProps) {
                   <div className="w-10 h-10 bg-background border border-border flex items-center justify-center flex-shrink-0">
                     <Icon name={tool.icon as Parameters<typeof Icon>[0]['name']} size={20} className="text-primary" />
                   </div>
-                  <span className="badge-green flex-shrink-0">{t?.comingSoon ?? 'Coming Soon'}</span>
+                  <span className="badge flex-shrink-0">{t?.comingSoon ?? 'Coming Soon'}</span>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-foreground mb-1.5">{tool.name}</h3>
@@ -60,7 +60,7 @@ export default function ToolsSection({ dict }: ToolsSectionProps) {
                   <p className="text-xs text-muted-foreground leading-relaxed max-w-xl">{tools[6].description}</p>
                 </div>
               </div>
-              <span className="badge-green flex-shrink-0">{t?.comingSoon ?? 'Coming Soon'}</span>
+              <span className="badge flex-shrink-0">{t?.comingSoon ?? 'Coming Soon'}</span>
             </div>
           </RevealWrapper>
         </div>
