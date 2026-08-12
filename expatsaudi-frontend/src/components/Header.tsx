@@ -296,13 +296,15 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0 ms-auto lg:ms-0">
                 
                 {/* Language Switcher */}
-                <LanguageSwitcher 
-                  locale={locale} 
-                  loadingLocale={loadingLocale}
-                  isPending={isPending}
-                  switchLocale={switchLocale} 
-                  variant="header"
-                />
+                <div className="hidden lg:flex items-center">
+  <LanguageSwitcher 
+    locale={locale} 
+    loadingLocale={loadingLocale}
+    isPending={isPending}
+    switchLocale={switchLocale} 
+    variant="header"
+  />
+</div>
 
                 <div className="w-[1px] h-3.5 sm:h-4 md:h-5 bg-border mx-0.5" aria-hidden="true" />
 
@@ -380,9 +382,17 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
         >
           {/* Drawer Top Bar */}
           <div className="flex items-center justify-between h-[64px] sm:h-[80px] px-5 sm:px-8 border-b border-border shrink-0">
-            <span className="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase">
-              EXPLORE {siteNameUpper}
-            </span>
+           
+            {/* Language Switcher */}
+               <div className="flex lg:hidden items-center w-[150px] sm:w-[170px]">
+  <LanguageSwitcher
+    locale={locale}
+    loadingLocale={loadingLocale}
+    isPending={isPending}
+    switchLocale={switchLocale}
+    variant="drawer"
+  />
+</div>
             <button
               onClick={close}
               aria-label={t?.closeMenu ?? 'Close menu'}

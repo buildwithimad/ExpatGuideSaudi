@@ -166,15 +166,15 @@ export default function LanguageSwitcher({
     closeDropdown();
   };
 
-  // FIXED: Adjusted colors for the White Header and restored rounded corners
+  // Adjusted colors and responsive sizing for both variants
   const triggerClass = isHeader
-    ? 'inline-flex items-center justify-center h-9 px-3 rounded-md bg-muted/40 text-foreground hover:bg-muted transition-colors border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary'
-    : 'inline-flex items-center justify-between w-full h-[48px] px-4 rounded-xl bg-background text-foreground border border-border hover:bg-muted/50 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary';
+    ? 'inline-flex items-center justify-center h-8 sm:h-9 px-2 sm:px-3 rounded-md bg-muted/40 text-foreground hover:bg-muted transition-colors border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary'
+    : 'inline-flex items-center justify-between w-full h-8 sm:h-12 px-3 sm:px-4 rounded-md bg-background text-foreground border border-border hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary';
 
-  // Determine positioning and animation origin based on variant
+  // Open below (top-full) for both variants as requested for mobile responsiveness
   const dropdownPositionClasses = isHeader 
-    ? 'mt-1.5 top-full end-0 min-w-[150px] origin-top-right' 
-    : 'mb-2 bottom-full start-0 w-full origin-bottom';
+    ? 'mt-1 sm:mt-1.5 top-full end-0 min-w-[130px] sm:min-w-[150px] origin-top-right' 
+    : 'mt-1.5 top-full start-0 w-full origin-top';
 
   return (
     <div
@@ -203,21 +203,21 @@ export default function LanguageSwitcher({
         disabled={isPending}
         className={triggerClass}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {isPending ? (
-            <Spinner className="w-4 h-4 text-primary" />
+            <Spinner className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
           ) : (
             <Image
               src={activeLanguage.flag}
               alt=""
               width={20}
               height={14}
-              className="h-[14px] w-[20px] object-cover rounded-xs"
+              className="h-[12px] w-[18px] sm:h-[14px] sm:w-[20px] object-cover rounded-xs"
               priority
             />
           )}
           <span
-            className={`font-semibold text-xs md:text-sm tracking-wide ${
+            className={`font-semibold text-[10px] sm:text-xs md:text-sm tracking-wide ${
               isPending ? 'opacity-70' : ''
             }`}
           >
@@ -226,15 +226,16 @@ export default function LanguageSwitcher({
         </div>
 
         <svg
-          className={`ms-1.5 w-3.5 h-3.5 transition-transform duration-200 ${
-            isOpen ? (isHeader ? 'rotate-180' : '-rotate-180') : ''
+          className={`ms-1 sm:ms-1.5 w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 ${
+            isOpen ? 'rotate-180' : ''
           }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={2.5}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d={isHeader ? "M19 9l-7 7-7-7" : "M5 15l7-7 7 7"} />
+          {/* Always point down when closed, up when open */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
@@ -244,8 +245,7 @@ export default function LanguageSwitcher({
           id="language-menu"
           role="menu"
           aria-orientation="vertical"
-          // FIXED: Restored 'rounded-xl' to make it look premium
-          className={`absolute z-[100] flex flex-col bg-background border border-border rounded-xl shadow-lg py-1.5 animate-dropdown ${dropdownPositionClasses}`}
+          className={`absolute z-[100] flex flex-col bg-background border border-border rounded-md py-1 sm:py-1.5 animate-dropdown ${dropdownPositionClasses}`}
         >
           {languages.map((lang) => {
             const isActive = locale === lang.locale;
@@ -258,29 +258,29 @@ export default function LanguageSwitcher({
                 aria-current={isActive}
                 disabled={isPending}
                 onClick={() => handleSelect(lang.locale)}
-                className={`relative w-full flex items-center justify-between px-3 md:px-4 h-[44px] md:h-[38px] text-[15px] md:text-sm transition-colors focus-visible:outline-none focus-visible:bg-muted/80 ${
+                className={`relative w-full flex items-center justify-between px-3 md:px-4 h-10 md:h-[38px] text-[13px] md:text-sm transition-colors focus-visible:outline-none focus-visible:bg-muted/80 ${
                   isActive
                     ? 'text-primary font-semibold bg-primary/5'
                     : 'text-foreground hover:bg-muted font-medium'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <Image
                     src={lang.flag}
                     alt=""
                     width={20}
                     height={14}
-                    className="h-[14px] w-[20px] object-cover rounded-xs shrink-0"
+                    className="h-[12px] w-[18px] sm:h-[14px] sm:w-[20px] object-cover rounded-xs shrink-0"
                   />
                   <span className="tracking-wide">{lang.nativeName}</span>
                 </div>
 
-                <div className="flex items-center ms-4">
+                <div className="flex items-center ms-3 sm:ms-4">
                   {isItemLoading ? (
-                    <Spinner className="w-4 h-4 text-primary" />
+                    <Spinner className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                   ) : isActive ? (
                     <svg
-                      className="w-4 h-4 text-primary"
+                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
