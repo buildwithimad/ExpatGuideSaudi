@@ -341,11 +341,11 @@ export default function Footer({
 
         <div className="flex flex-col items-center justify-between gap-4 pt-8 md:flex-row">
 
-          {/* Copyright */}
           <p className="order-2 text-sm text-muted-foreground md:order-1">
-            {t?.copyright ??
-              `© ${currentYear} ExpatSaudi. All rights reserved.`}
-          </p>
+  {`© ${currentYear} URExpat. ${
+    t?.copyright || 'All rights reserved.'
+  }`}
+</p>
 
           {/* Social */}
           <div className="order-1 flex items-center gap-5 md:order-2">
