@@ -29,7 +29,7 @@ export default function NotFound() {
                     Page Not Found
                 </h2>
                 <p className="text-[13px] sm:text-sm md:text-base text-muted-foreground mb-6 sm:mb-8 px-2">
-                    The page you're looking for doesn't exist. Let's get you back!
+                    The page you're looking for doesn't exist. Let's get you back!!
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
