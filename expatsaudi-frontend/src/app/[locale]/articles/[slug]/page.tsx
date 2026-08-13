@@ -50,7 +50,7 @@ export async function generateMetadata({
         article.seo.description ?? undefined,
 
       canonical:
-        `/${currentLocale}/articles/${article.slug}`,
+        `/articles/${article.slug}`,
 
       ogImages:
         article.seo.image
@@ -113,7 +113,6 @@ export default async function Page({
   ]);
 
 
-console.log("Artcile Details: ", article)
 
 
   return (

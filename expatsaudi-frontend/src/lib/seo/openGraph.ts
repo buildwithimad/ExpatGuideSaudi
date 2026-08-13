@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 import {
-    DEFAULT_OPEN_GRAPH_TYPE,
-    LOCALE_MAP,
+  DEFAULT_OPEN_GRAPH_TYPE,
+  LOCALE_MAP,
 } from './constants';
 
 import type {
-    OpenGraphOptions,
-    SeoImage,
+  OpenGraphOptions,
+  SeoImage,
 } from './types';
 
 /* -------------------------------------------------------------------------- */
@@ -42,8 +42,9 @@ export function buildOpenGraph({
   images = [],
   openGraph,
 }: BuildOpenGraphOptions): Metadata['openGraph'] {
-  const url =
-    `${siteUrl}${canonical ?? `/${locale}`}`;
+  const url = canonical
+  ? `${siteUrl}/${locale}${canonical.startsWith('/') ? canonical : `/${canonical}`}`
+  : `${siteUrl}/${locale}`;
 
   return {
     type:
