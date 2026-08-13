@@ -60,6 +60,27 @@ const AppLogo = memo(function AppLogo({
 
   /*
    * ============================================================
+   * RESPONSIVE LOGO SIZE
+   * ============================================================
+   *
+   * Matches the actual header logo widths:
+   *
+   * Mobile:   100px
+   * Small:    120px
+   * Medium:   135px
+   * Desktop:  190px
+   *
+   * This prevents Next/Image from assuming the logo
+   * could occupy the full viewport width.
+   */
+  const logoSizes =
+    '(max-width: 639px) 100px, ' +
+    '(max-width: 767px) 120px, ' +
+    '(max-width: 1023px) 135px, ' +
+    '190px';
+
+  /*
+   * ============================================================
    * CONTAINER
    * ============================================================
    */
@@ -100,6 +121,7 @@ const AppLogo = memo(function AppLogo({
           alt={alt}
           fill
           priority
+          sizes={logoSizes}
           unoptimized={lightModeLogo.endsWith('.svg')}
           className="object-contain object-left"
         />
@@ -115,6 +137,7 @@ const AppLogo = memo(function AppLogo({
           alt={alt}
           fill
           priority
+          sizes={logoSizes}
           unoptimized={darkModeLogo.endsWith('.svg')}
           className="object-contain object-left"
         />
