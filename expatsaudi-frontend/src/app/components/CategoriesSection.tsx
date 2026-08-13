@@ -35,7 +35,7 @@ export default function CategoriesSection({
 
           {/* Desktop View All */}
           <Link
-            href={`/${locale}/category`}
+            href={`/${locale}/categories`}
             className="hidden md:inline-flex btn-secondary text-sm py-2 px-5 flex-shrink-0"
           >
             {t?.viewAll ?? 'View All Categories'}
