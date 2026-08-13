@@ -53,7 +53,7 @@ export async function generateMetadata({
 
     ...seo,
 
-    canonical: '/articles',
+    canonical: `${currentLocale}/articles`,
   });
 }
 

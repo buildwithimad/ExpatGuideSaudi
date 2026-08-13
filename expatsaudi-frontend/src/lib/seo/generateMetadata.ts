@@ -94,12 +94,7 @@ export async function generateSiteMetadata({
     seo.site.defaultMetaDescription ??
     undefined;
 
-  const images =
-    ogImages?.length
-      ? ogImages
-      : logos.defaultOgImage
-        ? [logos.defaultOgImage]
-        : [];
+  const images = ogImages?.length ? ogImages : [];
 
   /* ---------------------------------------------------------------------- */
   /* Helpers                                                                */

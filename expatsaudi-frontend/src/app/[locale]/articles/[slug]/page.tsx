@@ -44,14 +44,13 @@ export async function generateMetadata({
     return generateSiteMetadata({
       locale: currentLocale,
 
-      title:
-        article.seo.title,
+      title: article.seo.title,
 
       description:
         article.seo.description ?? undefined,
 
       canonical:
-        `/articles/${article.slug}`,
+        `/${currentLocale}/articles/${article.slug}`,
 
       ogImages:
         article.seo.image
@@ -84,7 +83,12 @@ export async function generateMetadata({
           article.category?.name,
       },
     });
-  } catch {
+  } catch (error) {
+    console.error(
+      'Article metadata generation failed:',
+      error,
+    );
+
     return {};
   }
 }
