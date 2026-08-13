@@ -1,8 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import type { Dictionary } from '@/lib/dictionary';
 import type { Locale } from '@/lib/i18n-config';
+import Link from 'next/link';
 
 interface FinalCTAProps {
   dict?: Dictionary;
@@ -28,7 +27,7 @@ export default function FinalCTA({ dict, locale = 'en' }: FinalCTAProps) {
               {t?.exploreAll ?? 'Explore All Guides'}
               <Icon name="ArrowRightIcon" size={16} />
             </Link>
-            <Link href={`/${locale}/category`} className="btn-secondary py-3 px-6 text-base">
+            <Link href={`/${locale}/categories`} className="btn-secondary py-3 px-6 text-base">
               {t?.browseCategories ?? 'Browse Categories'}
             </Link>
           </div>
