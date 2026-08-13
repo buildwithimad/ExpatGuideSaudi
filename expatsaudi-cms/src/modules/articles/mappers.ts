@@ -296,31 +296,47 @@ export function mapRelatedArticle(
 
 export function buildBreadcrumbs(
   article: Article,
-  locale: Locale
+  locale: Locale,
 ): BreadcrumbDTO[] {
-const breadcrumbs: BreadcrumbDTO[] = [
-  {
-    label: locale === 'ar' ? 'الرئيسية' : 'Home',
-    href: '/',
-  },
-  {
-    label: locale === 'ar' ? 'المقالات' : 'Articles',
-    href: '/articles',
-  },
-];
+  const prefix = `/${locale}`;
 
-  const category = mapArticleCategory(article.category);
+  const breadcrumbs: BreadcrumbDTO[] = [
+    {
+      label:
+        locale === 'ar'
+          ? 'الرئيسية'
+          : locale === 'ur'
+            ? 'ہوم'
+            : 'Home',
+
+      href: prefix,
+    },
+
+    {
+      label:
+        locale === 'ar'
+          ? 'المقالات'
+          : locale === 'ur'
+            ? 'مضامین'
+            : 'Articles',
+
+      href: `${prefix}/articles`,
+    },
+  ];
+
+  const category =
+    mapArticleCategory(article.category);
 
   if (category) {
     breadcrumbs.push({
       label: category.name,
-      href: `/articles?category=${category.slug}`,
+      href: `${prefix}/articles?category=${category.slug}`,
     });
   }
 
   breadcrumbs.push({
     label: article.title,
-    href: `/articles/${article.slug}`,
+    href: `${prefix}/articles/${article.slug}`,
   });
 
   return breadcrumbs;

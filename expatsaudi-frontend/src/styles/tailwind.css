@@ -80,6 +80,10 @@
   --ring: #22c55e;
 }
 
+/* ===========================
+   BASE
+=========================== */
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -98,7 +102,13 @@
     scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6, p {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
     margin: 0;
   }
 
@@ -107,6 +117,10 @@
     max-width: 100%;
   }
 }
+
+/* ===========================
+   UTILITIES
+=========================== */
 
 @layer utilities {
   .text-hero {
@@ -140,7 +154,9 @@
   .reveal-up {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
 
   .reveal-up.is-visible {
@@ -165,6 +181,10 @@
     border-top: 1px solid var(--border);
   }
 
+  /* =========================
+     Editorial Content
+  ========================= */
+
   .prose-editorial {
     font-size: 1.0625rem;
     line-height: 1.75;
@@ -175,6 +195,10 @@
   .prose-editorial p + p {
     margin-top: 1.5rem;
   }
+
+  /* =========================
+     Navigation
+  ========================= */
 
   .nav-link {
     font-size: 0.875rem;
@@ -192,6 +216,10 @@
     font-weight: 600;
   }
 
+  /* =========================
+     Buttons
+  ========================= */
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -203,7 +231,9 @@
     font-weight: 600;
     border-radius: 4px;
     border: 1px solid var(--primary);
-    transition: background-color 0.25s ease, border-color 0.25s ease;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease;
     cursor: pointer;
     white-space: nowrap;
   }
@@ -224,7 +254,9 @@
     font-weight: 600;
     border-radius: 10px;
     border: 1px solid var(--border);
-    transition: border-color 0.25s ease, color 0.25s ease;
+    transition:
+      border-color 0.25s ease,
+      color 0.25s ease;
     cursor: pointer;
     white-space: nowrap;
   }
@@ -234,29 +266,37 @@
     color: var(--foreground);
   }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.1875rem 0.625rem;
-  background-color: #F3F6F8;
-  color: #071421;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 4px;
-}
+  /* =========================
+     Badge
+  ========================= */
 
-.dark .badge {
-  background-color: #1A2B38;
-  color: #FFFFFF;
-}
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1875rem 0.625rem;
+    background-color: #f3f6f8;
+    color: #071421;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+
+  .dark .badge {
+    background-color: #1a2b38;
+    color: #ffffff;
+  }
+
+  /* =========================
+     Inputs
+  ========================= */
 
   .input-field {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid var(--border);
-    border-radius: 0px;
+    border-radius: 0;
     font-size: 0.9375rem;
     color: var(--foreground);
     background-color: var(--background);
@@ -273,6 +313,10 @@
     color: var(--muted-foreground);
   }
 
+  /* =========================
+     Cards
+  ========================= */
+
   .article-card {
     border: 1px solid var(--border);
     background-color: var(--background);
@@ -280,14 +324,16 @@
   }
 
   .article-card:hover {
-    border-color: #9CA3AF;
+    border-color: #9ca3af;
   }
 
   .category-card {
     border: 1px solid var(--border);
     background-color: var(--background);
     padding: 1.5rem;
-    transition: border-color 0.25s ease, background-color 0.25s ease;
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease;
   }
 
   .category-card:hover {
@@ -312,6 +358,10 @@
     border-color: var(--primary);
   }
 
+  /* =========================
+     FAQ
+  ========================= */
+
   .faq-item {
     border-top: 1px solid var(--border);
   }
@@ -320,9 +370,17 @@
     border-bottom: 1px solid var(--border);
   }
 
+  /* =========================
+     Sections
+  ========================= */
+
   .section-bg {
     background-color: var(--muted);
   }
+
+  /* =========================
+     Container
+  ========================= */
 
   .container-editorial {
     width: 100%;
@@ -347,67 +405,235 @@
     }
   }
 
-  .stagger-1 { transition-delay: 0ms; }
-  .stagger-2 { transition-delay: 60ms; }
-  .stagger-3 { transition-delay: 120ms; }
-  .stagger-4 { transition-delay: 180ms; }
-  .stagger-5 { transition-delay: 240ms; }
-  .stagger-6 { transition-delay: 300ms; }
-  .stagger-7 { transition-delay: 360ms; }
-  .stagger-8 { transition-delay: 420ms; }
-  .stagger-9 { transition-delay: 480ms; }
-  .stagger-10 { transition-delay: 540ms; }
-  .stagger-11 { transition-delay: 600ms; }
-  .stagger-12 { transition-delay: 660ms; }
+  /* =========================
+     Stagger Animations
+  ========================= */
+
+  .stagger-1 {
+    transition-delay: 0ms;
+  }
+
+  .stagger-2 {
+    transition-delay: 60ms;
+  }
+
+  .stagger-3 {
+    transition-delay: 120ms;
+  }
+
+  .stagger-4 {
+    transition-delay: 180ms;
+  }
+
+  .stagger-5 {
+    transition-delay: 240ms;
+  }
+
+  .stagger-6 {
+    transition-delay: 300ms;
+  }
+
+  .stagger-7 {
+    transition-delay: 360ms;
+  }
+
+  .stagger-8 {
+    transition-delay: 420ms;
+  }
+
+  .stagger-9 {
+    transition-delay: 480ms;
+  }
+
+  .stagger-10 {
+    transition-delay: 540ms;
+  }
+
+  .stagger-11 {
+    transition-delay: 600ms;
+  }
+
+  .stagger-12 {
+    transition-delay: 660ms;
+  }
 }
 
-/* ===== Arabic / RTL Font ===== */
+/* =========================================================
+   LANGUAGE TYPOGRAPHY
+========================================================= */
+
+/* ===========================
+   Arabic
+=========================== */
+
 .font-arabic {
-  font-family: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
+  font-family:
+    var(--font-arabic),
+    'Noto Kufi Arabic',
+    sans-serif;
 }
 
-/* ===== RTL Logical Property Overrides ===== */
-/* Ensure all directional utilities work correctly in RTL via CSS logical properties */
-[dir="rtl"] .reveal-up {
+/* ===========================
+   Urdu
+=========================== */
+
+.font-urdu {
+  font-family:
+    var(--font-urdu),
+    'Noto Nastaliq Urdu',
+    serif;
+}
+
+
+/* =========================================================
+   RTL
+========================================================= */
+
+/* Directional utilities apply to both Arabic and Urdu */
+
+[dir='rtl'] .reveal-up {
   transform: translateY(20px);
 }
 
-[dir="rtl"] .reveal-up.is-visible {
+[dir='rtl'] .reveal-up.is-visible {
   transform: translateY(0);
 }
 
 /* RTL-aware border utilities */
-[dir="rtl"] .border-s-4 {
+
+[dir='rtl'] .border-s-4 {
   border-inline-start-width: 4px;
 }
 
-[dir="rtl"] .border-s-2 {
+[dir='rtl'] .border-s-2 {
   border-inline-start-width: 2px;
 }
 
-/* RTL text alignment for prose */
-[dir="rtl"] .prose-editorial {
+/* RTL text alignment */
+
+[dir='rtl'] .prose-editorial {
   text-align: start;
 }
 
-/* RTL nav-link active indicator */
-[dir="rtl"] .nav-link.active {
+/* RTL navigation */
+
+[dir='rtl'] .nav-link.active {
   color: var(--foreground);
   font-weight: 600;
 }
 
-/* Arabic typography enhancements */
-[dir="rtl"] body {
-  font-family: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
+/* =========================================================
+   ARABIC TYPOGRAPHY
+========================================================= */
+
+html[lang='ar'] body {
+  font-family:
+    var(--font-arabic),
+    'Noto Kufi Arabic',
+    sans-serif;
+
   line-height: 1.8;
 }
 
-[dir="rtl"] .text-hero,
-[dir="rtl"] .text-display,
-[dir="rtl"] .text-section-title {
+html[lang='ar'] .prose-editorial {
+  line-height: 1.9;
+}
+
+html[lang='ar'] .prose-editorial p {
+  line-height: 1.9;
+}
+
+html[lang='ar'] .prose-editorial h1,
+html[lang='ar'] .prose-editorial h2,
+html[lang='ar'] .prose-editorial h3,
+html[lang='ar'] .prose-editorial h4,
+html[lang='ar'] .prose-editorial h5,
+html[lang='ar'] .prose-editorial h6 {
+  line-height: 1.7;
+}
+
+html[lang='ar'] .text-hero,
+html[lang='ar'] .text-display,
+html[lang='ar'] .text-section-title {
   letter-spacing: 0;
 }
 
-[dir="rtl"] .label-caps {
+html[lang='ar'] .label-caps {
   letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   URDU TYPOGRAPHY
+========================================================= */
+
+html[lang='ur'] body {
+  font-family:
+    var(--font-urdu),
+    'Noto Nastaliq Urdu',
+    serif;
+
+  /*
+   * Nastaliq needs more vertical space than
+   * Latin or Kufi Arabic typography.
+   */
+  line-height: 2.2;
+}
+
+html[lang='ur'] .prose-editorial {
+  font-family:
+    var(--font-urdu),
+    'Noto Nastaliq Urdu',
+    serif;
+
+  font-size: 1.08rem;
+  line-height: 2.2;
+  text-align: start;
+}
+
+html[lang='ur'] .prose-editorial p {
+  line-height: 2.2;
+  margin-bottom: 0.75rem;
+}
+
+html[lang='ur'] .prose-editorial p + p {
+  margin-top: 1.25rem;
+}
+
+html[lang='ur'] .prose-editorial h1,
+html[lang='ur'] .prose-editorial h2,
+html[lang='ur'] .prose-editorial h3,
+html[lang='ur'] .prose-editorial h4,
+html[lang='ur'] .prose-editorial h5,
+html[lang='ur'] .prose-editorial h6 {
+  font-family:
+    var(--font-urdu),
+    'Noto Nastaliq Urdu',
+    serif;
+
+  line-height: 1.9;
+  letter-spacing: 0;
+}
+
+html[lang='ur'] .text-hero,
+html[lang='ur'] .text-display,
+html[lang='ur'] .text-section-title {
+  line-height: 1.9;
+  letter-spacing: 0;
+}
+
+html[lang='ur'] .label-caps {
+  letter-spacing: 0;
+}
+
+/* =========================================================
+   REDUCE LETTER-SPACING FOR RTL
+========================================================= */
+
+html[lang='ar'] .text-hero,
+html[lang='ar'] .text-display,
+html[lang='ar'] .text-section-title,
+html[lang='ur'] .text-hero,
+html[lang='ur'] .text-display,
+html[lang='ur'] .text-section-title {
+  letter-spacing: 0;
 }

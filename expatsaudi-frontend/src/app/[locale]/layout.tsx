@@ -4,24 +4,25 @@ import type { Metadata } from 'next';
 import {
   DM_Sans,
   Noto_Kufi_Arabic,
+  Noto_Nastaliq_Urdu,
 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import OrganizationSchema from './seo/OrganizationSchema';
-import WebsiteSchema from './seo/WebsiteSchema';
-
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import LocaleDocument from '@/components/LocaleDocument';
 import Providers from '@/components/Theme/ThemeProvider';
 
 import { getDictionary } from '@/lib/dictionary';
 import {
-  localeConfig,
   locales,
   type Locale,
 } from '@/lib/i18n-config';
 import { generateSiteMetadata } from '@/lib/seo';
 import { getSiteSettings } from '@/lib/settings';
+
+import OrganizationSchema from './seo/OrganizationSchema';
+import WebsiteSchema from './seo/WebsiteSchema';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Fonts                                     */
@@ -38,6 +39,13 @@ const notoKufiArabic = Noto_Kufi_Arabic({
   subsets: ['arabic'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-arabic',
+  display: 'swap',
+});
+
+const notoNastaliqUrdu = Noto_Nastaliq_Urdu({
+  subsets: ['arabic'],
+  weight: ['400', '700'],
+  variable: '--font-urdu',
   display: 'swap',
 });
 
@@ -107,16 +115,15 @@ export default async function LocaleLayout({
   const settings =
     await getSiteSettings(currentLocale);
 
-
   /* ------------------------------------------------------------------------ */
   /* Locale Configuration                                                     */
   /* ------------------------------------------------------------------------ */
 
-  const config =
-    localeConfig[currentLocale];
-
   const isArabic =
-    currentLocale === 'ar';
+  currentLocale === 'ar';
+
+const isUrdu =
+  currentLocale === 'ur';
 
   /* ------------------------------------------------------------------------ */
   /* Render                                                                   */
@@ -124,17 +131,23 @@ export default async function LocaleLayout({
 
   return (
     <Providers theme={settings.theme}>
-      <div
-        lang={config.lang}
-        dir={config.dir}
-        className={`${dmSans.variable} ${
-          notoKufiArabic.variable
-        } ${
-          isArabic
-            ? 'font-arabic'
-            : dmSans.className
-        }`}
-      >
+      <LocaleDocument
+        locale={currentLocale}
+      />
+
+     <div
+  className={`${dmSans.variable} ${
+    notoKufiArabic.variable
+  } ${
+    notoNastaliqUrdu.variable
+  } ${
+    isUrdu
+      ? 'font-urdu'
+      : isArabic
+        ? 'font-arabic'
+        : dmSans.className
+  }`}
+>
         {/* ---------------------------------------------------------------- */}
         {/* Global Structured Data                                            */}
         {/* ---------------------------------------------------------------- */}

@@ -126,6 +126,7 @@ export default async function Page({
 
     <ArticleBreadcrumbSchema
   breadcrumbs={article.breadcrumbs}
+  locale={currentLocale}
 />
     <ArticlePage
       locale={currentLocale}
