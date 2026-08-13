@@ -40,7 +40,6 @@ export interface HomeResponseDTO {
 
   latestArticles: ArticleDTO[];
 
-  categories: CategoryDTO[];
 
   siteSettings: {
     siteName: string;

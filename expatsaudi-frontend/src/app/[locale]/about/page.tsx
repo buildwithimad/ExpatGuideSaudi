@@ -8,6 +8,7 @@ import {
 } from '@/lib/i18n-config';
 import { generateSiteMetadata } from '@/lib/seo';
 import { resolvePageSeo } from '@/lib/seo/resolvePageSeo';
+import AboutPageContent from './AboutPageContent';
 
 import AboutSchema from './AboutSchema';
 
@@ -88,9 +89,10 @@ export default async function LocaleAboutPage({
         locale={currentLocale}
       />
 
-       <div>
-    About page: {currentLocale}
-  </div>
+       <AboutPageContent
+  locale={currentLocale}
+  dict={dict}
+/>
     </>
   );
 }

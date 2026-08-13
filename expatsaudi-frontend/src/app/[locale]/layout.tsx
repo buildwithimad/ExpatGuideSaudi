@@ -13,6 +13,7 @@ import Header from '@/components/Header';
 import LocaleDocument from '@/components/LocaleDocument';
 import Providers from '@/components/Theme/ThemeProvider';
 
+import { getCategories } from '@/lib/api/categories';
 import { getDictionary } from '@/lib/dictionary';
 import {
   locales,
@@ -115,6 +116,9 @@ export default async function LocaleLayout({
   const settings =
     await getSiteSettings(currentLocale);
 
+
+  const categories= (await getCategories(currentLocale)).slice(0,6)
+
   /* ------------------------------------------------------------------------ */
   /* Locale Configuration                                                     */
   /* ------------------------------------------------------------------------ */
@@ -190,6 +194,7 @@ const isUrdu =
           locale={currentLocale}
           dict={dict}
           settings={settings}
+          categories={categories}
         />
       </div>
     </Providers>

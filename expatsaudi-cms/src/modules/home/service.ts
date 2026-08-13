@@ -1,12 +1,9 @@
 import { parseLocale } from '@/shared/validators/locale';
 
 import { mapArticle, mapCategory } from './mappers';
-
 import { getHomeQueries } from './queries';
 
-export async function getHome(
-  req: any,
-) {
+export async function getHome(req: any) {
   const locale = parseLocale(req);
 
   const {
@@ -28,11 +25,6 @@ export async function getHome(
     latestArticles:
       latestResult.docs.map(mapArticle),
 
-    categories:
-      categoriesResult.docs.map(
-        mapCategory,
-      ),
-
     siteSettings: {
       siteName:
         siteSettings.siteName,
@@ -46,9 +38,9 @@ export async function getHome(
 
     homepage: {
       categoryFilters:
-        homepage.categoryFilters?.map(
+        categoriesResult.docs.map(
           mapCategory,
-        ) ?? [],
+        ),
 
       popularSearches:
         homepage.popularSearches?.map(

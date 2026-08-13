@@ -11,7 +11,9 @@ import {
 import { generateSiteMetadata } from '@/lib/seo';
 import { resolvePageSeo } from '@/lib/seo/resolvePageSeo';
 
-import SearchResultsClient from '../../search-results/components/SearchResultsClient';
+import SearchResultsClient from './SearchResultsClient';
+
+import { getCategories } from '@/lib/api/categories';
 
 /* -------------------------------------------------------------------------- */
 /*                              Static Params                                 */
@@ -85,6 +87,8 @@ export default async function LocaleSearchResultsPage({
   const dict = await getDictionary(currentLocale);
 
   const home = await getHome(currentLocale);
+
+  const categories = await getCategories(currentLocale);
 
   const homepage = home.homepage;
 

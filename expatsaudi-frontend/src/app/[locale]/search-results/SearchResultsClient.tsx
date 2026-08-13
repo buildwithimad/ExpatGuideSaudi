@@ -79,26 +79,31 @@ export default function SearchResultsClient({
     setInputValue(currentQ);
   }, [currentQ]);
 
+
+const defaultCategories = ['all', 'الكل', 'تمام'];
+
+
   // ---------------------------------------------------------------------------
   // Helpers
   // ---------------------------------------------------------------------------
-  const createSearchURL = useCallback(
-    (updates: Record<string, string | number | null>) => {
-      const params = new URLSearchParams(searchParams.toString());
+const createSearchURL = useCallback(
+  (updates: Record<string, string | number | null>) => {
+    const params = new URLSearchParams(searchParams.toString());
 
-      Object.entries(updates).forEach(([key, value]) => {
-        if (
-          value === null ||
-          value === '' ||
-          (key === 'page' && value === 1) ||
-          (key === 'category' && value === 'all') ||
-          (key === 'sort' && value === 'relevant')
-        ) {
-          params.delete(key);
-        } else {
-          params.set(key, String(value));
-        }
-      });
+    Object.entries(updates).forEach(([key, value]) => {
+      if (
+        value === null ||
+        value === '' ||
+        (key === 'page' && value === 1) ||
+        (key === 'category' &&
+          defaultCategories.includes(String(value))) ||
+        (key === 'sort' && value === 'relevant')
+      ) {
+        params.delete(key);
+      } else {
+        params.set(key, String(value));
+      }
+    });
 
       const queryString = params.toString();
       return queryString ? `${pathname}?${queryString}` : pathname;
@@ -192,7 +197,7 @@ export default function SearchResultsClient({
   return (
     <>
       {/* Search Header */}
-      <section className="border-b border-border py-10 md:py-12">
+      <section className="border-b border-border py-10 md:py-12 mt-20">
         <div className="container-editorial">
           <div className="max-w-2xl">
             <span className="label-caps text-primary mb-3 block">{dict.search.label}</span>

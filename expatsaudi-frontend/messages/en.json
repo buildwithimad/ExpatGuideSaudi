@@ -1,531 +1,600 @@
 {
-    "notFound": {
-  "title": "Page Not Found",
-  "description": "The page you're looking for doesn't exist. Let's get you back!",
-  "goBack": "Go Back",
-  "home": "Back to Home"
+"notFound": {
+"title": "Page Not Found",
+"description": "The page you're looking for doesn't exist. Let's get you back!",
+"goBack": "Go Back",
+"home": "Back to Home"
 },
-   "nav": {
-  "home": "Home",
-  "about": "About",
-  "categories": "Categories",
-  "articles": "Articles",
-  "tools": "Tools",
-  "subscribe": "Subscribe",
-  "search": "Search",
-  "openMenu": "Open menu",
-  "closeMenu": "Close menu",
-  "searchGuides": "Search Expat Guides",
-  "subscribeNewsletter": "Subscribe to Newsletter",
+"nav": {
+"home": "Home",
+"about": "About",
+"categories": "Categories",
+"articles": "Articles",
+"tools": "Tools",
+"subscribe": "Subscribe",
+"search": "Search",
+"openMenu": "Open menu",
+"closeMenu": "Close menu",
+"searchGuides": "Search Expat Guides",
+"subscribeNewsletter": "Subscribe to Newsletter",
 
-  "utilityNavigation": "Utilities",
-  "goldRates": "Gold Rates",
-  "hijriToday": "Hijri Today",
-  "silverRates": "Silver Rates",
-  "overtimeCalculator": "Overtime Calculator",
-  "iqamaFees": "Iqama Fees"
+"utilityNavigation": "Utilities",
+"goldRates": "Gold Rates",
+"hijriToday": "Hijri Today",
+"silverRates": "Silver Rates",
+"overtimeCalculator": "Overtime Calculator",
+"iqamaFees": "Iqama Fees"
 },
-    "hero": {
-        "badge": "Live & Updated 2026",
-        "title": "Everything Expats Need to Know About Saudi Arabia",
-        "description": "Your authoritative guide to life in the Kingdom. From Iqama renewals and visa services to labor law, banking, and housing \u2014 organized, verified, and easy to understand.",
-        "exploreGuides": "Explore Guides",
-        "browseCategories": "Browse Categories",
-        "stats": {
-            "guides": "Expert Guides",
-            "categories": "Topic Categories",
-            "free": "Always Free"
-        },
-        "illustration": {
-            "title": "Professional Illustration",
-            "subtitle": "Saudi Arabia Map / Landmark Visual"
-        }
-    },
-    "categories": {
-        "label": "Browse by Topic",
-        "title": "Popular Categories",
-        "description": "Find everything you need organized by topic. Each category contains expert-written guides verified against official Saudi sources.",
-        "viewAll": "View All Categories",
-        "explore": "Explore",
-        "guides": "guides",
-        "article": "Article",
-  "articles": "Articles",
-        "items": {
-            "iqama": {
-                "title": "Iqama",
-                "description": "Residence permits, renewals, transfers, and status checks."
-            },
-            "visa": {
-                "title": "Visa Services",
-                "description": "Work visas, family visas, visit visas, and exit re-entry."
-            },
-            "labor": {
-                "title": "Labor Law",
-                "description": "Employment contracts, rights, end of service, and disputes."
-            },
-            "government": {
-                "title": "Government Services",
-                "description": "Absher, Muqeem, Jawazat, GOSI, and ministry guides."
-            },
-            "banking": {
-                "title": "Banking",
-                "description": "Opening accounts, transfers, remittances, and credit cards."
-            },
-            "driving": {
-                "title": "Driving",
-                "description": "Saudi driving license, traffic rules, and vehicle registration."
-            },
-            "housing": {
-                "title": "Housing",
-                "description": "Renting, tenant rights, utilities, and neighborhoods."
-            },
-            "healthcare": {
-                "title": "Healthcare",
-                "description": "Health insurance, hospitals, clinics, and medical services."
-            },
-            "education": {
-                "title": "Education",
-                "description": "International schools, universities, and enrollment guides."
-            },
-            "family": {
-                "title": "Family",
-                "description": "Sponsoring family, dependent visas, and family life."
-            },
-            "travel": {
-                "title": "Travel",
-                "description": "Exit visas, travel restrictions, and neighboring countries."
-            },
-            "saudiLife": {
-                "title": "Saudi Life",
-                "description": "Culture, religion, holidays, food, and daily living tips."
-            }
-        }
-    },
-    "featuredGuide": {
-        "label": "Featured Guide",
-        "allGuides": "All Guides",
-        "continueReading": "Continue Reading"
-    },
-    "latestArticles": {
-        "label": "Latest Guides",
-        "title": "Recently Published",
-        "description": "Fresh, verified content covering the most important topics for expats in Saudi Arabia.",
-        "viewAll": "View All Articles"
-    },
-    "search": {
-        "label": "Search",
-        "title": "Find What You Need",
-        "description": "Search across all guides, categories, and topics. Over 120 expert-written articles covering every aspect of expat life in Saudi Arabia.",
-        "placeholder": "Search guides, topics, services...",
-        "button": "Search",
-        "popular": "Popular:",
-        "clearFilters": "Clear filters",
-        "all": "All",   
-  "resultsFor": "Results for",
-  "submit": "Search",
-  "filterByCategory": "Filter by Category",
-  "sortResults": "Sort Results",
-  "mostRelevant": "Most Relevant",
-  "latestFirst": "Latest First",
-  "clearAllFilters": "Clear All Filters",
-  "clear": "Clear",
-  "searching": "Searching...",
-  "loading": "Loading results...",
-  "result": "result",
-  "results": "results",
-  "in": "in",
-  "noResults": "No results found",
-  "noResultsFor": "No results found for",
-  "noResultsDescription": "Try a different search term, remove category filters, or browse all guides.",
-  "clearSearch": "Clear Search",
-  "browseAllGuides": "Browse All Guides",
-  "tryPopularTopics": "Try these popular topics",
-  "previous": "Previous",
-  "next": "Next"
+"hero": {
+"badge": "Live & Updated 2026",
+"title": "Everything Expats Need to Know About Saudi Arabia",
+"description": "Your authoritative guide to life in the Kingdom. From Iqama renewals and visa services to labor law, banking, and housing \u2014 organized, verified, and easy to understand.",
+"exploreGuides": "Explore Guides",
+"browseCategories": "Browse Categories",
+"stats": {
+"guides": "Expert Guides",
+"categories": "Topic Categories",
+"free": "Always Free"
 },
-    "tools": {
-        "label": "Saudi Tools",
-        "title": "Free Calculators & Tools",
-        "description": "Practical tools built specifically for expats in Saudi Arabia. All tools are free, no account required.",
-        "comingSoon": "Coming Soon",
-        "notice": "All tools will be completely free. We are currently building and verifying each calculator against official Saudi government formulas.",
-        "items": {
-            "iqamaChecker": {
-                "name": "Iqama Expiry Checker",
-                "description": "Enter your Iqama number to instantly check remaining validity and renewal deadlines."
-            },
-            "visaCalc": {
-                "name": "Visa Calculator",
-                "description": "Calculate visa fees, processing times, and document requirements for any visa type."
-            },
-            "salaryCalc": {
-                "name": "Salary Calculator",
-                "description": "Compute your net salary after GOSI deductions, income tax where applicable, and allowances."
-            },
-            "eosCalc": {
-                "name": "End of Service Calculator",
-                "description": "Accurately calculate your EOSB gratuity based on Saudi Labor Law Article 84."
-            },
-            "leaveCalc": {
-                "name": "Leave Calculator",
-                "description": "Calculate annual leave entitlements, carry-over days, and encashment amounts."
-            },
-            "currencyConv": {
-                "name": "Currency Converter",
-                "description": "Convert SAR to any currency with live rates and historical comparison charts."
-            },
-            "calendarConv": {
-                "name": "Saudi Calendar Converter",
-                "description": "Convert between Hijri and Gregorian calendars for official document dates."
-            }
-        }
-    },
-    "resources": {
-  "label": "Quick Reference",
-  "title": "Saudi Resources",
-  "description": "Essential reference guides and external links for everyday expat needs.",
-  "viewResource": "View Resource",
-  "backToHome": "Back to Home",
-  "noResources": "No resources available yet.",
-  "categoryDescriptions": {
-    "government-services": "Official Saudi government platforms and services useful for expatriates.",
-    "useful-apps": "Useful mobile applications and digital services for expatriates living in Saudi Arabia.",
-    "emergency-numbers": "Important emergency numbers and essential contacts for expatriates in Saudi Arabia.",
-    "public-services": "Essential public services for everyday life in Saudi Arabia."
-  },
+"illustration": {
+"title": "Professional Illustration",
+"subtitle": "Saudi Arabia Map / Landmark Visual"
+}
+},
+"categories": {
+"label": "Browse by Topic",
+"title": "Popular Categories",
+"description": "Find everything you need organized by topic. Each category contains expert-written guides verified against official Saudi sources.",
+"viewAll": "View All Categories",
+"explore": "Explore",
+"guides": "guides",
+"article": "Article",
+"articles": "Articles",
+"items": {
+"iqama": {
+"title": "Iqama",
+"description": "Residence permits, renewals, transfers, and status checks."
+},
+"visa": {
+"title": "Visa Services",
+"description": "Work visas, family visas, visit visas, and exit re-entry."
+},
+"labor": {
+"title": "Labor Law",
+"description": "Employment contracts, rights, end of service, and disputes."
+},
+"government": {
+"title": "Government Services",
+"description": "Absher, Muqeem, Jawazat, GOSI, and ministry guides."
+},
+"banking": {
+"title": "Banking",
+"description": "Opening accounts, transfers, remittances, and credit cards."
+},
+"driving": {
+"title": "Driving",
+"description": "Saudi driving license, traffic rules, and vehicle registration."
+},
+"housing": {
+"title": "Housing",
+"description": "Renting, tenant rights, utilities, and neighborhoods."
+},
+"healthcare": {
+"title": "Healthcare",
+"description": "Health insurance, hospitals, clinics, and medical services."
+},
+"education": {
+"title": "Education",
+"description": "International schools, universities, and enrollment guides."
+},
+"family": {
+"title": "Family",
+"description": "Sponsoring family, dependent visas, and family life."
+},
+"travel": {
+"title": "Travel",
+"description": "Exit visas, travel restrictions, and neighboring countries."
+},
+"saudiLife": {
+"title": "Saudi Life",
+"description": "Culture, religion, holidays, food, and daily living tips."
+}
+}
+},
+"featuredGuide": {
+"label": "Featured Guide",
+"allGuides": "All Guides",
+"continueReading": "Continue Reading"
+},
+"latestArticles": {
+"label": "Latest Guides",
+"title": "Recently Published",
+"description": "Fresh, verified content covering the most important topics for expats in Saudi Arabia.",
+"viewAll": "View All Articles"
+},
+"search": {
+"label": "Search",
+"title": "Find What You Need",
+"description": "Search across all guides, categories, and topics. Over 120 expert-written articles covering every aspect of expat life in Saudi Arabia.",
+"placeholder": "Search guides, topics, services...",
+"button": "Search",
+"popular": "Popular:",
+"clearFilters": "Clear filters",
+"all": "All",
+
+"resultsFor": "Results for",
+"submit": "Search",
+"filterByCategory": "Filter by Category",
+"sortResults": "Sort Results",
+"mostRelevant": "Most Relevant",
+"latestFirst": "Latest First",
+"clearAllFilters": "Clear All Filters",
+"clear": "Clear",
+"searching": "Searching...",
+"loading": "Loading results...",
+"result": "result",
+"results": "results",
+"in": "in",
+"noResults": "No results found",
+"noResultsFor": "No results found for",
+"noResultsDescription": "Try a different search term, remove category filters, or browse all guides.",
+"clearSearch": "Clear Search",
+"browseAllGuides": "Browse All Guides",
+"tryPopularTopics": "Try these popular topics",
+"previous": "Previous",
+"next": "Next"
+},
+"tools": {
+"label": "Saudi Tools",
+"title": "Free Calculators & Tools",
+"description": "Practical tools built specifically for expats in Saudi Arabia. All tools are free, no account required.",
+"comingSoon": "Coming Soon",
+"notice": "All tools will be completely free. We are currently building and verifying each calculator against official Saudi government formulas.",
+"items": {
+"iqamaChecker": {
+"name": "Iqama Expiry Checker",
+"description": "Enter your Iqama number to instantly check remaining validity and renewal deadlines."
+},
+"visaCalc": {
+"name": "Visa Calculator",
+"description": "Calculate visa fees, processing times, and document requirements for any visa type."
+},
+"salaryCalc": {
+"name": "Salary Calculator",
+"description": "Compute your net salary after GOSI deductions, income tax where applicable, and allowances."
+},
+"eosCalc": {
+"name": "End of Service Calculator",
+"description": "Accurately calculate your EOSB gratuity based on Saudi Labor Law Article 84."
+},
+"leaveCalc": {
+"name": "Leave Calculator",
+"description": "Calculate annual leave entitlements, carry-over days, and encashment amounts."
+},
+"currencyConv": {
+"name": "Currency Converter",
+"description": "Convert SAR to any currency with live rates and historical comparison charts."
+},
+"calendarConv": {
+"name": "Saudi Calendar Converter",
+"description": "Convert between Hijri and Gregorian calendars for official document dates."
+}
+}
+},
+"resources": {
+"label": "Quick Reference",
+"title": "Saudi Resources",
+"description": "Essential reference guides and external links for everyday expat needs.",
+"viewResource": "View Resource",
+"backToHome": "Back to Home",
+"noResources": "No resources available yet.",
+"categoryDescriptions": {
+"government-services": "Official Saudi government platforms and services useful for expatriates.",
+"useful-apps": "Useful mobile applications and digital services for expatriates living in Saudi Arabia.",
+"emergency-numbers": "Important emergency numbers and essential contacts for expatriates in Saudi Arabia.",
+"public-services": "Essential public services for everyday life in Saudi Arabia."
+},
 "seo": {
-  "government-services": {
-    "title": "Saudi Government Services for Expats | URExpat",
-    "description": "Find official Saudi government platforms and services for expatriates, including Absher, Qiwa, GOSI, and other essential digital services."
-  },
-  "useful-apps": {
-    "title": "Useful Saudi Apps for Expats | URExpat",
-    "description": "Discover useful mobile apps and digital services that make everyday life easier for expatriates living in Saudi Arabia."
-  },
-  "emergency-numbers": {
-    "title": "Saudi Emergency Numbers for Expats | URExpat",
-    "description": "Find important emergency numbers and essential contacts in Saudi Arabia, including police, ambulance, fire, and other emergency services."
-  },
-  "public-services": {
-    "title": "Saudi Public Services for Expats | URExpat",
-    "description": "Find useful public services and official resources for everyday life in Saudi Arabia."
-  }
+"government-services": {
+"title": "Saudi Government Services for Expats | URExpat",
+"description": "Find official Saudi government platforms and services for expatriates, including Absher, Qiwa, GOSI, and other essential digital services."
 },
-  "items": {
-    "government": {
-      "title": "Government Services",
-      "description": "Direct links and guides to major Saudi government portals and digital services."
-    },
-    "apps": {
-      "title": "Useful Apps",
-      "description": "Essential smartphone apps and digital services for everyday life in Saudi Arabia."
-    },
-    "emergency": {
-      "title": "Emergency Numbers",
-      "description": "Quick reference for police, ambulance, fire, and other critical emergency contacts across the Kingdom."
-    },
-    "public": {
-      "title": "Public Services",
-      "description": "Useful links and information for accessing essential public services across Saudi Arabia."
-    }
-  }
+"useful-apps": {
+"title": "Useful Saudi Apps for Expats | URExpat",
+"description": "Discover useful mobile apps and digital services that make everyday life easier for expatriates living in Saudi Arabia."
 },
-    "newsletter": {
-        "label": "Newsletter",
-        "title": "Stay Updated on Saudi Regulations",
-        "description": "Get notified when we publish new guides, when Saudi regulations change, and when new tools go live. No spam \u2014 only relevant updates.",
-        "placeholder": "your@email.com",
-        "button": "Subscribe",
-        "success": "You are subscribed. Welcome to ExpatSaudi.",
-        "disclaimer": "Free forever. Unsubscribe at any time."
-    },
-    "faq": {
-        "label": "FAQ",
-        "title": "Frequently Asked Questions",
-        "description": "Quick answers to the most common questions from expats living in Saudi Arabia.",
-        "items": [
-            {
-                "question": "What is an Iqama and why do I need it?",
-                "answer": "An Iqama (\u0625\u0642\u0627\u0645\u0629) is a residency permit issued to all expatriates living and working in Saudi Arabia. It is your legal identification document in the Kingdom and is required for virtually all official transactions \u2014 opening a bank account, renting an apartment, getting a SIM card, accessing healthcare, and renewing your driving license. Your employer (sponsor) is legally responsible for obtaining and renewing your Iqama."
-            },
-            {
-                "question": "How do I renew my Iqama before it expires?",
-                "answer": "Your sponsor or HR department is primarily responsible for Iqama renewal. However, you can monitor your Iqama status and expiry date through the Absher platform (absher.sa) or the Muqeem portal. Renewal typically requires paying a government fee (currently SAR 650/year for most nationalities), ensuring your health insurance is active, and that your employer's Nitaqat compliance status is in good standing. Start the process at least 30 days before expiry to avoid fines."
-            },
-            {
-                "question": "Can I change jobs in Saudi Arabia without losing my residency?",
-                "answer": "Yes, under the Labor Reform Initiative (LRI) introduced in 2021, most expatriates can transfer their sponsorship (Iqama) to a new employer without requiring the current employer's consent, provided they have completed at least one year of service. You can initiate a job transfer through the Absher platform. There are certain restrictions for domestic workers and some sectors \u2014 check the official HRSD portal for the latest eligibility criteria."
-            },
-            {
-                "question": "What is an Exit Re-Entry Visa and do I need one?",
-                "answer": "An Exit Re-Entry Visa (\u062a\u0623\u0634\u064a\u0631\u0629 \u0627\u0644\u062e\u0631\u0648\u062c \u0648\u0627\u0644\u0639\u0648\u062f\u0629) is required if you want to leave Saudi Arabia and return. Without it, leaving the country may be treated as a Final Exit, cancelling your Iqama. You can apply for single or multiple exit re-entry visas through Absher. As of 2021, most expatriates no longer need employer permission to obtain an exit re-entry visa after completing one year of service, thanks to the Labor Reform Initiative."
-            },
-            {
-                "question": "How is End of Service Benefit (EOSB) calculated?",
-                "answer": "Under Saudi Labor Law, EOSB (gratuity) is calculated based on your last basic salary and years of service. For the first 5 years: half a month's salary per year. After 5 years: one full month's salary per year. If you resign before completing 2 years, you receive no EOSB. Between 2-5 years, you receive one-third of the entitlement. Between 5-10 years, you receive two-thirds. After 10 years, you receive the full amount."
-            },
-            {
-                "question": "What health insurance is required for expats in Saudi Arabia?",
-                "answer": "Saudi Arabia mandates that all employers provide health insurance for their expatriate employees and their sponsored dependents under the Cooperative Health Insurance System regulated by the Council of Cooperative Health Insurance (CCHI). The minimum coverage (Class C) covers basic inpatient and outpatient treatment. Employers who fail to provide health insurance face significant fines and Nitaqat compliance penalties."
-            },
-            {
-                "question": "How do I get a Saudi driving license as an expatriate?",
-                "answer": "The process depends on your nationality and the type of license you hold. Citizens of GCC countries and nationals of certain countries with reciprocal agreements (including the US, UK, Canada, Australia, and many European nations) can exchange their foreign license directly at the traffic department (Muroor) without taking a test. Other nationalities must complete a driving course at a licensed driving school and pass both a theory and practical exam."
-            },
-            {
-                "question": "Is it safe to live in Saudi Arabia as an expat?",
-                "answer": "Saudi Arabia consistently ranks as one of the safest countries in the world for expatriates. Violent crime rates are very low. The main considerations for expats are traffic safety (road accidents are a leading cause of injury), workplace rights awareness, and understanding local laws and cultural norms. Alcohol is strictly prohibited, and public behavior is governed by local customs. Most expats report feeling very safe in their daily lives across all major Saudi cities."
-            }
-        ]
-    },
-    "finalCta": {
-        "label": "Get Started",
-        "title": "Start Exploring Saudi Arabia's Most Comprehensive Expat Guide",
-        "description": "Whether you just landed in the Kingdom or have been here for years, ExpatSaudi has the information you need \u2014 organized, current, and written in plain English.",
-        "exploreAll": "Explore All Guides",
-        "browseCategories": "Browse Categories"
-    },
-    "footer": {
-        "tagline": "Trusted information for expatriates living and working in Saudi Arabia.",
-        "copyright": "\u00a9 2026 ExpatSaudi. All rights reserved.",
-        "privacy": "Privacy",
-        "terms": "Terms",
-        "groups": {
-            "Company": {
-                "label": "Company",
-                "links": [
-                    {
-                        "label": "About",
-                        "href": "/about"
-                    },
-                    {
-                        "label": "Editorial Standards",
-                        "href": "/about#standards"
-                    },
-                    {
-                        "label": "Contact",
-                        "href": "/about#contact"
-                    }
-                ]
-            },
-            "Categories": {
-                "label": "Categories",
-                "links": [
-                    {
-                        "label": "Iqama & Residency",
-                        "href": "/category"
-                    },
-                    {
-                        "label": "Visa Services",
-                        "href": "/category"
-                    },
-                    {
-                        "label": "Labor Law",
-                        "href": "/category"
-                    },
-                    {
-                        "label": "Government Services",
-                        "href": "/category"
-                    },
-                    {
-                        "label": "Banking & Finance",
-                        "href": "/category"
-                    }
-                ]
-            },
-            "Resources": {
-                "label": "Resources",
-                "links": [
-                    {
-                        "label": "All Articles",
-                        "href": "/articles"
-                    },
-                    {
-                        "label": "Saudi Tools",
-                        "href": "/#tools"
-                    },
-                    {
-                        "label": "Emergency Numbers",
-                        "href": "/articles"
-                    },
-                    {
-                        "label": "Useful Apps",
-                        "href": "/articles"
-                    }
-                ]
-            },
-            "Legal": {
-                "label": "Legal",
-                "links": [
-                    {
-                        "label": "Privacy Policy",
-                        "href": "/about"
-                    },
-                    {
-                        "label": "Terms of Use",
-                        "href": "/about"
-                    },
-                    {
-                        "label": "Disclaimer",
-                        "href": "/about"
-                    }
-                ]
-            }
-        }
-    },
-    "about": {
-        "label": "About ExpatSaudi",
-        "heroTitle": "We built the guide we wished existed when we first arrived in Saudi Arabia.",
-        "heroDescription": "ExpatSaudi is an independent information platform dedicated to helping expatriates navigate life in the Kingdom of Saudi Arabia with confidence, clarity, and accuracy.",
-        "stats": {
-            "guides": "Expert guides published",
-            "categories": "Topic categories covered",
-            "founded": "Year founded",
-            "free": "Free, always"
-        },
-        "mission": {
-            "label": "Our Mission",
-            "title": "Why We Exist"
-        },
-        "story": {
-            "label": "Our Story",
-            "title": "Why We Built This Website"
-        },
-        "standards": {
-            "label": "Editorial Standards",
-            "title": "How We Verify Information",
-            "description": "Our editorial process is designed to ensure every guide on ExpatSaudi meets the highest standards of accuracy and reliability."
-        },
-        "audience": {
-            "label": "Audience",
-            "title": "Who This Website Helps",
-            "description": "ExpatSaudi is built for every expatriate in Saudi Arabia, regardless of nationality, profession, or how long you have been here."
-        },
-        "vision": {
-            "label": "Future Vision",
-            "title": "Where We Are Heading"
-        },
-        "contact": {
-            "label": "Contact",
-            "title": "Get in Touch"
-        }
-    },
-    "privacy": {
-  "label": "Privacy",
-  "title": "Privacy Policy",
-  "intro": "This Privacy Policy explains how Expat Guides collects, uses, and protects information when you visit and use our website.",
-  "sections": {
-    "information": {
-      "title": "Information We Collect",
-      "content": "We may collect information you provide voluntarily, such as when you contact us, subscribe to updates, or interact with features on our website. We may also collect limited technical information needed to operate, secure, and improve the website."
-    },
-    "usage": {
-      "title": "How We Use Information",
-      "content": "We use information to operate and improve Expat Guides, respond to inquiries, provide requested services, understand website usage, maintain security, and improve our content and user experience."
-    },
-    "cookies": {
-      "title": "Cookies",
-      "content": "We may use cookies and similar technologies to keep the website functioning, understand how visitors use our pages, and improve website performance. You can manage cookies through your browser settings."
-    },
-    "thirdParty": {
-      "title": "Third-Party Services",
-      "content": "We may use trusted third-party services for functions such as hosting, analytics, advertising, email delivery, or website security. These services may process information according to their own privacy policies."
-    },
-    "security": {
-      "title": "Data Security",
-      "content": "We take reasonable measures to protect information against unauthorized access, misuse, alteration, or disclosure. However, no internet-based service can guarantee complete security."
-    },
-    "contact": {
-      "title": "Contact Us",
-      "content": "If you have questions about this Privacy Policy or how we handle information, please contact us through the Contact page on Expat Guides."
-    }
-  }
+"emergency-numbers": {
+"title": "Saudi Emergency Numbers for Expats | URExpat",
+"description": "Find important emergency numbers and essential contacts in Saudi Arabia, including police, ambulance, fire, and other emergency services."
 },
-"terms": {
-  "label": "Legal",
-  "title": "Terms & Conditions",
-  "intro": "These Terms & Conditions explain the rules and guidelines for using Expat Guides and its content.",
-  "sections": {
-    "acceptance": {
-      "title": "Acceptance of Terms",
-      "content": "By accessing or using Expat Guides, you agree to these Terms & Conditions. If you do not agree with these terms, please do not use the website."
-    },
-    "content": {
-      "title": "Use of Our Content",
-      "content": "Our guides and articles are provided for general informational and educational purposes. You may read, share, and link to our content for personal and informational use, provided that the content is not presented as your own."
-    },
-    "accuracy": {
-      "title": "Information Accuracy",
-      "content": "We make reasonable efforts to provide accurate and useful information and to update content when relevant information changes. However, government rules, fees, requirements, and procedures may change without notice. Always verify important information with the relevant official source."
-    },
-    "externalLinks": {
-      "title": "External Links",
-      "content": "Our website may contain links to official government websites and other third-party websites. These links are provided for convenience and reference. We are not responsible for the content, availability, or policies of external websites."
-    },
-    "intellectualProperty": {
-      "title": "Intellectual Property",
-      "content": "Unless otherwise stated, the content, branding, design, graphics, and original materials on Expat Guides are protected by applicable intellectual property laws. You may not reproduce or redistribute our original content for commercial purposes without permission."
-    },
-    "liability": {
-      "title": "Limitation of Liability",
-      "content": "Expat Guides is not a government agency, legal service, immigration authority, or financial institution. Our content should not be considered legal, immigration, financial, or professional advice. You are responsible for verifying information before making decisions or taking action."
-    },
-    "changes": {
-      "title": "Changes to These Terms",
-      "content": "We may update these Terms & Conditions from time to time to reflect changes to our website, services, or policies. Updated terms become effective when published on this page."
-    },
-    "contact": {
-      "title": "Contact Us",
-      "content": "If you have questions about these Terms & Conditions, please contact us through the Contact page on Expat Guides."
-    }
-  }
+"public-services": {
+"title": "Saudi Public Services for Expats | URExpat",
+"description": "Find useful public services and official resources for everyday life in Saudi Arabia."
+}
 },
-
-    "metadata": {
-        "home": {
-            "title": "ExpatSaudi \u2014 Your Complete Guide to Living in Saudi Arabia",
-            "description": "Trusted, organized information for expatriates in Saudi Arabia. Iqama, visas, labor law, government services, housing, banking, and more \u2014 all free."
-        },
-        "about": {
-            "title": "About ExpatSaudi \u2014 Our Mission, Standards & Vision",
-            "description": "Learn why we built ExpatSaudi, our editorial standards, how we verify information, and our vision for the most trusted expat resource in Saudi Arabia."
-        },
-        "articles": {
-            "title": "All Guides & Articles \u2014 ExpatSaudi",
-            "description": "Browse all expert-written guides for expatriates in Saudi Arabia. Filter by category, sort by date, and find exactly what you need."
-        },
-         "categories": {
-    "title": "Saudi Arabia Expat Categories — Iqama, Visas & More",
-    "description": "Explore Saudi Arabia expat guides by category, including Iqama, visas, labor law, banking, driving, jobs, and daily life."
-  },
-        "category": {
-            "title": "Iqama & Residency Guides \u2014 ExpatSaudi",
-            "description": "Complete guides on Iqama renewals, transfers, status checks, and residency requirements for expatriates in Saudi Arabia."
-        },
-        "articleDetail": {
-            "title": "The Complete Guide to Iqama Renewal in Saudi Arabia (2026) \u2014 ExpatSaudi",
-            "description": "Step-by-step guide to renewing your Iqama in Saudi Arabia. Includes fees, required documents, Absher instructions, and what to do if your sponsor is unresponsive."
-        },
-        "searchResults": {
-            "title": "Search Results \u2014 ExpatSaudi",
-            "description": "Search results for expat guides and information about Saudi Arabia."
-        },
-        "contact": {
-  "title": "Contact Expat Guides | Get in Touch",
-  "description": "Have a question, suggestion, or feedback about Expat Guides? Contact us and help us improve our Saudi Arabia expat resources."
+"items": {
+"government": {
+"title": "Government Services",
+"description": "Direct links and guides to major Saudi government portals and digital services."
+},
+"apps": {
+"title": "Useful Apps",
+"description": "Essential smartphone apps and digital services for everyday life in Saudi Arabia."
+},
+"emergency": {
+"title": "Emergency Numbers",
+"description": "Quick reference for police, ambulance, fire, and other critical emergency contacts across the Kingdom."
+},
+"public": {
+"title": "Public Services",
+"description": "Useful links and information for accessing essential public services across Saudi Arabia."
+}
+}
+},
+"newsletter": {
+"label": "Newsletter",
+"title": "Stay Updated on Saudi Regulations",
+"description": "Get notified when we publish new guides, when Saudi regulations change, and when new tools go live. No spam \u2014 only relevant updates.",
+"placeholder": "your@email.com",
+"button": "Subscribe",
+"success": "You are subscribed. Welcome to URExpat.",
+"disclaimer": "Free forever. Unsubscribe at any time."
+},
+"faq": {
+"label": "FAQ",
+"title": "Frequently Asked Questions",
+"description": "Quick answers to the most common questions from expats living in Saudi Arabia.",
+"items": [
+{
+"question": "What is an Iqama and why do I need it?",
+"answer": "An Iqama (\u0625\u0642\u0627\u0645\u0629) is a residency permit issued to all expatriates living and working in Saudi Arabia. It is your legal identification document in the Kingdom and is required for virtually all official transactions \u2014 opening a bank account, renting an apartment, getting a SIM card, accessing healthcare, and renewing your driving license. Your employer (sponsor) is legally responsible for obtaining and renewing your Iqama."
+},
+{
+"question": "How do I renew my Iqama before it expires?",
+"answer": "Your sponsor or HR department is primarily responsible for Iqama renewal. However, you can monitor your Iqama status and expiry date through the Absher platform (absher.sa) or the Muqeem portal. Renewal typically requires paying a government fee (currently SAR 650/year for most nationalities), ensuring your health insurance is active, and that your employer's Nitaqat compliance status is in good standing. Start the process at least 30 days before expiry to avoid fines."
+},
+{
+"question": "Can I change jobs in Saudi Arabia without losing my residency?",
+"answer": "Yes, under the Labor Reform Initiative (LRI) introduced in 2021, most expatriates can transfer their sponsorship (Iqama) to a new employer without requiring the current employer's consent, provided they have completed at least one year of service. You can initiate a job transfer through the Absher platform. There are certain restrictions for domestic workers and some sectors \u2014 check the official HRSD portal for the latest eligibility criteria."
+},
+{
+"question": "What is an Exit Re-Entry Visa and do I need one?",
+"answer": "An Exit Re-Entry Visa (\u062a\u0623\u0634\u064a\u0631\u0629 \u0627\u0644\u062e\u0631\u0648\u062c \u0648\u0627\u0644\u0639\u0648\u062f\u0629) is required if you want to leave Saudi Arabia and return. Without it, leaving the country may be treated as a Final Exit, cancelling your Iqama. You can apply for single or multiple exit re-entry visas through Absher. As of 2021, most expatriates no longer need employer permission to obtain an exit re-entry visa after completing one year of service, thanks to the Labor Reform Initiative."
+},
+{
+"question": "How is End of Service Benefit (EOSB) calculated?",
+"answer": "Under Saudi Labor Law, EOSB (gratuity) is calculated based on your last basic salary and years of service. For the first 5 years: half a month's salary per year. After 5 years: one full month's salary per year. If you resign before completing 2 years, you receive no EOSB. Between 2-5 years, you receive one-third of the entitlement. Between 5-10 years, you receive two-thirds. After 10 years, you receive the full amount."
+},
+{
+"question": "What health insurance is required for expats in Saudi Arabia?",
+"answer": "Saudi Arabia mandates that all employers provide health insurance for their expatriate employees and their sponsored dependents under the Cooperative Health Insurance System regulated by the Council of Cooperative Health Insurance (CCHI). The minimum coverage (Class C) covers basic inpatient and outpatient treatment. Employers who fail to provide health insurance face significant fines and Nitaqat compliance penalties."
+},
+{
+"question": "How do I get a Saudi driving license as an expatriate?",
+"answer": "The process depends on your nationality and the type of license you hold. Citizens of GCC countries and nationals of certain countries with reciprocal agreements (including the US, UK, Canada, Australia, and many European nations) can exchange their foreign license directly at the traffic department (Muroor) without taking a test. Other nationalities must complete a driving course at a licensed driving school and pass both a theory and practical exam."
+},
+{
+"question": "Is it safe to live in Saudi Arabia as an expat?",
+"answer": "Saudi Arabia consistently ranks as one of the safest countries in the world for expatriates. Violent crime rates are very low. The main considerations for expats are traffic safety (road accidents are a leading cause of injury), workplace rights awareness, and understanding local laws and cultural norms. Alcohol is strictly prohibited, and public behavior is governed by local customs. Most expats report feeling very safe in their daily lives across all major Saudi cities."
+}
+]
+},
+"finalCta": {
+"label": "Get Started",
+"title": "Start Exploring Saudi Arabia's Most Comprehensive Expat Guide",
+"description": "Whether you just landed in the Kingdom or have been here for years, URExpat has the information you need \u2014 organized, current, and written in plain English.",
+"exploreAll": "Explore All Guides",
+"browseCategories": "Browse Categories"
+},
+"footer": {
+"tagline": "Trusted information for expatriates living and working in Saudi Arabia.",
+"copyright": "",
+"privacy": "Privacy",
+"terms": "Terms",
+"groups": {
+"Company": {
+"label": "Company",
+"links": [
+{
+"label": "About",
+"href": "/about"
+},
+{
+"label": "Contact",
+"href": "/contact"
+}
+]
+},
+"Categories": {
+"label": "Categories",
+"links": []
+},
+"Resources": {
+"label": "Resources",
+"links": [
+{
+"label": "All Articles",
+"href": "/articles"
+},
+{
+"label": "Saudi Tools",
+"href": "/#tools"
+},
+{
+"label": "Emergency Numbers",
+"href": "/resources/emergency-numbers"
+},
+{
+"label": "Useful Apps",
+"href": "/resources/useful-apps"
+}
+]
+},
+"Legal": {
+"label": "Legal",
+"links": [
+{
+"label": "Privacy Policy",
+"href": "/privacy-policy"
+},
+{
+"label": "Terms of Use",
+"href": "/terms"
+},
+{
+"label": "Disclaimer",
+"href": "/privacy-policy"
+}
+]
+}
+}
+},
+"about": {
+"label": "About URExpat",
+"heroTitle": "We built the guide we wished existed when we first arrived in Saudi Arabia.",
+"heroDescription": "URExpat is an independent information platform dedicated to helping expatriates navigate life in the Kingdom of Saudi Arabia with confidence, clarity, and accuracy.",
+"stats": {
+"guides": "Expert guides published",
+"categories": "Topic categories covered",
+"founded": "Year founded",
+"free": "Free, always"
+},
+"mission": {
+"label": "Our Mission",
+"title": "Why We Exist"
+},
+"story": {
+"label": "Our Story",
+"title": "Why We Built This Website"
+},
+"standards": {
+"label": "Editorial Standards",
+"title": "How We Verify Information",
+"description": "Our editorial process is designed to ensure every guide on URExpat meets the highest standards of accuracy and reliability."
+},
+"audience": {
+"label": "Audience",
+"title": "Who This Website Helps",
+"description": "URExpat is built for every expatriate in Saudi Arabia, regardless of nationality, profession, or how long you have been here."
+},
+"vision": {
+"label": "Future Vision",
+"title": "Where We Are Heading"
+},
+"contact": {
+"label": "Contact",
+"title": "Get in Touch"
+}
 },
 "privacy": {
-  "title": "Privacy Policy | Expat Guides",
-  "description": "Read the Expat Guides Privacy Policy to learn how we collect, use, and protect information on our website."
+"label": "Privacy",
+"title": "Privacy Policy",
+"intro": "This Privacy Policy explains how URExpat collects, uses, and protects information when you visit and use our website.",
+"sections": {
+"information": {
+"title": "Information We Collect",
+"content": "We may collect information you provide voluntarily, such as when you contact us, subscribe to updates, or interact with features on our website. We may also collect limited technical information needed to operate, secure, and improve the website."
+},
+"usage": {
+"title": "How We Use Information",
+"content": "We use information to operate and improve URExpat, respond to inquiries, provide requested services, understand website usage, maintain security, and improve our content and user experience."
+},
+"cookies": {
+"title": "Cookies",
+"content": "We may use cookies and similar technologies to keep the website functioning, understand how visitors use our pages, and improve website performance. You can manage cookies through your browser settings."
+},
+"thirdParty": {
+"title": "Third-Party Services",
+"content": "We may use trusted third-party services for functions such as hosting, analytics, advertising, email delivery, or website security. These services may process information according to their own privacy policies."
+},
+"security": {
+"title": "Data Security",
+"content": "We take reasonable measures to protect information against unauthorized access, misuse, alteration, or disclosure. However, no internet-based service can guarantee complete security."
+},
+"contact": {
+"title": "Contact Us",
+"content": "If you have questions about this Privacy Policy or how we handle information, please contact us through the Contact page on URExpat."
+}
+}
 },
 "terms": {
-  "title": "Terms & Conditions | Expat Guides",
-  "description": "Read the Expat Guides Terms & Conditions covering website use, content accuracy, external links, intellectual property, and liability."
+"label": "Legal",
+"title": "Terms & Conditions",
+"intro": "These Terms & Conditions explain the rules and guidelines for using URExpat and its content.",
+"sections": {
+"acceptance": {
+"title": "Acceptance of Terms",
+"content": "By accessing or using URExpat, you agree to these Terms & Conditions. If you do not agree with these terms, please do not use the website."
+},
+"content": {
+"title": "Use of Our Content",
+"content": "Our guides and articles are provided for general informational and educational purposes. You may read, share, and link to our content for personal and informational use, provided that the content is not presented as your own."
+},
+"accuracy": {
+"title": "Information Accuracy",
+"content": "We make reasonable efforts to provide accurate and useful information and to update content when relevant information changes. However, government rules, fees, requirements, and procedures may change without notice. Always verify important information with the relevant official source."
+},
+"externalLinks": {
+"title": "External Links",
+"content": "Our website may contain links to official government websites and other third-party websites. These links are provided for convenience and reference. We are not responsible for the content, availability, or policies of external websites."
+},
+"intellectualProperty": {
+"title": "Intellectual Property",
+"content": "Unless otherwise stated, the content, branding, design, graphics, and original materials on URExpat are protected by applicable intellectual property laws. You may not reproduce or redistribute our original content for commercial purposes without permission."
+},
+"liability": {
+"title": "Limitation of Liability",
+"content": "URExpat is not a government agency, legal service, immigration authority, or financial institution. Our content should not be considered legal, immigration, financial, or professional advice. You are responsible for verifying information before making decisions or taking action."
+},
+"changes": {
+"title": "Changes to These Terms",
+"content": "We may update these Terms & Conditions from time to time to reflect changes to our website, services, or policies. Updated terms become effective when published on this page."
+},
+"contact": {
+"title": "Contact Us",
+"content": "If you have questions about these Terms & Conditions, please contact us through the Contact page on URExpat."
 }
+}
+},
+
+"metadata": {
+    "home": {
+        "title": "URExpat \u2014 Your Complete Guide to Living in Saudi Arabia",
+        "description": "Trusted, organized information for expatriates in Saudi Arabia. Iqama, visas, labor law, government services, housing, banking, and more \u2014 all free."
     },
-    "languageSwitcher": {
-        "label": "Language",
-        "en": "English",
-        "ar": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-    }
+    "about": {
+        "title": "About URExpat \u2014 Our Mission, Standards & Vision",
+        "description": "Learn why we built URExpat, our editorial standards, how we verify information, and our vision for the most trusted expat resource in Saudi Arabia."
+    },
+    "articles": {
+        "title": "All Guides & Articles \u2014 URExpat",
+        "description": "Browse all expert-written guides for expatriates in Saudi Arabia. Filter by category, sort by date, and find exactly what you need."
+    },
+     "categories": {
+"title": "Saudi Arabia Expat Categories \u2014 Iqama, Visas & More",
+"description": "Explore Saudi Arabia expat guides by category, including Iqama, visas, labor law, banking, driving, jobs, and daily life."
+},
+"category": {
+"title": "Iqama & Residency Guides \u2014 URExpat",
+"description": "Complete guides on Iqama renewals, transfers, status checks, and residency requirements for expatriates in Saudi Arabia."
+},
+"articleDetail": {
+"title": "The Complete Guide to Iqama Renewal in Saudi Arabia (2026) \u2014 URExpat",
+"description": "Step-by-step guide to renewing your Iqama in Saudi Arabia. Includes fees, required documents, Absher instructions, and what to do if your sponsor is unresponsive."
+},
+"searchResults": {
+"title": "Search Results \u2014 URExpat",
+"description": "Search results for expat guides and information about Saudi Arabia."
+},
+"contact": {
+"title": "Contact URExpat | Get in Touch",
+"description": "Have a question, suggestion, or feedback about URExpat? Contact us and help us improve our Saudi Arabia expat resources."
+},
+"privacy": {
+"title": "Privacy Policy | URExpat",
+"description": "Read the URExpat Privacy Policy to learn how we collect, use, and protect information on our website."
+},
+"terms": {
+"title": "Terms & Conditions | URExpat",
+"description": "Read the URExpat Terms & Conditions covering website use, content accuracy, external links, intellectual property, and liability."
 }
+},
+"languageSwitcher": {
+"label": "Language",
+"en": "English",
+"ar": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
+},
+
+"contact": {
+  "label": "Get in Touch",
+  "title": "How Can We Help?",
+  "description": "Have a question, suggestion, or feedback? We would love to hear from you.",
+  "email": {
+    "title": "Email",
+    "description": "You can reach us by email for questions, feedback, or suggestions."
+  },
+  "feedback": {
+    "title": "Your Feedback Matters",
+    "description": "Help us improve our guides and content by sharing your feedback."
+  },
+  "corrections": {
+    "title": "Content Corrections",
+    "description": "If you find information that needs to be updated or corrected, please let us know."
+  },
+  "form": {
+    "title": "Send Us a Message",
+    "description": "Send us your message and we will review it as soon as possible.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email Address",
+    "emailPlaceholder": "example@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "submit": "Send Message"
+  }
+},
+
+"aboutPage": {
+  "label": "About URExpat",
+  "heroTitle": "We built the guide we wished existed when we first arrived in Saudi Arabia.",
+  "heroDescription": "URExpat is an independent information platform dedicated to helping expatriates navigate life in the Kingdom of Saudi Arabia with confidence, clarity, and accuracy.",
+  "stats": {
+    "guides": "Expert guides",
+    "categories": "Topic categories",
+    "founded": "Year founded",
+    "free": "Free, always"
+  },
+  "mission": {
+    "label": "Our Mission",
+    "title": "Why We Exist",
+    "p1": "Saudi Arabia is home to over 13 million expatriates — nearly 40% of the total population. Yet for most of them, navigating the Kingdom's bureaucratic systems, labor laws, visa processes, and government services remains unnecessarily difficult. Official information is often buried in Arabic-only government portals, scattered across outdated forums, or hidden behind expensive consultants.",
+    "p2": "URExpat exists to fix that. We believe every expatriate deserves access to clear, accurate, and up-to-date information in plain English — completely free. Our mission is to be the most trusted, comprehensive, and well-organized resource for expats living and working in Saudi Arabia."
+  },
+  "story": {
+    "label": "Our Story",
+    "title": "Why We Built This",
+    "p1": "The founding team of URExpat are expatriates ourselves. Between us, we have collectively spent over 30 years living and working in Saudi Arabia across multiple cities. We have personally experienced the confusion of renewing an Iqama for the first time, the anxiety of understanding End of Service entitlements, and the frustration of finding contradictory information online.",
+    "p2": "We started ExpatSaudi as the resource we wished had existed when we first arrived. Over time, it evolved into something larger: a structured, editorially rigorous platform that thousands of expats now rely on for accurate, current information about life in the Kingdom."
+  },
+  "standards": {
+    "label": "Editorial Standards",
+    "title": "How We Verify Information",
+    "description": "Our editorial process is designed to ensure every guide on ExpatSaudi meets the highest standards of accuracy.",
+    "items": {
+      "primary": { "title": "Primary Source Verification", "description": "Every guide is cross-referenced against official Saudi government portals — HRSD, Absher, Jawazat, CCHI, SAMA, and relevant ministries — before publication." },
+      "updates": { "title": "Regular Content Updates", "description": "Saudi regulations change frequently. We review and update our guides whenever official policies, fees, or procedures are modified by the Saudi government." },
+      "community": { "title": "Community-Informed", "description": "We listen to the expat community. Real-world experiences and edge cases reported by readers help us identify gaps and improve accuracy." },
+      "policy": { "title": "No Misinformation Policy", "description": "We do not publish speculative or unverified information. If we are uncertain about a regulation, we link directly to the official source rather than guess." }
+    }
+  },
+  "audience": {
+    "label": "Audience",
+    "title": "Who We Help",
+    "description": "URExpat is built for every expatriate in Saudi Arabia, regardless of nationality or profession.",
+    "items": {
+      "professionals": { "title": "Working Professionals", "description": "Expats on work visas navigating Iqama, labor law, and employment rights." },
+      "families": { "title": "Families", "description": "Expat families dealing with dependent visas, schools, housing, and healthcare." },
+      "arrivals": { "title": "New Arrivals", "description": "People relocating to Saudi Arabia for the first time who need to understand the basics quickly." },
+      "residents": { "title": "Long-Term Residents", "description": "Experienced expats staying current with regulatory changes and new government services." }
+    }
+  },
+  "vision": {
+    "label": "Future Vision",
+    "title": "Where We Are Heading",
+    "p1": "ExpatSaudi is growing into a comprehensive digital platform — not just an information website. Our roadmap includes free online tools specifically designed for expats in Saudi Arabia: an Iqama expiry checker, EOSB calculator, visa fee calculator, salary calculator, and Saudi Hijri-Gregorian calendar converter.",
+    "p2": "We are also building a community forum where expats can share real-world experiences, ask questions, and help each other navigate life in the Kingdom. All of these features will remain completely free.",
+    "tags": ["Free Tools", "Community Forum", "Mobile App", "Arabic Version", "Job Board", "Housing Listings"]
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Get in Touch",
+    "editorial": "Editorial",
+    "general": "General Enquiries",
+    "error": "Report an Error",
+    "partnerships": "Partnerships"
+  }
+}
+
+}
+
+
