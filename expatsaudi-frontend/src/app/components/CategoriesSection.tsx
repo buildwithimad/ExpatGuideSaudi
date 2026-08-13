@@ -105,7 +105,7 @@ export default function CategoriesSection({
         {/* Mobile View All */}
         <div className="mt-6 sm:mt-8 flex justify-center md:hidden">
           <Link
-            href={`/${locale}/category`}
+            href={`/${locale}/categories`}
             className="btn-secondary text-[13px] sm:text-sm py-2 px-6"
           >
             {t?.viewAll ?? 'View All Categories'}
