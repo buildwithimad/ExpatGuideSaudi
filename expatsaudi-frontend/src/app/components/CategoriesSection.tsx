@@ -51,7 +51,7 @@ export default function CategoriesSection({
               type="fade"
             >
               <Link
-                href={`/${locale}/category/${category.slug}`}
+                href={`/${locale}/articles?category=${category.slug}`}
                 className={`
                   category-card
                   flex flex-col gap-2 md:gap-3 h-full bg-background p-4 sm:p-5 lg:p-6
