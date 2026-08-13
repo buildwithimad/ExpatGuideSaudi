@@ -72,6 +72,10 @@ export interface BaseArticleDTO {
 
   publishedAt: string;
 
+  updatedAt: string;
+
+  noIndex: boolean;
+
   readingTime: number;
 }
 
@@ -104,12 +108,7 @@ export interface ArticleDTO extends BaseArticleDTO {
 
   viewCount: number;
 
-  publishedAt: string;
-
-  updatedAt: string;
-
   lastVerifiedAt: string | null;
-
 }
 
 /* -------------------------------------------------------------------------- */

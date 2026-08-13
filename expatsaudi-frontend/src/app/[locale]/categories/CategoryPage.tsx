@@ -1,8 +1,6 @@
 import CategoryCard from '@/components/Categories/CategoryCard'; // <--- Import the new client component
 import Icon from '@/components/ui/AppIcon';
-import { getDictionary } from '@/lib/dictionary';
 import { locales, type Locale } from '@/lib/i18n-config';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
 // ============================================================================
@@ -27,26 +25,7 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  if (!locales.includes(locale as Locale)) return {};
-  const dict = await getDictionary(locale as Locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://expatsaudi5308.builtwithrocket.new';
 
-  return {
-    title: dict.metadata.category.title,
-    description: dict.metadata.category.description,
-    alternates: {
-      canonical: `/${locale}/category`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/category`])),
-    },
-    openGraph: { url: `${siteUrl}/${locale}/category` },
-  };
-}
 
 // ============================================================================
 // Helper Functions

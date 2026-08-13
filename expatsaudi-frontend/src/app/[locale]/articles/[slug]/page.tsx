@@ -7,6 +7,7 @@ import { locales, type Locale } from '@/lib/i18n-config';
 
 
 import { generateSiteMetadata } from '@/lib/seo';
+import ArticleBreadcrumbSchema from './ArticleBreadcrumbSchema';
 import ArticleSchema from './ArticleSchema';
 
 import ArticlePage from './ArticlePage';
@@ -122,6 +123,10 @@ export default async function Page({
       article={article.article}
       locale={currentLocale}
     />
+
+    <ArticleBreadcrumbSchema
+  breadcrumbs={article.breadcrumbs}
+/>
     <ArticlePage
       locale={currentLocale}
       dict={dict}

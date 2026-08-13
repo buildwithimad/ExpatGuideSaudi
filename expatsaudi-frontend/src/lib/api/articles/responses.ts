@@ -86,6 +86,10 @@ export interface ArticleCard {
 
   publishedAt: string;
 
+  updatedAt: string;
+
+  noIndex: boolean;
+
   readingTime: number;
 
   featured: boolean;

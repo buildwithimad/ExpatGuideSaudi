@@ -24,17 +24,18 @@ export default function ArticlePage({ locale, dict, article }: Props) {
     breadcrumbs 
   } = article;
 
-  const {
-    title,
-    subtitle,
-    excerpt,
-    featuredImage,
-    author,
-    category,
-    readingTime,
-    publishedAt,
-    sourceLinks,
-  } = articleData;
+ const {
+  title,
+  subtitle,
+  excerpt,
+  featuredImage,
+  author,
+  category,
+  readingTime,
+  publishedAt,
+  updatedAt,
+  sourceLinks,
+} = articleData;
 
   // Format the date based on locale safely
   const formattedDate = publishedAt 
@@ -44,6 +45,13 @@ export default function ArticlePage({ locale, dict, article }: Props) {
         day: 'numeric',
       }).format(new Date(publishedAt))
     : '';
+
+
+    const isUpdated =
+  Boolean(updatedAt) &&
+  Boolean(publishedAt) &&
+  new Date(updatedAt).getTime() >
+    new Date(publishedAt).getTime();
 
   return (
     <>
@@ -88,7 +96,11 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {category?.name && (
                   <span className="badge text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1">{category.name}</span>
                 )}
-                <span className="badge text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1">{isAr ? 'محدّث' : 'Updated'}</span>
+                {isUpdated && (
+  <span className="badge text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1">
+    {isAr ? 'محدّث' : 'Updated'}
+  </span>
+)}
                 {readingTime && (
                   <span className="text-[11px] sm:text-xs text-muted-foreground">{readingTime} {isAr ? 'دقيقة قراءة' : 'min read'}</span>
                 )}

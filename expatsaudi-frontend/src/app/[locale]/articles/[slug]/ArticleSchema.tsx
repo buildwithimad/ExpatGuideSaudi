@@ -57,9 +57,8 @@ export default async function ArticleSchema({
           siteUrl,
 
         logo:
-          branding.logos.primaryLogo ??
-          branding.logos.defaultOgImage ??
-          undefined,
+  branding.logos.primaryLogo ??
+  undefined,
       },
 
       datePublished:

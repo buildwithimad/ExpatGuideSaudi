@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
 
 import { getArticles } from '@/lib/api/articles'
-import { getCategories } from '@/lib/api/categories'
 import {
   locales,
   type Locale,
@@ -88,26 +87,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // ---------------------------------------------------------------------------
-  // Categories
-  // ---------------------------------------------------------------------------
-
-  for (const locale of locales) {
-    const categories = await getCategories(
-      locale as Locale,
-    )
-
-    for (const category of categories) {
-      if (!category.slug) continue
-
-      entries.push({
-        url: `${baseUrl}/${locale}/categories/${category.slug}`,
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      })
-    }
-  }
-
-  // ---------------------------------------------------------------------------
   // Articles - automatically paginate through all articles
   // ---------------------------------------------------------------------------
 
@@ -125,8 +104,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const article of articles.docs ?? []) {
         if (!article.slug) continue
 
+        // Do not include noindex articles in the sitemap
+        if (article.noIndex) continue
+
         entries.push({
           url: `${baseUrl}/${locale}/articles/${article.slug}`,
+          lastModified: article.updatedAt,
           changeFrequency: 'monthly',
           priority: 0.8,
         })

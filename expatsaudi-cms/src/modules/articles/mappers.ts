@@ -154,15 +154,27 @@ export function mapBaseArticle(
 
     excerpt: article.excerpt ?? null,
 
-    featuredImage: mapImage(article.featuredImage),
+    featuredImage:
+      mapImage(article.featuredImage),
 
-    author: mapArticleAuthor(article.author),
+    author:
+      mapArticleAuthor(article.author),
 
-    category: mapArticleCategory(article.category),
+    category:
+      mapArticleCategory(article.category),
 
-    publishedAt: article.publishedAt ?? article.createdAt,
+    publishedAt:
+      article.publishedAt ??
+      article.createdAt,
 
-    readingTime: article.readingTime ?? 0,
+    updatedAt:
+      article.updatedAt,
+
+    noIndex:
+      article.noIndex ?? false,
+
+    readingTime:
+      article.readingTime ?? 0,
   };
 }
 
@@ -213,8 +225,7 @@ export function mapArticle(
   viewCount:
     article.viewCount ?? 0,
 
-  updatedAt:
-    article.updatedAt,
+  
 
   lastVerifiedAt:
     article.lastVerifiedAt ?? null,
