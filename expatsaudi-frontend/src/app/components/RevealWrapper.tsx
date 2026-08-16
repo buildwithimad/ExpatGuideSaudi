@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, ReactNode } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface RevealWrapperProps {
   children: ReactNode;
