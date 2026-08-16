@@ -15,6 +15,8 @@ import Header from '@/components/Header';
 import LocaleDocument from '@/components/LocaleDocument';
 import Providers from '@/components/Theme/ThemeProvider';
 
+import GoogleTagManager from '@/components/Analytics/GoogleTagManager';
+
 
 import { getCategories } from '@/lib/api/categories';
 import { getDictionary } from '@/lib/dictionary';
@@ -122,6 +124,10 @@ export default async function LocaleLayout({
 
   const categories= (await getCategories(currentLocale)).slice(0,6)
 
+  const googleTagManagerID = settings.analytics.services.googleTagManagerId
+
+  console.log("GTM ID: ", googleTagManagerID)
+
   /* ------------------------------------------------------------------------ */
   /* Locale Configuration                                                     */
   /* ------------------------------------------------------------------------ */
@@ -138,6 +144,11 @@ const isUrdu =
 
   return (
     <Providers theme={settings.theme}>
+
+      <GoogleTagManager
+      gtmId={googleTagManagerID}
+    />
+
       <LocaleDocument
         locale={currentLocale}
       />
