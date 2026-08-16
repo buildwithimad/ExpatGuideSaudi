@@ -8,10 +8,13 @@ import {
 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
+import BackToTop from '@/components/Features/BacktoTop';
+import SocialLinks from '@/components/Features/SocialProfiles';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import LocaleDocument from '@/components/LocaleDocument';
 import Providers from '@/components/Theme/ThemeProvider';
+
 
 import { getCategories } from '@/lib/api/categories';
 import { getDictionary } from '@/lib/dictionary';
@@ -185,6 +188,16 @@ const isUrdu =
         {/* ---------------------------------------------------------------- */}
 
         {children}
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Social Links                                                       */}
+        {/* ---------------------------------------------------------------- */}
+
+        <SocialLinks
+          socialProfiles={settings.social?.socialProfiles}
+        />
+
+        <BackToTop/>
 
         {/* ---------------------------------------------------------------- */}
         {/* Footer                                                             */}

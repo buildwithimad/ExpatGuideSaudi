@@ -129,7 +129,9 @@ function DesktopNav({
         const isItemLoading = loadingPath === link.href;
 
         const primaryText = active ? 'text-foreground font-semibold' : 'text-muted-foreground hover:text-foreground';
-        const secondaryText = active ? 'text-white font-semibold' : 'text-white/85 hover:text-white';
+        const secondaryText = active
+  ? 'text-primary-foreground font-semibold'
+  : 'text-primary-foreground/85 hover:text-primary-foreground';
         const textClass = isPrimary ? primaryText : secondaryText;
 
         return (
@@ -149,11 +151,13 @@ function DesktopNav({
             </span>
             {/* Active indicator */}
             {active && (
-              <span 
-                className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-t-sm ${isPrimary ? 'bg-primary' : 'bg-white'}`} 
-                aria-hidden="true" 
-              />
-            )}
+  <span 
+    className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-t-sm ${
+      isPrimary ? 'bg-primary' : 'bg-primary-foreground'
+    }`} 
+    aria-hidden="true" 
+  />
+)}
           </Link>
         );
       })}
@@ -243,7 +247,6 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
   );
 
   const searchHref = `/${locale}/search-results`;
-  const siteNameUpper = (settings.branding.identity.siteName || 'KSA EXPAT').toUpperCase();
 
   return (
     <>
