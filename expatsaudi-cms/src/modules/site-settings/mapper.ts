@@ -122,6 +122,10 @@ export function mapSiteSettings(
         telegram:
           settings.socialProfiles
             ?.telegram ?? null,
+        
+        whatsapp:
+          settings.socialProfiles
+            ?.whatsapp ?? null
       },
     },
 

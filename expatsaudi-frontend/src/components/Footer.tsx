@@ -70,6 +70,11 @@ export default function Footer({
       icon: 'Telegram',
       href: socialProfiles.telegram,
     },
+    {
+      label: 'Whatsapp',
+      icon: 'Whatsapp',
+      href: socialProfiles.whatsapp,
+    },
   ].filter(
     (
       item,

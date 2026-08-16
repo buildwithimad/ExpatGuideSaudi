@@ -7,6 +7,7 @@ import {
     FaLinkedinIn,
     FaTelegramPlane,
     FaTiktok,
+    FaWhatsapp,
     FaYoutube,
 } from 'react-icons/fa';
 import { FaShareNodes, FaXTwitter } from 'react-icons/fa6';
@@ -19,6 +20,7 @@ interface SocialProfiles {
   youtube?: string | null;
   tiktok?: string | null;
   telegram?: string | null;
+  whatsapp?: string | null;
 }
 
 interface SocialLinksProps {
@@ -33,6 +35,7 @@ const socialPlatforms = [
   { key: 'youtube', label: 'YouTube', icon: FaYoutube },
   { key: 'tiktok', label: 'TikTok', icon: FaTiktok },
   { key: 'telegram', label: 'Telegram', icon: FaTelegramPlane },
+  { key: 'whatsapp', label: 'WhatsApp', icon: FaWhatsapp },
 ] as const;
 
 function SocialLinks({ socialProfiles }: SocialLinksProps) {
@@ -47,7 +50,7 @@ function SocialLinks({ socialProfiles }: SocialLinksProps) {
   if (availableSocials.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-4 z-50 -translate-y-1/2 sm:left-5">
+    <div className="fixed bottom-6 left-4 z-50 sm:left-5">
       <div className="flex flex-col items-center gap-2">
         {/* Social Icons */}
         <div
@@ -86,8 +89,6 @@ function SocialLinks({ socialProfiles }: SocialLinksProps) {
                   hover:bg-primary
                   hover:text-primary-foreground
                   focus:outline-none
-                  focus:ring-2
-                  focus:ring-primary/20
                 "
               >
                 <Icon className="text-[17px]" />
@@ -121,7 +122,11 @@ function SocialLinks({ socialProfiles }: SocialLinksProps) {
         {/* Toggle */}
         <button
           type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setIsOpen((prev) => !prev);
+          }}
           aria-label={
             isOpen ? 'Hide social media links' : 'Show social media links'
           }
@@ -135,7 +140,7 @@ function SocialLinks({ socialProfiles }: SocialLinksProps) {
             transition-all duration-200
             hover:bg-accent
             hover:text-accent-foreground
-            
+            focus:outline-none
           "
         >
           <FaShareNodes

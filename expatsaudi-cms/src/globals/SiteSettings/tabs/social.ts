@@ -46,6 +46,11 @@ export const socialTab: Tab = {
           name: 'telegram',
           label: 'Telegram',
         }),
+
+        urlField({
+          name: 'whatsapp',
+          label: 'Whatsapp',
+        }),
       ],
     },
   ],

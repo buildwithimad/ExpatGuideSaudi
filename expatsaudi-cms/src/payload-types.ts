@@ -965,6 +965,10 @@ export interface SiteSetting {
      * Enter a valid URL.
      */
     telegram?: string | null;
+    /**
+     * Enter a valid URL.
+     */
+    whatsapp?: string | null;
   };
   services?: {
     /**
@@ -1325,6 +1329,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         youtube?: T;
         tiktok?: T;
         telegram?: T;
+        whatsapp?: T;
       };
   services?:
     | T

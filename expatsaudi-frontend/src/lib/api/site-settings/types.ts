@@ -73,6 +73,7 @@ export interface SiteSettings {
       youtube: string | null;
       tiktok: string | null;
       telegram: string | null;
+      whatsapp: string | null
     };
   };
 
