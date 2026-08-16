@@ -83,13 +83,14 @@ const AppImage = memo(function AppImage({
     onLoad: handleLoad,
     onClick,
     unoptimized,
+
+    // Important for LCP images
+    fetchPriority: priority ? 'high' as const : undefined,
   }
 
   if (fill) {
     return (
-      <div
-        className="relative h-full w-full"
-      >
+      <div className="relative h-full w-full">
         <Image
           {...imageProps}
           fill

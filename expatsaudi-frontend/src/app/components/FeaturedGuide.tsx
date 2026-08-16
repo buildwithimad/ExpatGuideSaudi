@@ -53,7 +53,6 @@ export default function FeaturedGuide({
                   src={getImageUrl(article.featuredImage, 'original')}
                   alt={article.featuredImage?.alt || article.title}
                   fill
-                  priority
                   objectFit="contain"
                   className="transition-transform duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 1024px) 100vw, 50vw"
