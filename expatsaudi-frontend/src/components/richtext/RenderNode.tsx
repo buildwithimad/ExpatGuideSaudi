@@ -208,6 +208,38 @@ export default function RenderNode({
     case 'linebreak':
       return <br />
 
+    
+case 'link': {
+  const url = node.fields?.url
+
+  if (!url) {
+    return (
+      <RenderChildren
+        nodes={node.children}
+        headingIds={headingIds}
+        headingIndex={headingIndex}
+      />
+    )
+  }
+
+  const newTab = node.fields?.newTab === true
+
+  return (
+    <a
+      href={url}
+      target={newTab ? '_blank' : undefined}
+      rel={newTab ? 'noopener noreferrer' : undefined}
+      className="font-medium text-primary underline underline-offset-4 transition-colors hover:opacity-80"
+    >
+      <RenderChildren
+        nodes={node.children}
+        headingIds={headingIds}
+        headingIndex={headingIndex}
+      />
+    </a>
+  )
+}
+
     case 'upload': {
       const value = node.value
 
