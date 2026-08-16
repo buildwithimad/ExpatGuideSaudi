@@ -126,7 +126,6 @@ export default async function LocaleLayout({
 
   const googleTagManagerID = settings.analytics.services.googleTagManagerId
 
-  console.log("GTM ID: ", googleTagManagerID)
 
   /* ------------------------------------------------------------------------ */
   /* Locale Configuration                                                     */

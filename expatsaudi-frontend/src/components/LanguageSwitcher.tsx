@@ -267,7 +267,7 @@ export default function LanguageSwitcher({
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Image
                     src={lang.flag}
-                    alt=""
+                    alt={`${lang.name} flag`}
                     width={20}
                     height={14}
                     className="h-[12px] w-[18px] sm:h-[14px] sm:w-[20px] object-cover rounded-xs shrink-0"
