@@ -20,7 +20,11 @@ interface CategoryCardProps {
   };
   image: { src: string; alt: string } | null;
   locale: string;
-  isAr: boolean;
+  dict: {
+  explore?: string;
+  loading?: string;
+  exploreCategory?: string;
+};
   index: number;
 }
 
@@ -40,7 +44,7 @@ Spinner.displayName = 'Spinner';
 // Component
 // ============================================================================
 
-export default function CategoryCard({ category, image, locale, isAr, index }: CategoryCardProps) {
+export default function CategoryCard({ category, image, locale, dict, index }: CategoryCardProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isNavigating, setIsNavigating] = useState(false);
@@ -71,7 +75,7 @@ export default function CategoryCard({ category, image, locale, isAr, index }: C
             ? 'opacity-60 scale-[0.98] border-foreground/50 pointer-events-none cursor-wait shadow-sm' 
             : 'hover:border-foreground hover:shadow-sm'
         }`}
-        aria-label={`${isAr ? 'استكشف الفئة:' : 'Explore category:'} ${category.name}`}
+        aria-label={`${dict.exploreCategory} ${category.name}`}
         aria-disabled={isLoading}
       >
         {/* Centered Category Image / Illustration */}
@@ -113,7 +117,7 @@ export default function CategoryCard({ category, image, locale, isAr, index }: C
             <span className={`inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold tracking-widest uppercase transition-colors duration-200 ${
               isLoading ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
             }`}>
-              {isLoading ? (isAr ? 'جاري التحميل...' : 'Loading...') : (isAr ? 'استكشف' : 'Explore')}
+              {isLoading ? dict.loading : dict.explore}
             </span>
             
             <div className="relative flex items-center justify-center w-4 h-4">
@@ -121,7 +125,7 @@ export default function CategoryCard({ category, image, locale, isAr, index }: C
                 <Spinner className="w-4 h-4 text-foreground" />
               ) : (
                 <Icon 
-                  name={isAr ? "ArrowLeftIcon" : "ArrowRightIcon"} 
+                  name={locale === 'ar' || locale === 'ur' ? 'ArrowLeftIcon' : 'ArrowRightIcon'}
                   size={14} 
                   className="text-muted-foreground transition-all duration-300 ease-out group-hover:text-foreground group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
                   aria-hidden="true" 

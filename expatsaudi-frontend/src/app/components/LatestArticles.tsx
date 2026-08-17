@@ -22,6 +22,8 @@ export default function LatestArticles({
 }: LatestArticlesProps) {
   const t = dict?.latestArticles
 
+  const minuteRead = dict?.global.min
+
   const articleCount = articles?.length ?? 0
 
   // Use the number of available articles to determine the layout.
@@ -175,7 +177,7 @@ export default function LatestArticles({
 
                       {article?.readingTime && (
                         <span className="text-[10px] text-muted-foreground sm:text-[11px] md:text-xs">
-                          {article.readingTime} min read
+                          {article.readingTime} {minuteRead}
                         </span>
                       )}
                     </div>

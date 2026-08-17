@@ -91,104 +91,50 @@ export default function Footer({
 
   const t = dict?.footer;
 
-  /* ---------------------------------------------------------------------- */
-  /* Company Links                                                          */
-  /* ---------------------------------------------------------------------- */
-
   const companyLinks = [
-    {
-      label:
-        t?.groups?.Company?.links?.find(
-          (link) => link.label === 'About',
-        )?.label ?? 'About',
+  {
+    label: t?.groups?.Company?.links?.[0]?.label ?? 'About',
+    href: `/${locale}/about`,
+  },
+  {
+    label: t?.groups?.Company?.links?.[1]?.label ?? 'Contact',
+    href: `/${locale}/contact`,
+  },
+];
 
-      href: `/${locale}/about`,
-    },
+const resourcesLinks = [
+  {
+    label: t?.groups?.Resources?.links?.[0]?.label ?? 'All Articles',
+    href: `/${locale}/articles`,
+  },
+  {
+    label: t?.groups?.Resources?.links?.[1]?.label ?? 'Saudi Tools',
+    href: `/${locale}#tools`,
+  },
+  {
+    label: t?.groups?.Resources?.links?.[2]?.label ?? 'Emergency Numbers',
+    href: `/${locale}/resources/emergency-numbers`,
+  },
+  {
+    label: t?.groups?.Resources?.links?.[3]?.label ?? 'Useful Apps',
+    href: `/${locale}/resources/useful-apps`,
+  },
+];
 
-    {
-      label:
-        t?.groups?.Company?.links?.find(
-          (link) => link.label === 'Contact',
-        )?.label ?? 'Contact',
-
-      href: `/${locale}/contact`,
-    },
-  ];
-
-  /* ---------------------------------------------------------------------- */
-  /* Resource Links                                                         */
-  /* ---------------------------------------------------------------------- */
-
-  const resourcesLinks = [
-    {
-      label:
-        t?.groups?.Resources?.links?.find(
-          (link) => link.label === 'All Articles',
-        )?.label ?? 'All Articles',
-
-      href: `/${locale}/articles`,
-    },
-
-    {
-      label:
-        t?.groups?.Resources?.links?.find(
-          (link) => link.label === 'Saudi Tools',
-        )?.label ?? 'Saudi Tools',
-
-      href: `/${locale}#tools`,
-    },
-
-    {
-      label:
-        t?.groups?.Resources?.links?.find(
-          (link) => link.label === 'Emergency Numbers',
-        )?.label ?? 'Emergency Numbers',
-
-      href: `/${locale}/resources/emergency-numbers`,
-    },
-
-    {
-      label:
-        t?.groups?.Resources?.links?.find(
-          (link) => link.label === 'Useful Apps',
-        )?.label ?? 'Useful Apps',
-
-      href: `/${locale}/resources/useful-apps`,
-    },
-  ];
-
-  /* ---------------------------------------------------------------------- */
-  /* Legal Links                                                            */
-  /* ---------------------------------------------------------------------- */
-
-  const legalLinks = [
-    {
-      label:
-        t?.groups?.Legal?.links?.find(
-          (link) => link.label === 'Privacy Policy',
-        )?.label ?? 'Privacy Policy',
-
-      href: `/${locale}/privacy-policy`,
-    },
-
-    {
-      label:
-        t?.groups?.Legal?.links?.find(
-          (link) => link.label === 'Terms of Use',
-        )?.label ?? 'Terms of Use',
-
-      href: `/${locale}/terms`,
-    },
-
-    {
-      label:
-        t?.groups?.Legal?.links?.find(
-          (link) => link.label === 'Disclaimer',
-        )?.label ?? 'Disclaimer',
-
-      href: `/${locale}/privacy-policy`,
-    },
-  ];
+const legalLinks = [
+  {
+    label: t?.groups?.Legal?.links?.[0]?.label ?? 'Privacy Policy',
+    href: `/${locale}/privacy-policy`,
+  },
+  {
+    label: t?.groups?.Legal?.links?.[1]?.label ?? 'Terms of Use',
+    href: `/${locale}/terms`,
+  },
+  {
+    label: t?.groups?.Legal?.links?.[2]?.label ?? 'Disclaimer',
+    href: `/${locale}/privacy-policy`,
+  },
+];
 
   /* ---------------------------------------------------------------------- */
   /* Render                                                                 */
@@ -348,7 +294,11 @@ export default function Footer({
 
           <p className="order-2 text-sm text-muted-foreground md:order-1">
   {`© ${currentYear} URExpat. ${
-    t?.copyright || 'All rights reserved.'
+    locale === 'ur'
+      ? 'تمام حقوق محفوظ ہیں۔'
+      : locale === 'ar'
+        ? 'جميع الحقوق محفوظة.'
+        : 'All rights reserved.'
   }`}
 </p>
 

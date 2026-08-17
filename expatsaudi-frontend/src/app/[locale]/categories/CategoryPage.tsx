@@ -77,7 +77,8 @@ export default function CategoryPage({
   dict: any;
   categories: Category[];
 }) {
-  const isAr = locale === 'ar';
+
+  const t = dict?.categories;
 
   return (
     <>
@@ -114,17 +115,20 @@ export default function CategoryPage({
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8 md:mb-12 pb-5 md:pb-6 border-b border-border">
               <div className="max-w-2xl">
                 <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-2 md:mb-3">
-                  {dict.nav.categories}
-                </h1>
-                <p className="text-[13px] md:text-sm text-muted-foreground leading-relaxed">
-                  {isAr 
-                    ? 'تصفح جميع الفئات للعثور على الأدلة والمقالات التي تحتاجها بسهولة.' 
-                    : 'Browse all categories to easily find the guides and articles you need.'}
-                </p>
+  {t?.title}
+</h1>
+
+<p className="text-[13px] md:text-sm text-muted-foreground leading-relaxed">
+  {t?.pageDescription}
+</p>
               </div>
               <p className="text-[11px] md:text-xs font-medium text-muted-foreground whitespace-nowrap bg-muted border border-border px-3 py-1.5 md:px-4 md:py-2 flex-shrink-0">
-                {isAr ? 'عرض' : 'Showing'} <strong className="text-foreground font-semibold">{categories.length}</strong> {isAr ? 'تصنيف' : 'categories'}
-              </p>
+  {t?.showing}{' '}
+  <strong className="text-foreground font-semibold">
+    {categories.length}
+  </strong>{' '}
+  {t?.categoryCount}
+</p>
             </div>
 
             {/* Grid */}
@@ -135,7 +139,7 @@ export default function CategoryPage({
                   category={category}
                   image={getOptimalImage(category.icon)}
                   locale={locale}
-                  isAr={isAr}
+                  dict={t}
                   index={i}
                 />
               ))}

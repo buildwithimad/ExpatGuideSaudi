@@ -16,7 +16,10 @@ interface Props {
 }
 
 export default function ArticlePage({ locale, dict, article }: Props) {
-  const isAr = locale === 'ar';
+
+  const t = dict?.articlePage;
+
+
   const { 
     article: articleData, 
     relatedArticles, 
@@ -98,11 +101,11 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 )}
                 {isUpdated && (
   <span className="badge text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1">
-    {isAr ? 'محدّث' : 'Updated'}
+    {t?.updated}
   </span>
 )}
                 {readingTime && (
-                  <span className="text-[11px] sm:text-xs text-muted-foreground">{readingTime} {isAr ? 'دقيقة قراءة' : 'min read'}</span>
+                  <span className="text-[11px] sm:text-xs text-muted-foreground">{readingTime} {t?.minRead}</span>
                 )}
               </div>
               
@@ -139,14 +142,14 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                       {author?.fullName || 'ExpatSaudi Editorial'}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
-                      {author?.jobTitle || (isAr ? 'موثّق من الفريق' : 'Verified Team')}
+                      {author?.jobTitle || t?.verifiedTeam}
                     </p>
                   </div>
                 </div>
                 {formattedDate && (
                   <div className="flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs text-muted-foreground ms-auto sm:ms-0">
                     <Icon name="CalendarIcon" size={13} className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                    <span>{isAr ? 'نُشر' : 'Published'} {formattedDate}</span>
+                    <span>{t?.published} {formattedDate} {formattedDate}</span>
                   </div>
                 )}
               </div>
@@ -186,7 +189,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {tableOfContents && tableOfContents.length > 0 && (
                   <div className="lg:hidden border border-border p-4 sm:p-5 mb-6 sm:mb-8">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4">
-                      {isAr ? 'محتويات المقال' : 'Table of Contents'}
+                      {t?.tableOfContents}
                     </p>
                     <nav className="space-y-1">
                       {tableOfContents.map((item) => (
@@ -212,7 +215,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {sourceLinks && sourceLinks.length > 0 && (
                   <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border">
                     <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-5">
-                      {isAr ? 'روابط المصادر الرسمية' : 'Official Source Links'}
+                      {t?.officialSourceLinks}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {sourceLinks.map((source, index) => (
@@ -248,7 +251,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {tableOfContents && tableOfContents.length > 0 && (
                   <div className="hidden lg:block border border-border p-4 sm:p-5">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4">
-                      {isAr ? 'محتويات المقال' : 'Table of Contents'}
+                      {t?.tableOfContents}
                     </p>
                     <nav className="space-y-1">
                       {tableOfContents.map((item) => (
@@ -268,7 +271,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 {relatedArticles && relatedArticles.length > 0 && (
                   <div className="border border-border p-4 sm:p-5 bg-muted/10">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4 border-b border-border pb-2.5 sm:pb-3">
-                      {isAr ? 'مقالات ذات صلة' : 'Related Articles'}
+                      {t?.relatedArticles}
                     </p>
                     <div className="space-y-4 sm:space-y-6 pt-1">
                       {relatedArticles.map((rel) => (
@@ -288,7 +291,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                           {rel.readingTime && (
                             <span className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-muted-foreground">
                               <Icon name="ClockIcon" size={12} className="w-3 h-3" />
-                              {rel.readingTime} {isAr ? 'دقيقة قراءة' : 'min read'}
+                              {readingTime} {t?.minRead}
                             </span>
                           )}
                         </Link>

@@ -21,6 +21,9 @@ export default function HeroSection({
   articles = [],
 }: HeroSectionProps) {
   const t = dict?.hero;
+
+  const minuteRead = dict?.global.min
+
   
   // Take up to 4 latest articles for the carousel without fetching again
   const carouselArticles = articles.slice(0, 4);
@@ -177,7 +180,7 @@ export default function HeroSection({
                             </span>
                             <span className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground font-medium uppercase tracking-wider">
                               {formatDate(article.publishedAt)}
-                              {article.readingTime && ` · ${article.readingTime} min`}
+                              {article.readingTime && ` · ${article.readingTime} ${minuteRead}`}
                             </span>
                           </div>
 
@@ -192,7 +195,7 @@ export default function HeroSection({
                           )}
 
                           <div className="text-primary text-[11px] sm:text-xs md:text-sm font-semibold flex items-center pt-1 sm:pt-2 group-hover:underline underline-offset-4">
-                            Read Guide 
+                            {t?.readguide}
                             <Icon name="ArrowRightIcon" size={16} className="ms-1 rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
                         </div>

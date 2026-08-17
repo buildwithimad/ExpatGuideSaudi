@@ -4,6 +4,7 @@ import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 import type { ArticlesList } from '@/lib/api/articles';
 import type { Category } from '@/lib/api/categories';
+import type { Dictionary } from '@/lib/dictionary';
 import type { Locale } from '@/lib/i18n-config';
 import { getImageUrl } from '@/lib/utils/getImageUrl';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ interface Props {
   locale: Locale;
   articles: ArticlesList;
   categories: Category[];
+  dict: Dictionary;
   selectedCategory?: string;
 }
 
@@ -64,7 +66,7 @@ ArticleSkeleton.displayName = 'ArticleSkeleton';
 // Main Component
 // ============================================================================
 
-export default function ArticlesPageContent({ locale, articles, categories, selectedCategory }: Props) {
+export default function ArticlesPageContent({ locale, articles, categories, selectedCategory, dict }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -84,17 +86,10 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
     }
   }, [isPending, searchParams]);
 
-  const dict = {
-    latestArticles: { label: locale === 'ar' ? 'أحدث المقالات' : 'Latest Articles' },
-    search: locale === 'ar' ? 'ابحث في المقالات...' : 'Search articles...',
-    all: locale === 'ar' ? 'الكل' : 'All',
-    sort: locale === 'ar' ? 'ترتيب:' : 'Sort by:',
-    latest: locale === 'ar' ? 'الأحدث' : 'Latest',
-    popular: locale === 'ar' ? 'الأكثر قراءة' : 'Popular',
-    emptyTitle: locale === 'ar' ? 'لم يتم العثور على مقالات' : 'No articles found',
-    emptyDesc: locale === 'ar' ? 'جرب فئة أو مصطلح بحث آخر.' : 'Try another category or search term.',
-    clearFilters: locale === 'ar' ? 'مسح الفلاتر' : 'Clear Filters',
-  };
+  const t = dict?.articlesList;
+
+  const minuteRead = dict?.global.min
+
 
   const isRTL = locale === 'ar';
   const { page = 1, totalPages = 1, hasPrevPage, hasNextPage, prevPage, nextPage } = articles.pagination || {};
@@ -188,17 +183,17 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 md:gap-10">
               <div className="w-full lg:w-2/3 max-w-3xl">
                 <SectionTitle
-                  titleAs="h1"
-                  label={dict.latestArticles.label}
-                  title={isRTL ? 'أدلة متخصصة للمغتربين في المملكة' : 'Expert Guides for Expats in Saudi Arabia'}
-                  description={isRTL ? 'تصفح مكتبتنا الكاملة من الأدلة الموثّقة التي تغطي كل جانب من جوانب حياة المغتربين في المملكة. تُحدّث بانتظام وفق المصادر الرسمية.' : 'Browse our complete library of verified guides covering every aspect of expat life in the Kingdom. Updated regularly against official Saudi sources.'}
-                />
+  titleAs="h1"
+  label={t?.latestArticles?.label}
+  title={t?.latestArticles?.title}
+  description={t?.latestArticles?.description}
+/>
               </div>
               <div className="lg:w-1/3 flex lg:justify-end shrink-0">
                 <div className="inline-flex items-center justify-center gap-2 sm:gap-3 border border-border py-2 px-3 sm:py-2.5 sm:px-4 md:py-3 md:px-5 bg-background w-full sm:w-auto transition-opacity duration-300">
                   <Icon name="DocumentTextIcon" size={16} className="text-foreground shrink-0 w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span className="text-[11px] sm:text-xs md:text-sm font-medium text-muted-foreground tracking-wide whitespace-nowrap">
-                    <strong className="text-foreground font-semibold">{articles.pagination.totalDocs || 0}</strong> {isRTL ? 'دليل منشور' : 'guides published'}
+                    <strong className="text-foreground font-semibold">{articles.pagination.totalDocs || 0}</strong> {t?.publishedGuides}
                   </span>
                 </div>
               </div>
@@ -221,12 +216,12 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 />
                 <input 
                   type="search" 
-                  placeholder={dict.search} 
+                  placeholder={t?.search} 
                   className="w-full bg-background border border-border text-foreground rounded-none ps-8 sm:ps-9 pe-3 py-2 sm:py-2.5 md:py-2 text-xs sm:text-sm outline-none focus:border-foreground focus:ring-1 focus:ring-foreground transition-all duration-200 placeholder:text-muted-foreground/70" 
                   defaultValue={searchParams.get('search') || ''}
                   onKeyDown={handleSearch}
                   disabled={isPending}
-                  aria-label={dict.search}
+                  aria-label={t?.search}
                 />
                 {(loadingAction === 'search') && (
                   <Spinner className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground absolute end-3 top-1/2 -translate-y-1/2" />
@@ -249,7 +244,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                   aria-current={!selectedCategory ? 'page' : undefined}
                 >
                   {loadingAction === 'category-all' && <Spinner className="w-3 h-3" />}
-                  {dict.all}
+                  {t?.all}
                 </a>
 
                 {categories?.map((category) => {
@@ -284,13 +279,20 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
             
             {/* Header Info & View Toggles */}
             <div className="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-border">
-              <p className="text-xs sm:text-[13px] md:text-sm font-medium text-muted-foreground transition-opacity duration-200" style={{ opacity: isPending ? 0.5 : 1 }}>
-                {isRTL ? (
-                  <>عرض <strong className="text-foreground">{articles.docs.length}</strong> من <strong className="text-foreground">{articles.pagination.totalDocs}</strong> دليل</>
-                ) : (
-                  <>Showing <strong className="text-foreground">{articles.docs.length}</strong> of <strong className="text-foreground">{articles.pagination.totalDocs}</strong> guides</>
-                )}
-              </p>
+              <p
+  className="text-xs sm:text-[13px] md:text-sm font-medium text-muted-foreground transition-opacity duration-200"
+  style={{ opacity: isPending ? 0.5 : 1 }}
+>
+  {t?.showing}{' '}
+  <strong className="text-foreground">
+    {articles.docs.length}
+  </strong>{' '}
+  {t?.of}{' '}
+  <strong className="text-foreground">
+    {articles.pagination.totalDocs}
+  </strong>{' '}
+  {t?.guides}
+</p>
               
               <div className="flex items-center gap-1 sm:gap-1.5" role="group" aria-label="View toggle">
                 <button 
@@ -322,17 +324,17 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                 <div className="py-12 sm:py-20 md:py-32 flex flex-col items-center justify-center text-center border border-border bg-background px-4">
                   <Icon name="DocumentMagnifyingGlassIcon" size={48} className="text-muted-foreground mb-4 sm:mb-5 opacity-80 w-9 h-9 sm:w-12 sm:h-12" />
                   <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground mb-1.5 sm:mb-2">
-                    {dict.emptyTitle}
+                    {t?.emptyTitle}
                   </h3>
                   <p className="text-xs sm:text-[13px] md:text-sm text-muted-foreground mb-5 sm:mb-6 max-w-md mx-auto">
-                    {dict.emptyDesc}
+                    {t?.emptyDesc}
                   </p>
                   <button 
                     onClick={clearFilters}
                     disabled={isPending}
                     className="text-xs md:text-sm font-medium border border-border px-5 sm:px-6 py-2 sm:py-2.5 hover:border-foreground hover:text-foreground text-foreground transition-colors duration-200 rounded-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground disabled:opacity-50"
                   >
-                    {dict.clearFilters}
+                    {t?.clearFilters}
                   </button>
                 </div>
               ) : (
@@ -349,7 +351,7 @@ export default function ArticlesPageContent({ locale, articles, categories, sele
                     const excerpt = article.excerpt ?? "";
                     const authorName = article.author?.fullName ?? "ExpatSaudi";
                     const formattedDate = article.publishedAt ? new Date(article.publishedAt).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' }) : "";
-                    const readingTime = `${article.readingTime || 5} min`;
+                    const readingTime = `${article.readingTime || 5} ${minuteRead}`;
                     const isCardLoading = loadingCard === article.slug;
                     const imgLoading = isImageLoading[article.slug] !== false;
 

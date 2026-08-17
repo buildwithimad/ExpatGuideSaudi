@@ -272,12 +272,10 @@ export default function AboutPageContent({ locale, dict }: Props) {
                 <SectionTitle label={t?.contact?.label} title={t?.contact?.title} />
               </div>
               <div className="lg:col-span-8 pt-2 lg:pt-0">
-                <div className="grid gap-px bg-border sm:grid-cols-2 rounded-xl overflow-hidden shadow-sm">
+                <div className="grid gap-px bg-border sm:grid-cols-1 rounded-xl overflow-hidden shadow-sm">
                   {[
-                    { icon: 'EnvelopeIcon', label: t?.contact?.editorial ?? 'Editorial', value: 'editorial@expatsaudi.com' },
-                    { icon: 'ChatBubbleLeftIcon', label: t?.contact?.general ?? 'General Enquiries', value: 'hello@expatsaudi.com' },
-                    { icon: 'ExclamationCircleIcon', label: t?.contact?.error ?? 'Report an Error', value: 'corrections@expatsaudi.com' },
-                    { icon: 'MegaphoneIcon', label: t?.contact?.partnerships ?? 'Partnerships', value: 'partners@expatsaudi.com' },
+                    { icon: 'EnvelopeIcon', label: t?.contact?.editorial ?? 'Editorial', value: 'urexpat@gmail.com' },
+                    
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-4 bg-background p-5 md:p-6 transition-colors hover:bg-muted/30">
                       <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">

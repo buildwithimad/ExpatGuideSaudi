@@ -31,26 +31,64 @@
 "description": "Your authoritative guide to life in the Kingdom. From Iqama renewals and visa services to labor law, banking, and housing \u2014 organized, verified, and easy to understand.",
 "exploreGuides": "Explore Guides",
 "browseCategories": "Browse Categories",
+"readguide": "Read Guide",
 "stats": {
 "guides": "Expert Guides",
 "categories": "Topic Categories",
 "free": "Always Free"
+
 },
 "illustration": {
 "title": "Professional Illustration",
 "subtitle": "Saudi Arabia Map / Landmark Visual"
+
 }
 },
+"global": {
+  "min": "Min Read"
+},
+"articlesList": {
+  "latestArticles": {
+    "label": "Latest Guides",
+    "title": "Expert Guides for Expats in Saudi Arabia",
+    "description": "Browse our complete library of verified guides covering every aspect of expat life in the Kingdom. Updated regularly against official Saudi sources."
+  },
+  "publishedGuides": "guides published",
+  "search": "Search articles...",
+  "all": "All",
+  "sort": "Sort by:",
+  "latest": "Latest",
+  "popular": "Popular",
+  "emptyTitle": "No articles found",
+  "emptyDesc": "Try another category or search term.",
+  "clearFilters": "Clear Filters",
+  "showing": "Showing",
+"of": "of",
+"guides": "guides"
+},
+"articlePage": {
+  "updated": "Updated",
+  "minRead": "min read",
+  "verifiedTeam": "Verified Team",
+  "published": "Published",
+  "tableOfContents": "Table of Contents",
+  "officialSourceLinks": "Official Source Links",
+  "relatedArticles": "Related Articles"
+},
 "categories": {
-"label": "Browse by Topic",
-"title": "Popular Categories",
-"description": "Find everything you need organized by topic. Each category contains expert-written guides verified against official Saudi sources.",
-"viewAll": "View All Categories",
-"explore": "Explore",
-"guides": "guides",
-"article": "Article",
-"articles": "Articles",
-"items": {
+  "label": "Browse by Topic",
+  "title": "Popular Categories",
+  "description": "Find everything you need organized by topic. Each category contains expert-written guides verified against official Saudi sources.",
+  "viewAll": "View All Categories",
+  "explore": "Explore",
+  "guides": "guides",
+  "article": "Article",
+  "articles": "Articles",
+  "pageDescription": "Browse all categories to easily find the guides and articles you need.",
+  "showing": "Showing",
+  "categoryCount": "categories",
+  "exploreCategory": "Explore category:",
+  "items": {
 "iqama": {
 "title": "Iqama",
 "description": "Residence permits, renewals, transfers, and status checks."

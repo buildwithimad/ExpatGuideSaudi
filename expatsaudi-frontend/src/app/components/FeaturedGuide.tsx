@@ -4,6 +4,7 @@ import type { Dictionary } from '@/lib/dictionary'
 import type { Locale } from '@/lib/i18n-config'
 import { getImageUrl } from '@/lib/utils/getImageUrl'
 import Link from 'next/link'
+import RevealWrapper from './RevealWrapper'
 
 interface FeaturedGuideProps {
   dict?: Dictionary
@@ -17,6 +18,8 @@ export default function FeaturedGuide({
   article,
 }: FeaturedGuideProps) {
   const t = dict?.featuredGuide
+
+  const minuteRead = dict?.global.min
 
   if (!article) return null
 
@@ -39,7 +42,7 @@ export default function FeaturedGuide({
           </Link>
         </div>
 
-        
+        <RevealWrapper type="up">
           <Link
             href={`/${locale}/articles/${article.slug}`}
             className="group flex flex-col lg:flex-row border border-border hover:border-foreground/20 transition-colors duration-300"
@@ -73,7 +76,7 @@ export default function FeaturedGuide({
 
                     {article?.readingTime && (
                       <span className="text-[10px] sm:text-[11px] md:text-xs text-muted-foreground">
-                        {article.readingTime} min read
+                        {article.readingTime} {minuteRead}
                       </span>
                     )}
 
@@ -155,7 +158,7 @@ export default function FeaturedGuide({
               </div>
             </div>
           </Link>
-        
+        </RevealWrapper>
       </div>
     </section>
   )

@@ -89,6 +89,8 @@ export default async function LocaleArticlesPage({
   const currentLocale =
     locale as Locale;
 
+    const dict = await getDictionary(currentLocale);
+
   const articles =
     await getArticles({
       locale: currentLocale,
@@ -118,6 +120,7 @@ export default async function LocaleArticlesPage({
       articles={articles}
       categories={categories}
       selectedCategory={category}
+      dict={dict}
     />
   </>
 );
