@@ -35,7 +35,6 @@ export const pageSeoFields: Field[] = [
     name: 'image',
     label: 'Open Graph Image',
     type: 'upload',
-    localized: true,
     relationTo: 'media',
 
     admin: {
