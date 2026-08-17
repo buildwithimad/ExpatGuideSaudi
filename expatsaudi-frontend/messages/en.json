@@ -535,6 +535,10 @@
 "terms": {
 "title": "Terms & Conditions | URExpat",
 "description": "Read the URExpat Terms & Conditions covering website use, content accuracy, external links, intellectual property, and liability."
+},
+"disclaimer": {
+  "title": "Disclaimer | URExpat",
+  "description": "Read the URExpat Disclaimer covering informational content, Saudi regulations, external links, tools, and user responsibilities."
 }
 },
 "languageSwitcher": {
@@ -631,7 +635,105 @@
     "error": "Report an Error",
     "partnerships": "Partnerships"
   }
+},
+"disclaimer": {
+  "title": "Disclaimer",
+  "intro": "The information provided on UREXpat is intended for general informational and educational purposes only. While we aim to provide useful, accurate, and up-to-date information, users should verify important information with the relevant official authorities or qualified professionals.",
+  "lastUpdated": "Last updated: August 2026",
+  "sections": [
+    {
+      "title": "1. General Information",
+      "paragraphs": [
+        "UREXpat is an independent information platform created to help expatriates and other readers better understand life, services, procedures, and practical matters in Saudi Arabia.",
+        "The information published on this website should not be considered a substitute for official government information, legal advice, financial advice, medical advice, immigration advice, or other professional advice."
+      ]
+    },
+    {
+      "title": "2. Saudi Laws, Regulations, and Government Services",
+      "paragraphs": [
+        "Saudi laws, regulations, government procedures, fees, requirements, deadlines, and service availability may change without notice.",
+        "Although we make reasonable efforts to keep our content updated, UREXpat does not guarantee that every article or guide reflects the latest official requirements at the time you read it.",
+        "For important matters involving visas, residency, employment, travel, legal requirements, government services, or official procedures, users should confirm the latest information directly with the relevant Saudi government authority."
+      ]
+    },
+    {
+      "title": "3. Legal and Professional Information",
+      "paragraphs": [
+        "Content relating to labor law, contracts, employment rights, immigration, residency, business, taxation, or other legal matters is provided for general informational purposes only.",
+        "Nothing published on UREXpat should be interpreted as legal advice or as creating a professional-client relationship.",
+        "If you require advice regarding your specific situation, consult an appropriately qualified professional or the relevant official authority."
+      ]
+    },
+    {
+      "title": "4. Financial and Banking Information",
+      "paragraphs": [
+        "Financial, banking, salary, fee, currency, and cost-related information is provided for general informational purposes.",
+        "Figures, rates, fees, and calculations may change over time and may vary depending on individual circumstances, institutions, or applicable regulations.",
+        "Users should verify financial information with the relevant bank, financial institution, employer, or official authority before making financial decisions."
+      ]
+    },
+    {
+      "title": "5. Healthcare Information",
+      "paragraphs": [
+        "Any healthcare or medical information published on UREXpat is provided for general informational purposes only.",
+        "It should not be used as a substitute for diagnosis, treatment, or advice from a qualified healthcare professional.",
+        "For medical concerns or emergencies, contact an appropriate healthcare provider or emergency service."
+      ]
+    },
+    {
+      "title": "6. Calculators and Tools",
+      "paragraphs": [
+        "UREXpat may provide calculators, converters, estimators, checkers, and other interactive tools.",
+        "Results produced by these tools may be estimates and should not be considered official calculations or guarantees.",
+        "Tool results may depend on the information entered by the user and the rules or assumptions used by the calculator.",
+        "Always verify important calculations with the relevant official authority, employer, institution, or qualified professional."
+      ]
+    },
+    {
+      "title": "7. Third-Party Websites and Links",
+      "paragraphs": [
+        "UREXpat may link to third-party websites, including official government websites, banks, service providers, social networks, and other external resources.",
+        "These links are provided for convenience and informational purposes. UREXpat does not control or guarantee the accuracy, availability, security, or content of third-party websites.",
+        "Users should review the terms, privacy policies, and other applicable policies of external websites before using their services."
+      ]
+    },
+    {
+      "title": "8. Accuracy and Updates",
+      "paragraphs": [
+        "We make reasonable efforts to provide accurate and useful information, but errors, omissions, outdated information, or inaccuracies may occasionally occur.",
+        "UREXpat does not guarantee that all information is complete, accurate, current, or suitable for every individual situation.",
+        "We may update, modify, correct, or remove content at any time without prior notice."
+      ]
+    },
+    {
+      "title": "9. User Responsibility",
+      "paragraphs": [
+        "Users are responsible for determining whether information published on UREXpat is appropriate for their individual circumstances.",
+        "Before taking action based on important information, users should verify the relevant requirements and obtain professional advice when necessary."
+      ]
+    },
+    {
+      "title": "10. No Government Affiliation",
+      "paragraphs": [
+        "UREXpat is an independent information website and is not a Saudi government website.",
+        "Unless explicitly stated otherwise, UREXpat is not affiliated with, endorsed by, sponsored by, or officially connected to any Saudi government ministry, authority, department, or government service."
+      ]
+    },
+    {
+      "title": "11. Changes to This Disclaimer",
+      "paragraphs": [
+        "UREXpat may update this Disclaimer from time to time to reflect changes to the website, its services, or applicable requirements.",
+        "Any updated version will be published on this page."
+      ]
+    }
+  ],
+  "finalNote": "By using UREXpat, you acknowledge that you have read and understood this Disclaimer and agree to use the information provided on the website at your own discretion."
 }
+
+
+
+
+
 
 }
 

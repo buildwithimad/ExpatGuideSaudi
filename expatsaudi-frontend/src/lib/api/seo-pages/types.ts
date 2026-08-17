@@ -29,6 +29,8 @@ export interface SeoPages {
 
   terms: SeoPage;
 
+  disclaimer: SeoPage;
+
   search: SeoPage;
 
   error404: SeoPage;

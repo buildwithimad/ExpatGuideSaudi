@@ -40,4 +40,6 @@ export interface SeoPagesDTO {
   search: SeoPageDTO;
 
   error404: SeoPageDTO;
+
+  disclaimer: SeoPageDTO
 }

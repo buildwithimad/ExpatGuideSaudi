@@ -1208,6 +1208,28 @@ export interface SeoPage {
      */
     noFollow?: boolean | null;
   };
+  disclaimer?: {
+    /**
+     * Recommended: 50–60 characters.
+     */
+    title?: string | null;
+    /**
+     * Recommended: 140–160 characters.
+     */
+    description?: string | null;
+    /**
+     * Recommended size: 1200 × 630 pixels.
+     */
+    image?: (number | null) | Media;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+  };
   search?: {
     /**
      * Recommended: 50–60 characters.
@@ -1459,6 +1481,15 @@ export interface SeoPagesSelect<T extends boolean = true> {
         noFollow?: T;
       };
   terms?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        noIndex?: T;
+        noFollow?: T;
+      };
+  disclaimer?:
     | T
     | {
         title?: T;

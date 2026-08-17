@@ -132,7 +132,7 @@ const legalLinks = [
   },
   {
     label: t?.groups?.Legal?.links?.[2]?.label ?? 'Disclaimer',
-    href: `/${locale}/privacy-policy`,
+    href: `/${locale}/disclaimer`,
   },
 ];
 

@@ -1,6 +1,6 @@
 import type {
-    SeoPageDTO,
-    SeoPagesDTO,
+  SeoPageDTO,
+  SeoPagesDTO,
 } from './dto';
 
 import type { SeoPagesDocument } from './types';
@@ -70,6 +70,10 @@ export function mapSeoPages(
 
     terms: mapSeoPage(
       seoPages.terms,
+    ),
+
+    disclaimer: mapSeoPage(
+      seoPages.disclaimer,
     ),
 
     search: mapSeoPage(

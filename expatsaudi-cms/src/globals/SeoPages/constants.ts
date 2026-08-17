@@ -46,6 +46,11 @@ export const SEO_PAGES: SeoPage[] = [
   },
 
   {
+    name: 'disclaimer',
+    label: 'Disclaimer',
+  },
+
+  {
     name: 'search',
     label: 'Search',
   },
