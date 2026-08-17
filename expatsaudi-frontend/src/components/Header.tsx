@@ -19,6 +19,9 @@ interface HeaderProps {
   locale?: Locale;
   dict?: Dictionary;
   settings: SiteSettings;
+  enableSearch?: boolean;
+  enableDarkMode?: boolean;
+  enableLanguageSwitcher?: boolean
 }
 
 interface NavLink {
@@ -169,7 +172,7 @@ function DesktopNav({
 // Main Header Component
 // ============================================================================
 
-export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
+export default function Header({ locale = 'en', dict, settings, enableSearch = true, enableDarkMode = true, enableLanguageSwitcher = true }: HeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -181,6 +184,9 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
 
   const { isOpen, close, toggle, triggerRef } = useMobileMenu(isPending, pathname);
   const t = dict?.nav;
+
+
+  
 
   useEffect(() => {
     if (!isPending) {
@@ -299,7 +305,9 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0 ms-auto lg:ms-0">
                 
                 {/* Language Switcher */}
-                <div className="hidden lg:flex items-center">
+
+                {enableLanguageSwitcher && (
+<div className="hidden lg:flex items-center">
   <LanguageSwitcher 
     locale={locale} 
     loadingLocale={loadingLocale}
@@ -308,26 +316,47 @@ export default function Header({ locale = 'en', dict, settings }: HeaderProps) {
     variant="header"
   />
 </div>
+                )}
+                
 
-                <div className="w-[1px] h-3.5 sm:h-4 md:h-5 bg-border mx-0.5" aria-hidden="true" />
+                {(enableDarkMode || enableSearch) && (
+  <div
+    className="w-[1px] h-3.5 sm:h-4 md:h-5 bg-border mx-0.5"
+    aria-hidden="true"
+  />
+)}
 
                 {/* Theme Toggle */}
-                <div className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
-                  <ThemeToggle />
-                </div>
+                {enableDarkMode && (
+  <div className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
+    <ThemeToggle />
+  </div>
+)}
 
-                {/* Search Icon */}
-                <Link
-                  href={searchHref}
-                  onClick={(e) => handleNavigate(e, searchHref)}
-                  aria-disabled={isPending}
-                  className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                    loadingPath === searchHref ? 'opacity-70 pointer-events-none cursor-wait bg-muted' : ''
-                  }`}
-                  aria-label={t?.search ?? 'Search'}
-                >
-                  {loadingPath === searchHref ? <Spinner className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-primary" /> : <Icon name="MagnifyingGlassIcon" size={18} className="sm:w-5 sm:h-5" />}
-                </Link>
+               {/* Search Icon */}
+{enableSearch && (
+  <Link
+    href={searchHref}
+    onClick={(e) => handleNavigate(e, searchHref)}
+    aria-disabled={isPending}
+    className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+      loadingPath === searchHref
+        ? 'opacity-70 pointer-events-none cursor-wait bg-muted'
+        : ''
+    }`}
+    aria-label={t?.search ?? 'Search'}
+  >
+    {loadingPath === searchHref ? (
+      <Spinner className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-primary" />
+    ) : (
+      <Icon
+        name="MagnifyingGlassIcon"
+        size={18}
+        className="sm:w-5 sm:h-5"
+      />
+    )}
+  </Link>
+)}
                 
                 {/* Clean, Large Hamburger Button */}
                 <button

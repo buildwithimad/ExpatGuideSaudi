@@ -25,11 +25,32 @@ export const featuresTab: Tab = {
         },
 
         {
+          name: 'enableBackToTop',
+          label: 'Enable Back to Top',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+
+        {
           name: 'enableDarkMode',
           label: 'Enable Dark Mode',
           type: 'checkbox',
           defaultValue: true,
         },
+
+        {
+          name: 'enableSocialProfile',
+          label: 'Enable Social Profile',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+
+        {
+          name: 'enableLanguageSwitcher',
+          label: 'Enable Language Switcher',
+          type: 'checkbox',
+          defaultValue: true,
+        }
       ],
     },
 

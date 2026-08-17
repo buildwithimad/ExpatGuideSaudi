@@ -13,9 +13,11 @@ interface Props {
   locale: Locale;
   dict: any;
   article: ArticleDetails;
+  enableTableOfContents: boolean;
+  enableRelatedArticles: boolean;
 }
 
-export default function ArticlePage({ locale, dict, article }: Props) {
+export default function ArticlePage({ locale, dict, article, enableTableOfContents = true, enableRelatedArticles= true }: Props) {
 
   const t = dict?.articlePage;
 
@@ -186,7 +188,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
               <article className="lg:col-span-8 prose-editorial">
                 
                 {/* Table of Contents - Mobile & Tablet Only (Displayed before article content) */}
-                {tableOfContents && tableOfContents.length > 0 && (
+                {enableTableOfContents && tableOfContents && tableOfContents.length > 0 && (
                   <div className="lg:hidden border border-border p-4 sm:p-5 mb-6 sm:mb-8">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4">
                       {t?.tableOfContents}
@@ -248,7 +250,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 <div className="lg:sticky lg:top-24 space-y-5 sm:space-y-6">
                 
                 {/* Table of Contents - Desktop Only */}
-                {tableOfContents && tableOfContents.length > 0 && (
+                {enableTableOfContents && tableOfContents && tableOfContents.length > 0 && (
                   <div className="hidden lg:block border border-border p-4 sm:p-5">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4">
                       {t?.tableOfContents}
@@ -268,7 +270,7 @@ export default function ArticlePage({ locale, dict, article }: Props) {
                 )}
 
                 {/* Related Articles */}
-                {relatedArticles && relatedArticles.length > 0 && (
+                {enableRelatedArticles && relatedArticles && relatedArticles.length > 0 && (
                   <div className="border border-border p-4 sm:p-5 bg-muted/10">
                     <p className="label-caps text-[10px] sm:text-xs text-foreground mb-3 sm:mb-4 border-b border-border pb-2.5 sm:pb-3">
                       {t?.relatedArticles}

@@ -993,7 +993,10 @@ export interface SiteSetting {
   website?: {
     maintenanceMode?: boolean | null;
     enableSearch?: boolean | null;
+    enableBackToTop?: boolean | null;
     enableDarkMode?: boolean | null;
+    enableSocialProfile?: boolean | null;
+    enableLanguageSwitcher?: boolean | null;
   };
   content?: {
     enableReadingTime?: boolean | null;
@@ -1349,7 +1352,10 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | {
         maintenanceMode?: T;
         enableSearch?: T;
+        enableBackToTop?: T;
         enableDarkMode?: T;
+        enableSocialProfile?: T;
+        enableLanguageSwitcher?: T;
       };
   content?:
     | T

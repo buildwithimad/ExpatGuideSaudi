@@ -91,12 +91,16 @@ export interface SiteSettings {
       maintenanceMode: boolean;
       enableSearch: boolean;
       enableDarkMode: boolean;
+      enableLanguageSwitcher: boolean;
+      enableBackToTop: boolean;
+      enableSocialProfile: boolean
     };
 
     content: {
       enableReadingTime: boolean;
       enableTableOfContents: boolean;
       enableRelatedArticles: boolean;
+      
     };
 
     ads: {

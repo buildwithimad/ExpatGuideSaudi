@@ -6,7 +6,7 @@ import {
   Noto_Kufi_Arabic,
   Noto_Nastaliq_Urdu,
 } from 'next/font/google';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import BackToTop from '@/components/Features/BacktoTop';
 import SocialLinks from '@/components/Features/SocialProfiles';
@@ -16,6 +16,8 @@ import LocaleDocument from '@/components/LocaleDocument';
 import Providers from '@/components/Theme/ThemeProvider';
 
 import GoogleTagManager from '@/components/Analytics/GoogleTagManager';
+
+import MaintenancePage from '@/components/Maintenance/MaintenancePage';
 
 
 import { getCategories } from '@/lib/api/categories';
@@ -121,7 +123,39 @@ export default async function LocaleLayout({
   const settings =
     await getSiteSettings(currentLocale);
 
+ 
 
+  const maintenanceMode =
+  settings?.features?.website?.maintenanceMode ?? false;
+
+  const enableSearch =
+  settings?.features?.website?.enableSearch ?? true;
+
+  const enableDarkMode =
+  settings?.features?.website?.enableDarkMode ?? true;
+
+
+  const enableLanguageSwitcher =
+  settings?.features?.website?.enableLanguageSwitcher ?? true;
+
+
+   if (!enableLanguageSwitcher && currentLocale !== 'en') {
+  redirect('/en');
+}
+
+  const enableBackToTop =
+  settings?.features?.website?.enableBackToTop ?? true;
+
+  const enableSocialProfile =
+  settings?.features?.website?.enableSocialProfile ?? true;
+
+
+
+
+
+ 
+
+  
   const categories= (await getCategories(currentLocale)).slice(0,6)
 
   const googleTagManagerID = settings.analytics.services.googleTagManagerId
@@ -141,7 +175,19 @@ const isUrdu =
   /* Render                                                                   */
   /* ------------------------------------------------------------------------ */
 
+
+  if (maintenanceMode) {
   return (
+    <MaintenancePage
+      locale={currentLocale}
+      settings={settings}
+    />
+  );
+}
+
+  return (
+
+    
     <Providers theme={settings.theme}>
 
       <GoogleTagManager
@@ -190,6 +236,9 @@ const isUrdu =
             locale={currentLocale}
             dict={dict}
             settings={settings}
+            enableSearch={enableSearch}
+            enableDarkMode={enableDarkMode}
+            enableLanguageSwitcher={enableLanguageSwitcher}
           />
         </Suspense>
 
@@ -203,11 +252,14 @@ const isUrdu =
         {/* Social Links                                                       */}
         {/* ---------------------------------------------------------------- */}
 
+        {enableSocialProfile && 
         <SocialLinks
           socialProfiles={settings.social?.socialProfiles}
         />
+        }
+        
 
-        <BackToTop/>
+        {enableBackToTop && <BackToTop />}
 
         {/* ---------------------------------------------------------------- */}
         {/* Footer                                                             */}

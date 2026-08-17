@@ -177,6 +177,25 @@ export function mapSiteSettings(
           settings.website
             ?.enableDarkMode ??
           true,
+        
+        enableLanguageSwitcher:
+          settings.website
+            ?.enableLanguageSwitcher ??
+          true,
+
+        enableBackToTop:
+          settings.website
+            ?.enableBackToTop ??
+          true,
+
+
+        enableSocialProfile:
+          settings.website
+            ?.enableSocialProfile ??
+          true,
+
+
+        
       },
 
       content: {

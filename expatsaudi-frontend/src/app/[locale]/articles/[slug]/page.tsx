@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 
 import { getArticle } from '@/lib/api/articles';
 import { getDictionary } from '@/lib/dictionary';
+import { getSiteSettings } from '@/lib/settings';
+
 import { locales, type Locale } from '@/lib/i18n-config';
 
 
@@ -114,7 +116,16 @@ export default async function Page({
   ]);
 
 
+  const settings =
+      await getSiteSettings(currentLocale);
 
+
+  const enableTableOfContents =
+  settings?.features?.content?.enableTableOfContents ?? true;
+
+
+  const enableRelatedArticles = 
+  settings?.features?.content?.enableRelatedArticles ?? true;
 
   return (
     <>
@@ -132,6 +143,8 @@ export default async function Page({
       locale={currentLocale}
       dict={dict}
       article={article}
+      enableTableOfContents={enableTableOfContents}
+      enableRelatedArticles={enableRelatedArticles}
     />
     </>
   );
