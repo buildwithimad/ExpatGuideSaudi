@@ -151,6 +151,10 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   fullName: string;
+  /**
+   * Profile image displayed in the Payload admin.
+   */
+  avatar?: (number | null) | Media;
   roles: ('super-admin' | 'admin' | 'editor')[];
   preferredLocale?: ('en' | 'ar' | 'ur' | 'hi' | 'bn' | 'tl') | null;
   updatedAt: string;
@@ -536,6 +540,7 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   fullName?: T;
+  avatar?: T;
   roles?: T;
   preferredLocale?: T;
   updatedAt?: T;

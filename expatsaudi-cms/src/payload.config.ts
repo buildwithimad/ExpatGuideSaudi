@@ -45,23 +45,28 @@ const allowedOrigins = [
 
 export default buildConfig({
   // Admin
-  admin: {
-    user: Users.slug,
+admin: {
+  user: Users.slug,
 
-    importMap: {
-      baseDir: path.resolve(dirname),
-    },
+  avatar: {
+  Component: '@/components/admin/UserAvatar',
+},
 
-   
+  meta: {
+    titleSuffix: ' | URExpat',
+  },
 
-    // Admin Components
-    components: {
-      graphics: {
-        Logo: '@/components/admin/Logo',
-        Icon: '@/components/admin/Icon',
-      },
+  importMap: {
+    baseDir: path.resolve(dirname),
+  },
+
+  components: {
+    graphics: {
+      Logo: '@/components/admin/Logo',
+      Icon: '@/components/admin/Icon',
     },
   },
+},
 
   // Collections
   collections: [

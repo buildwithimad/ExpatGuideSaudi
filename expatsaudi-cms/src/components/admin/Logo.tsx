@@ -1,45 +1,34 @@
-import Image from 'next/image';
-import { getPayload } from 'payload';
+import { getPayload } from 'payload'
 
-import config from '@/payload.config';
+import config from '@/payload.config'
+import AdminLogo from './AdminLogo'
 
 export default async function Logo() {
   const payload = await getPayload({
     config,
-  });
+  })
 
   const settings = await payload.findGlobal({
     slug: 'site-settings',
     locale: 'en',
-    depth: 1,
+    depth: 2,
     overrideAccess: true,
-  });
+  })
 
-  const logo = settings?.logos?.primaryLogo;
+  const primaryLogo =
+    typeof settings?.logos?.primaryLogo === 'object'
+      ? settings.logos.primaryLogo
+      : null
 
-  const logoUrl =
-    typeof logo === 'object' && logo?.url
-      ? logo.url
-      : null;
-
-  if (!logoUrl) {
-    return (
-      <div className="text-xl font-bold">
-        ExpatSaudi
-      </div>
-    );
-  }
+  const whiteLogo =
+    typeof settings?.logos?.whiteLogo === 'object'
+      ? settings.logos.whiteLogo
+      : null
 
   return (
-    <div className="flex justify-center">
-      <Image
-        src={logoUrl}
-        alt="ExpatSaudi"
-        width={220}
-        height={80}
-        className="h-auto w-[220px] object-contain"
-        priority
-      />
-    </div>
-  );
+    <AdminLogo
+      primaryLogoUrl={primaryLogo?.url || null}
+      whiteLogoUrl={whiteLogo?.url || null}
+    />
+  )
 }

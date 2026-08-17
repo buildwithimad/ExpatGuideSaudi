@@ -21,6 +21,15 @@ export const Users: CollectionConfig = {
       index: true,
     },
     {
+  name: 'avatar',
+  label: 'Profile Image',
+  type: 'upload',
+  relationTo: 'media',
+  admin: {
+    description: 'Profile image displayed in the Payload admin.',
+  },
+},
+    {
       name: 'roles',
       label: 'Roles',
       type: 'select',
