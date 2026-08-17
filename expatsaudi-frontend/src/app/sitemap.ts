@@ -53,6 +53,11 @@ const staticPages = [
     priority: 0.3,
     changeFrequency: 'yearly' as const,
   },
+  {
+    path: '/disclaimer',
+    priority: 0.3,
+    changeFrequency: 'yearly' as const,
+  },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
