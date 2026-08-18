@@ -38,62 +38,44 @@ export default function ResourcesSection({
   const t = dict?.resources
 
   return (
-    <section className="py-16 md:py-20 border-b border-border section-bg">
-      <div className="container-editorial">
+    <section className="border-b border-border py-20 md:py-24">
+      <div className="container-editorial p-4">
+        {/* Section heading */}
         <SectionTitle
-          label={
-            t?.label ??
-            'Quick Reference'
-          }
-          title={
-            t?.title ??
-            'Saudi Resources'
-          }
+          label={t?.label ?? 'Quick Reference'}
+          title={t?.title ?? 'Saudi Resources'}
           description={
             t?.description ??
             'Essential reference guides and external links for everyday expat needs.'
           }
-          className="mb-10"
+          className="mb-12 md:mb-14"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-          {resourceCategories.map(
-            (category, i) => {
-              const icon =
-                categoryIcons[category]
+        {/* Resource cards */}
+        <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-2 lg:grid-cols-4">
+          {resourceCategories.map((category, i) => {
+            const icon = categoryIcons[category]
+            const key = categoryKeys[category]
+            const item = t?.items?.[key]
 
-              const key =
-                categoryKeys[category]
-
-              const item =
-                t?.items?.[key]
-
-              return (
-                <RevealWrapper
-                  key={category}
-                  delay={i * 60}
-                  type="up"
-                >
-                  <ResourceCategoryLink
-                    href={`/${locale}/resources/${category}`}
-                    title={
-                      item?.title ??
-                      category
-                    }
-                    description={
-                      item?.description ??
-                      ''
-                    }
-                    icon={icon}
-                    viewLabel={
-                      t?.viewResource ??
-                      'View Resource'
-                    }
-                  />
-                </RevealWrapper>
-              )
-            },
-          )}
+            return (
+              <RevealWrapper
+                key={category}
+                delay={i * 60}
+                type="up"
+              >
+                <ResourceCategoryLink
+                  href={`/${locale}/resources/${category}`}
+                  title={item?.title ?? category}
+                  description={item?.description ?? ''}
+                  icon={icon}
+                  viewLabel={
+                    t?.viewResource ?? 'View Resource'
+                  }
+                />
+              </RevealWrapper>
+            )
+          })}
         </div>
       </div>
     </section>

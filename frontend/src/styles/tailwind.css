@@ -353,6 +353,8 @@
     transition: border-color 0.25s ease;
   }
 
+ 
+
   .resource-card:hover {
     border-color: var(--primary);
   }

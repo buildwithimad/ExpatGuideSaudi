@@ -222,7 +222,6 @@ export default async function ResourceCategoryPage({
   ])
 
 
-  console.log("reources: ", resources)
 
   /* ------------------------------------------------------------------------ */
   /* Render                                                                  */

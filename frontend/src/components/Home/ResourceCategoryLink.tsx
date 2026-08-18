@@ -27,7 +27,7 @@ export default function ResourceCategoryLink({
       href={href}
       onClick={() => setLoading(true)}
       aria-busy={loading}
-      className="resource-card flex flex-col gap-3 h-full bg-background group"
+      className="resource-card flex flex-col gap-3 h-full bg-background group p-6"
     >
       <div className="w-9 h-9 bg-muted flex items-center justify-center">
         {loading ? (
