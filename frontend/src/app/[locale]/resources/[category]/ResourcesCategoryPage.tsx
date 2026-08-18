@@ -3,6 +3,7 @@
 import Link from 'next/link'
 
 import Icon from '@/components/ui/AppIcon'
+import AppImage from '@/components/ui/AppImage'
 import type { Resource } from '@/lib/api/resources'
 import type { Dictionary } from '@/lib/dictionary'
 import type { Locale } from '@/lib/i18n-config'
@@ -43,9 +44,7 @@ export default function ResourcesCategoryPage({
   const t = dict.resources
 
   const categoryKey = categoryKeys[category]
-
   const categoryItem = t.items[categoryKey]
-
   const categoryIcon = categoryIcons[category]
 
   return (
@@ -54,22 +53,20 @@ export default function ResourcesCategoryPage({
       {/* Header                                                                     */}
       {/* -------------------------------------------------------------------------- */}
 
-      <section className="py-16 md:py-20 border-b border-border mt-20">
+      <section className="mt-20 border-b border-border py-16 md:py-20">
         <div className="container-editorial">
           <Link
             href={`/${locale}`}
-            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="mb-8 inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-primary"
           >
-            <Icon
-              name="ArrowLeftIcon"
-              size={14}
-            />
+            <Icon name="ArrowLeftIcon" size={14} />
 
             {t.backToHome}
           </Link>
 
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-muted flex items-center justify-center flex-shrink-0">
+            {/* Category Icon */}
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-muted">
               <Icon
                 name={
                   categoryIcon as Parameters<
@@ -81,16 +78,17 @@ export default function ResourcesCategoryPage({
               />
             </div>
 
+            {/* Category Information */}
             <div>
               <span className="label-caps text-muted-foreground">
                 {t.label}
               </span>
 
-              <h1 className="text-3xl md:text-4xl font-semibold text-foreground mt-2">
+              <h1 className="mt-2 text-3xl font-semibold text-foreground md:text-4xl">
                 {categoryItem.title}
               </h1>
 
-              <p className="mt-4 max-w-2xl text-sm md:text-base text-muted-foreground leading-relaxed">
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 {t.categoryDescriptions[category]}
               </p>
             </div>
@@ -105,7 +103,7 @@ export default function ResourcesCategoryPage({
       <section className="py-16 md:py-20">
         <div className="container-editorial">
           {resources.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+            <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
               {resources.map((resource, i) => (
                 <RevealWrapper
                   key={resource.id}
@@ -116,41 +114,71 @@ export default function ResourcesCategoryPage({
                     href={resource.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="resource-card flex flex-col gap-4 h-full bg-background group"
+                    className="resource-card group flex h-full flex-col overflow-hidden bg-background p-0"
                   >
-                    <div className="w-10 h-10 bg-muted flex items-center justify-center">
-                      <Icon
-                        name={
-                          categoryIcon as Parameters<
-                            typeof Icon
-                          >[0]['name']
-                        }
-                        size={19}
-                        className="text-accent"
-                      />
-                    </div>
+                    {/* ---------------------------------------------------------------- */}
+                    {/* Resource Image                                                    */}
+                    {/* ---------------------------------------------------------------- */}
 
-                    <div>
-                      <h2 className="text-sm font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        {resource.title}
-                      </h2>
-
-                      {resource.description && (
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          {resource.description}
-                        </p>
+                    <div className="relative aspect-[1730/909] w-full overflow-hidden bg-muted">
+                      {resource.icon ? (
+                        <AppImage
+                          src={resource.icon.url}
+                          alt={
+                            resource.icon.alt ||
+                            resource.title
+                          }
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          objectFit="cover"
+                          className="transition-transform duration-300 group-hover:scale-[1.02]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <Icon
+                            name={
+                              categoryIcon as Parameters<
+                                typeof Icon
+                              >[0]['name']
+                            }
+                            size={36}
+                            className="text-accent"
+                          />
+                        </div>
                       )}
                     </div>
 
-                    <div className="mt-auto pt-2 flex items-center gap-1 text-primary">
-                      <span className="text-xs font-semibold">
-                        {t.viewResource}
-                      </span>
+                    {/* ---------------------------------------------------------------- */}
+                    {/* Resource Content                                                  */}
+                    {/* ---------------------------------------------------------------- */}
 
-                      <Icon
-                        name="ArrowRightIcon"
-                        size={12}
-                      />
+                    <div className="flex flex-1 flex-col p-6">
+                      <div>
+                        <h2 className="mb-2 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+                          {resource.title}
+                        </h2>
+
+                        {resource.description && (
+                          <p className="text-xs leading-relaxed text-muted-foreground">
+                            {resource.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* ---------------------------------------------------------------- */}
+                      {/* Resource Link                                                     */}
+                      {/* ---------------------------------------------------------------- */}
+
+                      <div className="mt-auto flex items-center gap-1 pt-6 text-primary">
+                        <span className="text-xs font-semibold">
+                          {t.viewResource}
+                        </span>
+
+                        <Icon
+                          name="ArrowRightIcon"
+                          size={12}
+                        />
+                      </div>
                     </div>
                   </a>
                 </RevealWrapper>

@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation'
 import { getResources } from '@/lib/api/resources'
 import { getDictionary } from '@/lib/dictionary'
 import {
-    locales,
-    type Locale,
+  locales,
+  type Locale,
 } from '@/lib/i18n-config'
 import { generateSiteMetadata } from '@/lib/seo'
 
@@ -220,6 +220,9 @@ export default async function ResourceCategoryPage({
       currentCategory,
     ),
   ])
+
+
+  console.log("reources: ", resources)
 
   /* ------------------------------------------------------------------------ */
   /* Render                                                                  */

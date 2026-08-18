@@ -350,7 +350,6 @@
   .resource-card {
     border: 1px solid var(--border);
     background-color: var(--background);
-    padding: 1.5rem;
     transition: border-color 0.25s ease;
   }
 
