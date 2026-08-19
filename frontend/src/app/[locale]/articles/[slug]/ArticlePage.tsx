@@ -185,7 +185,20 @@ export default function ArticlePage({ locale, dict, article, enableTableOfConten
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
               
               {/* Main Content */}
-              <article className="lg:col-span-8 prose-editorial">
+              <article
+  className="
+    lg:col-span-8
+    prose-editorial
+    [&_img]:block
+    [&_img]:w-auto
+    [&_img]:max-w-full
+    [&_img]:h-auto
+    [&_img]:max-h-[550px]
+    sm:[&_img]:max-h-[650px]
+    lg:[&_img]:max-h-[700px]
+    [&_img]:object-contain
+  "
+>
                 
                 {/* Table of Contents - Mobile & Tablet Only (Displayed before article content) */}
                 {enableTableOfContents && tableOfContents && tableOfContents.length > 0 && (
