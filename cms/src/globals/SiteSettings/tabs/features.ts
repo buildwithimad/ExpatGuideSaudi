@@ -39,6 +39,13 @@ export const featuresTab: Tab = {
         },
 
         {
+          name: 'enableSecondaryNavbar',
+          label: 'Enable Secondary Navbar',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+
+        {
           name: 'enableSocialProfile',
           label: 'Enable Social Profile',
           type: 'checkbox',

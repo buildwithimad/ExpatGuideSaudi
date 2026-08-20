@@ -111,6 +111,7 @@ export interface FeaturesDTO {
     maintenanceMode: boolean;
     enableSearch: boolean;
     enableDarkMode: boolean;
+    enableSecondaryNavbar: boolean;
     enableLanguageSwitcher: boolean;
     enableBackToTop: boolean;
     enableSocialProfile: boolean;

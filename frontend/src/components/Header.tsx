@@ -22,6 +22,7 @@ interface HeaderProps {
   enableSearch?: boolean;
   enableDarkMode?: boolean;
   enableLanguageSwitcher?: boolean
+  enableSecondaryNavbar?: boolean
 }
 
 interface NavLink {
@@ -172,7 +173,7 @@ function DesktopNav({
 // Main Header Component
 // ============================================================================
 
-export default function Header({ locale = 'en', dict, settings, enableSearch = true, enableDarkMode = true, enableLanguageSwitcher = true }: HeaderProps) {
+export default function Header({ locale = 'en', dict, settings, enableSearch = true, enableDarkMode = true, enableLanguageSwitcher = true, enableSecondaryNavbar = true }: HeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -375,7 +376,8 @@ export default function Header({ locale = 'en', dict, settings, enableSearch = t
         </div>
 
         {/* ================= LEVEL 2: Utility Navigation (Saudi Green Bar) ================= */}
-        <div className={`hidden lg:block bg-primary text-primary-foreground border-b border-primary/20 shadow-sm transition-all duration-300 origin-top ${scrolled ? 'h-0 opacity-0 overflow-hidden border-transparent' : 'h-[46px] opacity-100'}`}>
+        {enableSecondaryNavbar && (
+<div className={`hidden lg:block bg-primary text-primary-foreground border-b border-primary/20 shadow-sm transition-all duration-300 origin-top ${scrolled ? 'h-0 opacity-0 overflow-hidden border-transparent' : 'h-[46px] opacity-100'}`}>
           <div className="container-editorial h-full flex items-center justify-center">
             <DesktopNav 
               links={utilityLinks} 
@@ -387,6 +389,8 @@ export default function Header({ locale = 'en', dict, settings, enableSearch = t
             />
           </div>
         </div>
+        )}
+        
       </header>
 
       {/* ================= SIDE DRAWER OVERLAY (Clean White Design) ================= */}

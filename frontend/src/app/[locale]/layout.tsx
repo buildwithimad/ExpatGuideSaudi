@@ -134,6 +134,9 @@ export default async function LocaleLayout({
   const enableDarkMode =
   settings?.features?.website?.enableDarkMode ?? true;
 
+  const enableSecondaryNavbar =
+  settings?.features?.website?.enableSecondaryNavbar ?? true;
+
 
   const enableLanguageSwitcher =
   settings?.features?.website?.enableLanguageSwitcher ?? true;
@@ -239,6 +242,7 @@ const isUrdu =
             enableSearch={enableSearch}
             enableDarkMode={enableDarkMode}
             enableLanguageSwitcher={enableLanguageSwitcher}
+            enableSecondaryNavbar={enableSecondaryNavbar}
           />
         </Suspense>
 

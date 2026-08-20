@@ -177,6 +177,11 @@ export function mapSiteSettings(
           settings.website
             ?.enableDarkMode ??
           true,
+
+        enableSecondaryNavbar:
+          settings.website
+            ?.enableSecondaryNavbar ??
+          true,
         
         enableLanguageSwitcher:
           settings.website

@@ -995,6 +995,7 @@ export interface SiteSetting {
     enableSearch?: boolean | null;
     enableBackToTop?: boolean | null;
     enableDarkMode?: boolean | null;
+    enableSecondaryNavbar?: boolean | null;
     enableSocialProfile?: boolean | null;
     enableLanguageSwitcher?: boolean | null;
   };
@@ -1376,6 +1377,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         enableSearch?: T;
         enableBackToTop?: T;
         enableDarkMode?: T;
+        enableSecondaryNavbar?: T;
         enableSocialProfile?: T;
         enableLanguageSwitcher?: T;
       };
